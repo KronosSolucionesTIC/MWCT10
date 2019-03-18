@@ -33,10 +33,27 @@ namespace CapaLogica
 
         public string inicio_sesion()
         {
-            string cargo = SP_inicio_Sesion(this.usuario, this.contraseña);
-            return cargo;
+            string ok = SP_inicio_Sesion(this.usuario, this.contraseña);
+            return ok;
         }
 
+        public string getId()
+        {
+            string Id = SP_id(this.usuario);
+            return Id;
+        }
+
+        public string getBloqueo()
+        {
+            string bloqueo = SP_bloqueo(this.usuario);
+            return bloqueo;
+        }
+
+        public string getActivo()
+        {
+            string activo = SP_activo(this.usuario);
+            return activo;
+        }
     }
 
 }

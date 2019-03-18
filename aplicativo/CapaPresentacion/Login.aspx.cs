@@ -21,9 +21,13 @@ namespace CapaPresentacion
             Empleado em = new Empleado();
             em.Usuario = Usuario.Text;
             em.Contraseña = Contraseña.Text;
-            string CARGO = em.inicio_sesion();
+            string ok = em.inicio_sesion();
+            string Id = em.getId();
+            string bloqueo = em.getBloqueo();
+            string activo = em.getActivo();
+            int contador = 0;
 
-            if (CARGO == "Administrador")
+            /*if (CARGO == "Administrador")
             {
 
                 Session["Login"] = Usuario.Text;
@@ -42,8 +46,40 @@ namespace CapaPresentacion
             }
             else
             {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Usuario Invalido');</script>");
+            }*/
 
-                Console.WriteLine("Error");
+            if (Id != "")//Valida si existe el usuario
+            {
+                if (bloqueo == "1")//Valida si esta bloqueado
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Usuario Bloqueado. Contacte al Administrador');</script>");
+                } else
+                {
+                    //Valida si esta activo
+                    if(activo == "0")
+                    {
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Usuario Deshabilitado. Contacte al administrador');</script>");
+                    } else
+                    {
+                        if (ok == "true")
+                        {    
+                            Session["Login"] = Usuario.Text;
+                            Response.Redirect("Inicial.aspx");
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Bienvenido a MWCT10. '" + Usuario.Text + "');</script>");
+
+                        } else
+                        {
+                            contador = contador++;
+                            Response.Write("<script language=javascript> alert('" + contador + "'); </script>");
+                        }
+                    }
+                    
+                }
+            } else
+            {
+                Usuario.Text = string.Empty;
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Usuario Invalido');</script>");
             }
         }
     }

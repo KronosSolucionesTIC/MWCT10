@@ -38,9 +38,8 @@ namespace CapaDatos
         {
             try
             {
-                string Cargo = "";
-
-
+                string ok = "";
+                
                 SqlDataReader rpt;
                 SqlCommand comando = new SqlCommand("SP_inicio_Sesion", conn);
                 comando.CommandType = CommandType.StoredProcedure;
@@ -51,10 +50,10 @@ namespace CapaDatos
                 rpt = comando.ExecuteReader();
                 if (rpt.Read() == true)
                 {
-                    Cargo = rpt["ROL"].ToString();
+                    ok = rpt["true"].ToString();
 
                 }
-                return Cargo;
+                return ok;
             }
             catch (Exception exc)
             {
@@ -67,8 +66,101 @@ namespace CapaDatos
             }
 
         }
-        
-        
+
+        public string SP_id(string usuario)
+        {
+            try
+            {
+                string Id = "";
+
+                SqlDataReader rpt;
+                SqlCommand comando = new SqlCommand("SP_id", conn);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("@USER", SqlDbType.VarChar, 15).Value = usuario;
+
+                conn.Open();
+                rpt = comando.ExecuteReader();
+                if (rpt.Read() == true)
+                {
+                    Id = rpt["ID_TBCNTCINFO"].ToString();
+
+                }
+                return Id;
+            }
+            catch (Exception exc)
+            {
+                return exc.Message;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
+        public string SP_bloqueo(string usuario)
+        {
+            try
+            {
+                string bloqueo = "";
+
+                SqlDataReader rpt;
+                SqlCommand comando = new SqlCommand("SP_bloqueo", conn);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("@USER", SqlDbType.VarChar, 15).Value = usuario;
+
+                conn.Open();
+                rpt = comando.ExecuteReader();
+                if (rpt.Read() == true)
+                {
+                    bloqueo = rpt["WEB_LOCKED"].ToString();
+
+                }
+                return bloqueo;
+            }
+            catch (Exception exc)
+            {
+                return exc.Message;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+        public string SP_activo(string usuario)
+        {
+            try
+            {
+                string activo = "";
+
+                SqlDataReader rpt;
+                SqlCommand comando = new SqlCommand("SP_activo", conn);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("@USER", SqlDbType.VarChar, 15).Value = usuario;
+
+                conn.Open();
+                rpt = comando.ExecuteReader();
+                if (rpt.Read() == true)
+                {
+                    activo = rpt["WEB_ENABLE"].ToString();
+
+                }
+                return activo;
+            }
+            catch (Exception exc)
+            {
+                return exc.Message;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
     }
 }
 
