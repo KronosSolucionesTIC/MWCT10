@@ -1,0 +1,146 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.Master.cs" Inherits="CapaPresentacion.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+    <link rel="apple-touch-icon" sizes="76x76" href="DiseñoWeb/assets/img/apple-icon.png/">
+  <link rel="icon" type="image/png" href="DiseñoWeb/assets/img/favicon.png"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title></title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <!-- CSS Files -->
+  <link href="DiseñoWeb/assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="DiseñoWeb/assets/css/now-ui-dashboard.css?v=1.1.0" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="DiseñoWeb/assets/demo/demo.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="">
+    <div class="wrapper ">
+    <div class="sidebar" data-color="blue">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+    -->
+      <div class="logo">
+        <a href="Inicial.aspx" class="simple-text logo-mini">
+           <i class="now-ui-icons shopping_shop"></i>
+        </a>
+        <a href="Inicial.aspx" class="simple-text logo-normal">
+        ANTS GROUP LTDA 
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          
+          <li>
+            <a href="Vista_Empleado.aspx">
+              <i class="now-ui-icons location_world"></i>
+              <p>Empleado</p>
+            </a>
+          </li>
+          <li>
+            <a href="VProducto.aspx">
+              <i class="now-ui-icons shopping_basket"></i>
+              <p>Producto</p>
+            </a>
+          </li>
+          <li>
+            <a href="VProveedor.aspx">
+              <i class="now-ui-icons shopping_delivery-fast"></i>
+              <p>Proveedor</p>
+            </a>
+          </li>
+          <li>
+            <a href="VCliente.aspx">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Cliente</p>
+            </a>
+          </li>
+          <li>
+            <a href="VVenta.aspx">
+              <i class="now-ui-icons shopping_cart-simple"></i>
+              <p>Venta</p>
+            </a>
+          </li>
+          
+          <li class="active-pro">
+            <a href="">
+              <i class="now-ui-icons users_circle-08"></i>
+              <p>ANTS GROUP</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+       <!-- Navbar -->
+          <form id="form1" runat="server">
+      <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-toggle">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" href="Inicial.aspx">Inicio</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navigation">
+           <form>
+              <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="Buscar...">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                  </div>
+                </div>
+              </div>
+            </form>
+              <asp:Button ID="cerrar" runat="server" Text="Cerrar Sesion"  class="btn btn-danger" OnClick="cerrar_Click" />
+                <a class="nav-link" href="Login.aspx">
+              </a>         
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+
+
+       
+      <div class="panel-header panel-header-lg align-content-center">
+          <img src="Bienvenidos.png"  style=" top:1px;"  /> 
+        <canvas id="bigDashboardChart"></canvas>
+     
+      </div>
+     
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+      <footer class="footer">
+        <div class="container-fluid">
+          
+      </footer>
+    </div>
+  </div>
+
+    <!---->
+    
+</body>
+</html>

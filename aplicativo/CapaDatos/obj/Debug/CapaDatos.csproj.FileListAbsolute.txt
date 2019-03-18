@@ -1,0 +1,12 @@
+C:\Users\Estudiante\Desktop\Proyecto TiendaComunal\CapaDatos\bin\Debug\CapaDatos.dll
+C:\Users\Estudiante\Desktop\Proyecto TiendaComunal\CapaDatos\bin\Debug\CapaDatos.pdb
+C:\Users\Estudiante\Desktop\Proyecto TiendaComunal\CapaDatos\obj\Debug\CapaDatos.csprojAssemblyReference.cache
+C:\Users\Estudiante\Desktop\Proyecto TiendaComunal\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+C:\Users\Estudiante\Desktop\Proyecto TiendaComunal\CapaDatos\obj\Debug\CapaDatos.dll
+C:\Users\Estudiante\Desktop\Proyecto TiendaComunal\CapaDatos\obj\Debug\CapaDatos.pdb
+C:\Users\Desarrollador\Downloads\Proyecto Web (1)\Proyecto Web\Proyecto TiendaComunal\CapaDatos\bin\Debug\CapaDatos.dll
+C:\Users\Desarrollador\Downloads\Proyecto Web (1)\Proyecto Web\Proyecto TiendaComunal\CapaDatos\bin\Debug\CapaDatos.pdb
+C:\Users\Desarrollador\Downloads\Proyecto Web (1)\Proyecto Web\Proyecto TiendaComunal\CapaDatos\obj\Debug\CapaDatos.csprojAssemblyReference.cache
+C:\Users\Desarrollador\Downloads\Proyecto Web (1)\Proyecto Web\Proyecto TiendaComunal\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+C:\Users\Desarrollador\Downloads\Proyecto Web (1)\Proyecto Web\Proyecto TiendaComunal\CapaDatos\obj\Debug\CapaDatos.dll
+C:\Users\Desarrollador\Downloads\Proyecto Web (1)\Proyecto Web\Proyecto TiendaComunal\CapaDatos\obj\Debug\CapaDatos.pdb
