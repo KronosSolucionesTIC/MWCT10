@@ -123,7 +123,6 @@
 
        
       <div class="panel-header panel-header-lg align-content-center">
-          <img src="Bienvenidos.png"  style=" top:1px;"  /> 
         <canvas id="bigDashboardChart"></canvas>
      
       </div>

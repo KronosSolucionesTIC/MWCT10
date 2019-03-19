@@ -161,6 +161,38 @@ namespace CapaDatos
             }
 
         }
+
+        public string SP_bloquear(string usuario)
+        {
+            try
+            {
+                string bloqueado = "";
+
+                SqlDataReader rpt;
+                SqlCommand comando = new SqlCommand("SP_bloquear", conn);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("@USER", SqlDbType.VarChar, 15).Value = usuario;
+
+                conn.Open();
+                rpt = comando.ExecuteReader();
+                if (rpt.Read() == true)
+                {
+                    bloqueado = rpt["WEB_LOCKED"].ToString();
+
+                }
+                return bloqueado;
+            }
+            catch (Exception exc)
+            {
+                return exc.Message;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
     }
 }
 

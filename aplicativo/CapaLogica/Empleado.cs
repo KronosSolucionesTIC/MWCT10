@@ -11,8 +11,6 @@ namespace CapaLogica
         //atributos o campos 
         private string usuario;
         private string contraseña;
-        private string rol;
-
 
         //metodos get y set 
         public string Usuario
@@ -53,6 +51,12 @@ namespace CapaLogica
         {
             string activo = SP_activo(this.usuario);
             return activo;
+        }
+
+        public string getBloquear()
+        {
+            string bloqueado = SP_bloquear(this.usuario);
+            return bloqueado;
         }
     }
 

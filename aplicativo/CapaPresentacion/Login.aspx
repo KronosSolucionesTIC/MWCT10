@@ -60,6 +60,8 @@
 					<div class="container-login100-form-btn p-t-10">
                             <asp:Button ID="Iniciar" runat="server" class="login100-form-btn" Text="Iniciar " OnClick="Iniciar_Click" />
 							
+					        <asp:HiddenField ID="TextoContador" runat="server" Value="0" />
+							
 					</div>
 
 				</form>

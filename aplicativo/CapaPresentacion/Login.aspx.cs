@@ -18,36 +18,14 @@ namespace CapaPresentacion
        protected void Iniciar_Click(object sender, EventArgs e)
         {
 
-            Empleado em = new Empleado();
-            em.Usuario = Usuario.Text;
-            em.Contraseña = Contraseña.Text;
-            string ok = em.inicio_sesion();
-            string Id = em.getId();
-            string bloqueo = em.getBloqueo();
-            string activo = em.getActivo();
-            int contador = 0;
-
-            /*if (CARGO == "Administrador")
-            {
-
-                Session["Login"] = Usuario.Text;
-                Response.Redirect("Inicial.aspx");
-
-
-
-            }
-            else
-
-
-            if (CARGO == "Usuario")
-            {
-                Session["Login"] = Usuario.Text;
-                Response.Redirect("Inicial.aspx");
-            }
-            else
-            {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Usuario Invalido');</script>");
-            }*/
+            Empleado em = new Empleado();       //Crea una instancia de clase
+            em.Usuario = Usuario.Text;          //Toma el valor del Textbox usuario
+            em.Contraseña = Contraseña.Text;    //Toma el valor del Textbox contraseña
+            string ok = em.inicio_sesion();     //Pasa el metodo inicio de sesion
+            string Id = em.getId();             //Pasa el metodo getId para validar si existe el usuario     
+            string bloqueo = em.getBloqueo();   //Pasa el metodo getBloqueo
+            string activo = em.getActivo();     //Pasa el metodo getActivo
+            int contador = 0;                   //Contador para intentos de login
 
             if (Id != "")//Valida si existe el usuario
             {
@@ -56,29 +34,44 @@ namespace CapaPresentacion
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Usuario Bloqueado. Contacte al Administrador');</script>");
                 } else
                 {
-                    //Valida si esta activo
-                    if(activo == "0")
+                    if(activo == "0")//Valida si esta activo
                     {
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Usuario Deshabilitado. Contacte al administrador');</script>");
                     } else
                     {
-                        if (ok == "true")
+                        if (ok == "true")//Valida si es correcto clave y contraseña
                         {    
-                            Session["Login"] = Usuario.Text;
-                            Response.Redirect("Inicial.aspx");
+                            Session["Login"] = Usuario.Text;//Asigna usuario a variable Session
+                            Response.Redirect("Inicial.aspx");//Redirecciona al menu
                             Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Bienvenido a MWCT10. '" + Usuario.Text + "');</script>");
 
                         } else
                         {
-                            contador = contador++;
-                            Response.Write("<script language=javascript> alert('" + contador + "'); </script>");
+                            contador = Convert.ToInt32(TextoContador.Value);//Toma el valor del contador
+                            
+                            if(contador == 3)//Valida si es igual a 3
+                            {
+                                Usuario.Text = string.Empty;        //Limpia campo usuario
+                                Contraseña.Text = string.Empty;     //Limpia campo contraseña
+                                string bloqueado = em.getBloquear();//Bloquea el usuario
+                                Response.Write("<script language=javascript> alert('Usuario bloqueado " + contador + " intentos fallidos'); </script>");
+                                TextoContador.Value = "0";          //Pone el nuevo valor en el campo
+                            } else
+                            {
+                                Usuario.Text = string.Empty;    //Limpia campo usuario
+                                Contraseña.Text = string.Empty; //Limpia campo contraseña
+                                contador = contador + 1;        //Suma uno al contador
+                                TextoContador.Value = Convert.ToString(contador); //Pone el nuevo valor en el campo
+                                Response.Write("<script language=javascript> alert('Intento fallido No " + contador + "'); </script>");
+                            }                                                        
                         }
                     }
                     
                 }
             } else
             {
-                Usuario.Text = string.Empty;
+                Usuario.Text = string.Empty;    //Limpia campo usuario
+                Contraseña.Text = string.Empty; //Limpia campo contraseña
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Usuario Invalido');</script>");
             }
         }
