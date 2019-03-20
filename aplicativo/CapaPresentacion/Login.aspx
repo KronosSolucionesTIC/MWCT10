@@ -27,9 +27,35 @@
     <title></title>
 </head>
 <body>
-    	<div class="limiter">
-		<div class="container-login100" style="background-image: url('images/img-01.jpg');">
-			<div class="wrap-login100 p-t-190 p-b-30">
+    <div class="limiter">
+        <div class="container-fluid" id="colordefondo2">
+            <div class="container ">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 col-lg-4 mb-2 mt-2">
+                        <img alt="" class="img-fluid" height="100%" src="images/logo.png" width="50px" />
+                    </div>
+                    <div class="col-md-12 col-xs-12 col-lg-8 pt-3">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Ingresar
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+<div class="container-login100" id="fondima">
+            <div class="container">
+                <div class="row">
+                    <div class="p-4 mb-2 mt-2 col-md-12 col-xs-12 col-lg-6">
+                        <div id="cajas">
+                            <div class="pt-4 pb-3 pl-3 pr-3" id="bordes">
+                                <p>
+
 
                  <form id="form2" runat="server" class="login100-form validate-form">
 			
@@ -65,19 +91,12 @@
 					</div>
 
 				</form>
-			</div>
-		</div>
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</body>
 </html>
