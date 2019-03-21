@@ -43,33 +43,25 @@
         <ul class="nav">
           
           <li>
-            <a href="Vista_Empleado.aspx">
-              <i class="now-ui-icons location_world"></i>
-              <p>Empleado</p>
+            <a href="#">
+              <label>Fecha:</label>
+                <input type="date" name="cumpleanios" step="1" min="2013-01-01" max="2013-12-31" value="2013-01-01">
             </a>
           </li>
           <li>
-            <a href="VProducto.aspx">
-              <i class="now-ui-icons shopping_basket"></i>
-              <p>Producto</p>
+            <a href="#">
+              <label>Cliente</label>
+
             </a>
           </li>
           <li>
-            <a href="VProveedor.aspx">
-              <i class="now-ui-icons shopping_delivery-fast"></i>
-              <p>Proveedor</p>
-            </a>
-          </li>
-          <li>
-            <a href="VCliente.aspx">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>Cliente</p>
-            </a>
-          </li>
-          <li>
-            <a href="VVenta.aspx">
-              <i class="now-ui-icons shopping_cart-simple"></i>
-              <p>Venta</p>
+            <a href="#">
+              <label>Estado</label>
+                <select>
+                    <option>Pepito Perez</option>
+                    <option>Sutanito</option>
+                    <option>Prueba</option>
+                </select>
             </a>
           </li>
           
@@ -125,6 +117,8 @@
        
       <div class="panel-header panel-header-lg align-content-center">
         <canvas id="bigDashboardChart"></canvas>
+     
+
      
       </div>
      

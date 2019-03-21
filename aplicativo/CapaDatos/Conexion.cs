@@ -193,9 +193,24 @@ namespace CapaDatos
             }
 
         }
+
+        public DataSet DSET(string sentencia)
+        {
+            DataSet ds = new DataSet();
+
+            conn.Open();
+
+            try
+            {
+                SqlDataAdapter SDA = new SqlDataAdapter(sentencia, conn);
+                SDA.Fill(ds, "datos"); 
+            }
+            catch(SqlException mise)
+            {
+                int error = Convert.ToInt32(mise);
+            }
+
+            return ds;
+        }
     }
 }
-
-
-
-

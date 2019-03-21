@@ -4,7 +4,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
 
- 
+           <asp:DropDownList ID="ciudad" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
+          </asp:DropDownList>
 
 
 </asp:Content>
