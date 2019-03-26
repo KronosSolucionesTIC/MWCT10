@@ -18,6 +18,19 @@ namespace CapaPresentacion
                 llenar_cliente();
             }
             calcular_fecha();
+
+            string cadenaconexion = "Data Source=.;Initial Catalog =PROYECTO; Integrated security=true";//cadena de conexion  \\
+            SqlConnection conn = new SqlConnection(cadenaconexion);
+
+            //Se declara el dataadapter
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM TB_ACTY_MTR", conn);
+            //Contenedor de datos
+            DataTable dt = new DataTable();
+            //Se llena el contenedor
+            da.Fill(dt);
+            //Agregamos a datagriedview con datasource
+            this.GridView1.DataSource = dt;
+            GridView1.DataBind();
         }
 
         protected void llenar_cliente()
@@ -66,6 +79,22 @@ namespace CapaPresentacion
             Session.RemoveAll();
 
             Response.Redirect("Login.aspx");
+        }
+
+        protected void actualizar_Click(object sender, EventArgs e)
+        {
+            string cadenaconexion = "Data Source=.;Initial Catalog =PROYECTO; Integrated security=true";//cadena de conexion  \\
+            SqlConnection conn = new SqlConnection(cadenaconexion);
+
+            //Se declara el dataadapter
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM TB_ACTY_MTR WHERE ID_STATE = '" + estado.SelectedValue + " '", conn);
+            //Contenedor de datos
+            DataTable dt = new DataTable();
+            //Se llena el contenedor
+            da.Fill(dt);
+            //Agregamos a datagriedview con datasource
+            this.GridView1.DataSource = dt;
+            GridView1.DataBind();
         }
     }
 }

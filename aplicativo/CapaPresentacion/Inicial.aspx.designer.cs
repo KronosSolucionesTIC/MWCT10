@@ -67,13 +67,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.DropDownList estado;
         
         /// <summary>
-        /// Control Button1.
+        /// Control actualizar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button actualizar;
         
         /// <summary>
         /// Control cerrar.
@@ -85,13 +85,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Button cerrar;
         
         /// <summary>
-        /// Control Usuarios.
+        /// Control tareas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource Usuarios;
+        protected global::System.Web.UI.WebControls.SqlDataSource tareas;
         
         /// <summary>
         /// Control GridView1.
