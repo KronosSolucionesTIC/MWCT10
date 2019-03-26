@@ -15,16 +15,22 @@ namespace CapaPresentacion
         {
             if (!IsPostBack)
             {
-                llenar_ciudad();
+                llenar_cliente();
             }
+            calcular_fecha();
         }
 
-        protected void llenar_ciudad()
+        protected void llenar_cliente()
         {
-            ciudad.DataSource = consultar("SELECT * FROM ciudad");
-            ciudad.DataTextField = "NOMBRE";
-            ciudad.DataValueField = "ID_CIUDAD";
-            ciudad.DataBind();
+            cliente.DataSource = consultar("SELECT ID_TBCLIENT,NAME_CLIENT FROM TB_CLIENT");
+            cliente.DataTextField = "NAME_CLIENT";
+            cliente.DataValueField = "ID_TBCLIENT";
+            cliente.DataBind();
+        }
+
+        protected void calcular_fecha()
+        {
+            //txtFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
         public DataSet consultar(string sentencia)
@@ -44,6 +50,22 @@ namespace CapaPresentacion
         protected void ciudad_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void TxtFecha_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        protected void cerrar_Click(object sender, EventArgs e)
+        {
+            /*int salida;
+            salida = Convert.ToInt32(logout.Value);//Toma el valor del contador
+            Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'); </script>");*/
+            Session.RemoveAll();
+
+            Response.Redirect("Login.aspx");
         }
     }
 }

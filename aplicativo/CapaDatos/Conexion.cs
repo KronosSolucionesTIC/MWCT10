@@ -34,7 +34,7 @@ namespace CapaDatos
         }
        
        
-        public string SP_inicio_Sesion(string usuario, string contraseña)
+        public string SP_inicio_Sesion(string usuario, string contraseña)//Procedimiento para inicio de sesion
         {
             try
             {
@@ -67,7 +67,7 @@ namespace CapaDatos
 
         }
 
-        public string SP_id(string usuario)
+        public string SP_id(string usuario)//Procedimiento que trae el ID del usuario
         {
             try
             {
@@ -99,7 +99,7 @@ namespace CapaDatos
 
         }
 
-        public string SP_bloqueo(string usuario)
+        public string SP_bloqueo(string usuario)//Procedimiento que trae el campo de bloqueo del usuario
         {
             try
             {
@@ -130,7 +130,7 @@ namespace CapaDatos
             }
 
         }
-        public string SP_activo(string usuario)
+        public string SP_activo(string usuario)//Procedimiento que trae si esta activo o no el usuario
         {
             try
             {
@@ -162,7 +162,7 @@ namespace CapaDatos
 
         }
 
-        public string SP_bloquear(string usuario)
+        public string SP_bloquear(string usuario)//Procedimiento para saber si esta bloqueado o no el usuario
         {
             try
             {

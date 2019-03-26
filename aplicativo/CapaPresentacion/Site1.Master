@@ -26,12 +26,10 @@
 
 </head>
 <body class="">
-    <div class="wrapper ">
-    <div class="sidebar" data-color="blue">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    -->
-      <div class="logo">
+    <form id="form1" runat="server">
+        <div class="wrapper ">
+            <div class="sidebar" data-color="blue">
+                <div class="logo">
         <a href="Inicial.aspx" class="simple-text logo-mini">
            <i class="now-ui-icons shopping_shop"></i>
         </a>
@@ -40,78 +38,12 @@
         </a>
       </div>
       <div class="sidebar-wrapper">
-        <ul class="nav">
-          
-          <li>
-            <a href="#">
-              <label>Fecha:</label>
-                <input type="date" name="cumpleanios" step="1" min="2013-01-01" max="2013-12-31" value="2013-01-01">
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <label>Cliente</label>
-
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <label>Estado</label>
-                <select>
-                    <option>Pepito Perez</option>
-                    <option>Sutanito</option>
-                    <option>Prueba</option>
-                </select>
-            </a>
-          </li>
-          
-          <li class="active-pro">
-            <a href="">
-              <i class="now-ui-icons users_circle-08"></i>
-              <p>ANTS GROUP</p>
-            </a>
-          </li>
-        </ul>
+                          <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
       </div>
     </div>
     <div class="main-panel">
-       <!-- Navbar -->
-          <form id="form1" runat="server">
-      <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-            <a class="navbar-brand" href="Inicial.aspx">Inicio</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-           <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Buscar...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                  </div>
-                </div>
-              </div>
-            </form>
-              <asp:Button ID="cerrar" runat="server" Text="Cerrar Sesion"  class="btn btn-danger" OnClick="cerrar_Click" />
-                <a class="nav-link" href="Login.aspx">
-              </a>         
-          </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
+
 
 
        
@@ -119,20 +51,14 @@
         <canvas id="bigDashboardChart"></canvas>
      
 
+          <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+          </asp:ContentPlaceHolder>
+     
+
      
       </div>
      
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-
-            <asp:HiddenField ID="logout" runat="server" Value="0" Visible="False" />
-        </div>
     </form>
-      <footer class="footer">
-        <div class="container-fluid">
-          
-      </footer>
     </div>
   </div>
 @section_scripts{
