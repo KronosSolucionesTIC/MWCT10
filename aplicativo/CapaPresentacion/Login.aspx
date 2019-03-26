@@ -32,17 +32,12 @@
             <div class="container ">
                 <div class="row">
                     <div class="col-md-12 col-xs-12 col-lg-4 mb-2 mt-2">
-                        <img alt="" class="img-fluid" height="100%" src="images/logo.png" width="50px" />
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Estilo/images/ingresar_verde.png" />
                     </div>
                     <div class="col-md-12 col-xs-12 col-lg-8 pt-3">
                         <nav>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        Ingresar
-                                    </a>
-                                </li>
-                            </ul>
+                            <p>
+                                &nbsp;</p>
                         </nav>
                     </div>
                 </div>

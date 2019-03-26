@@ -154,23 +154,21 @@ iframe {
 }
 
 .container-login100 {
-  width: 100%;  
-  min-height: 100vh;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  
-  position: relative;
-  z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-image: url("../images/fondo.png");
+    background-size: 100% 100%;
+    position: relative;
+    z-index: 1;
 }
 
 .container-login100::before {
@@ -182,12 +180,6 @@ iframe {
   height: 100%;
   top: 0;
   left: 0;
-  background: #005bea;
-  background: -webkit-linear-gradient(bottom, #005bea, #00c6fb);
-  background: -o-linear-gradient(bottom, #005bea, #00c6fb);
-  background: -moz-linear-gradient(bottom, #005bea, #00c6fb);
-  background: linear-gradient(bottom, #005bea, #00c6fb);
-  opacity: 0.9;
 }
 
 .wrap-login100 {
