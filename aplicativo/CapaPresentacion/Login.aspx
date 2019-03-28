@@ -28,11 +28,12 @@
 </head>
 <body>
     <div class="limiter">
+        <form id="form2" runat="server" class="login100-form validate-form">
         <div class="container-fluid" id="colordefondo2">
             <div class="container ">
                 <div class="row">
                     <div class="col-md-12 col-xs-12 col-lg-4 mb-2 mt-2">
-                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Estilo/images/ingresar_verde.png" />
+                            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Estilo/images/ingresar_verde.png" OnClick="ImageButton1_Click1" />
                     </div>
                     <div class="col-md-12 col-xs-12 col-lg-8 pt-3">
                         <nav>
@@ -44,54 +45,53 @@
             </div>
         </div>
 <div class="container-login100" id="fondima">
-            <div class="container">
-                <div class="row">
-                    <div class="p-4 mb-2 mt-2 col-md-12 col-xs-12 col-lg-6">
-                        <div id="cajas">
-                            <div class="pt-4 pb-3 pl-3 pr-3" id="bordes">
-                                <p>
+    <div class="container">
+        <div class="row">
+            <div class="divLogin p-4 mb-4 mt-4 col-md-12 col-xs-12 col-lg-6" id="theDiv" runat="server">
+                <div id="cajas">
+                    <div class="pt-4 pb-3 pl-3 pr-3" id="bordes">
 
+                            <div class="m-b-10">
+					            <asp:Image ID="Image1" runat="server" ImageUrl="~/Estilo/images/log.png" Height="150px" Width="342px" />
+					        </div>
 
-                 <form id="form2" runat="server" class="login100-form validate-form">
-			
-					<div class="login100-form-avatar">
-						<img src="Estilo/images/log.jpg" alt="AVATAR"/>
-					</div>
+					        <div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
+                                <asp:TextBox ID="Usuario" runat="server" class="input100" type="text" name="username" placeholder="Usuario"></asp:TextBox>
+						        <span class="focus-input100"></span>
+						        <span class="symbol-input100">
+							       <i class="fa fa-user"></i>
+						        </span>
+					        </div>
 
-					<span class="login100-form-title p-t-20 p-b-45">
-						Iniciar Sesión
-					</span>
+					        <div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
+                                <asp:TextBox ID="Contraseña" runat="server" class="input100" type="password" name="pass" placeholder="Contraseña"></asp:TextBox>
+						        <span class="focus-input100"></span>
+						        <span class="symbol-input100">
+							        <i class="fa fa-lock"></i>
+						        </span>
+					        </div>
 
-					<div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
-                        <asp:TextBox ID="Usuario" runat="server" class="input100" type="text" name="username" placeholder="Usuario"></asp:TextBox>
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-user"></i>
-						</span>
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
-                        <asp:TextBox ID="Contraseña" runat="server" class="input100" type="password" name="pass" placeholder="Contraseña"></asp:TextBox>
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock"></i>
-						</span>
-					</div>
-
-					<div class="container-login100-form-btn p-t-10">
-                            <asp:Button ID="Iniciar" runat="server" class="login100-form-btn" Text="Iniciar " OnClick="Iniciar_Click" />
+					        <div class="container-login100-form-btn p-t-10">
+                                <asp:Button ID="Iniciar" runat="server" class="login100-form-btn" OnClick="Iniciar_Click" />
 							
-					        <asp:HiddenField ID="TextoContador" runat="server" Value="0" />
+					            <asp:HiddenField ID="TextoContador" runat="server" Value="0" />
 							
-					</div>
+					        </div>
 
-				</form>
-                                </p>
-                            </div>
-                        </div>
+				
+                        </p>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
-	</body>
+
+    </div>
+
+</div>
+</form>
+</body>
 </html>

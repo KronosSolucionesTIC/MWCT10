@@ -12,7 +12,7 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            theDiv.Visible = false;
         }
 
        protected void Iniciar_Click(object sender, EventArgs e)
@@ -74,6 +74,12 @@ namespace CapaPresentacion
                 Contraseña.Text = string.Empty; //Limpia campo contraseña
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Usuario Invalido');</script>");
             }
+        }
+
+
+        protected void ImageButton1_Click1(object sender, ImageClickEventArgs e)
+        {
+            theDiv.Visible = true;
         }
     }
 }
