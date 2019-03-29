@@ -23,7 +23,7 @@ namespace CapaPresentacion
             SqlConnection conn = new SqlConnection(cadenaconexion);
 
             //Se declara el dataadapter
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM TB_ACTY_MTR", conn);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT ID_TBACTYMTR,DOC_ENTRY,DATE_ENTRY, ID_STATE FROM TB_ACTY_MTR", conn);
             //Contenedor de datos
             DataTable dt = new DataTable();
             //Se llena el contenedor

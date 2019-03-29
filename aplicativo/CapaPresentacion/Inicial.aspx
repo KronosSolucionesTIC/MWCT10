@@ -17,7 +17,18 @@
                <asp:Label ID="Label2" runat="server" Text="Estado"></asp:Label>
 
                    <asp:DropDownList ID="estado" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
-                       <asp:ListItem Value="1">Pendiente</asp:ListItem>
+                       <asp:ListItem Value="0">Precarga</asp:ListItem>
+                       <asp:ListItem Value="1">Alistamiento inicial</asp:ListItem>
+                       <asp:ListItem Value="2">Etapa de asignacion</asp:ListItem>
+                       <asp:ListItem Value="5">Ensayo en mesas</asp:ListItem>
+                       <asp:ListItem Value="6">Sellado de salida</asp:ListItem>
+                       <asp:ListItem Value="7">Etiquetado de salida</asp:ListItem>
+                       <asp:ListItem Value="8">Generacion certificado</asp:ListItem>
+                       <asp:ListItem Value="9">Revision de certificado</asp:ListItem>
+                       <asp:ListItem Value="11">Etapa de salida</asp:ListItem>
+                       <asp:ListItem Value="12">Dispositivo entregado</asp:ListItem>
+                       <asp:ListItem Value="16">Rechazo de recepcion</asp:ListItem>
+                       <asp:ListItem Value="17">No recibido en recepcion</asp:ListItem>
           </asp:DropDownList>
     <br />
     <br />
