@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CapaDatos;
+
 namespace CapaLogica
 {
-    public class Empleado : conexion
+    public class Logeo : LogeoDAO
     { 
         //atributos o campos 
         private string usuario;

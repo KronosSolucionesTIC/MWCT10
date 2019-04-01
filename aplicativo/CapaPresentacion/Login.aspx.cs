@@ -18,7 +18,7 @@ namespace CapaPresentacion
        protected void Iniciar_Click(object sender, EventArgs e)
         {
 
-            Empleado em = new Empleado();       //Crea una instancia de clase
+            Logeo em = new Logeo();       //Crea una instancia de clase
             em.Usuario = Usuario.Text;          //Toma el valor del Textbox usuario
             em.Contraseña = Contraseña.Text;    //Toma el valor del Textbox contraseña
             string ok = em.inicio_sesion();     //Pasa el metodo inicio de sesion
