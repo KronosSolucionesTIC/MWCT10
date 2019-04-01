@@ -25,12 +25,7 @@ namespace CapaDatos
         public conexion()
         {
             string cadenaconexion = "Data Source=.;Initial Catalog =PROYECTO; Integrated security=true";//cadena de conexion  \\
-                                                                                                                           //string cadenaconexion = "Data Source=DESKTOP-V53MDQU\\SQLEXPRESS;Initial Catalog =PROYECTOVDAGV; Integrated security=true";//cadena de conexion  \\
-                                                                                                                           // string cadenaconexion = "Data Source=DESKTOP-V53MDQU\\SQLEXPRESS;Initial Catalog =PROYECTOVDAGV; Integrated security=true";//cadena de conexion  \\
-
             conn = new SqlConnection(cadenaconexion);
-
-
         }
        
        

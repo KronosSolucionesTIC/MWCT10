@@ -87,7 +87,6 @@
     <Content Include="DiseñoWeb\assets\js\plugins\chartjs.min.js" />
     <Content Include="DiseñoWeb\assets\js\plugins\perfect-scrollbar.jquery.min.js" />
     <Content Include="DiseñoWeb\docs\documentation.html" />
-    <Content Include="Estilo\images\log.jpg" />
     <Content Include="Inicial.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
@@ -247,10 +246,6 @@
     <Content Include="Estilo\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.svg" />
     <Content Include="Estilo\fonts\montserrat\OFL.txt" />
     <Content Include="Estilo\fonts\raleway\OFL.txt" />
-    <Content Include="Estilo\images\avatar-01.jpg" />
-    <Content Include="Estilo\images\icons\favicon.ico" />
-    <Content Include="Estilo\images\icons\icon-google.png" />
-    <Content Include="Estilo\images\img-01.jpg" />
     <Content Include="Estilo\js\main.js" />
     <Content Include="Estilo\vendor\animate\animate.css" />
     <Content Include="Estilo\vendor\bootstrap\css\bootstrap-grid.css" />
@@ -271,7 +266,6 @@
     <Content Include="Estilo\vendor\select2\select2.js" />
     <Content Include="Estilo\vendor\select2\select2.min.css" />
     <Content Include="Estilo\vendor\select2\select2.min.js" />
-    <Content Include="TiendaComunal.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -297,13 +291,6 @@
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
-    <Compile Include="TiendaComunal.aspx.cs">
-      <DependentUpon>TiendaComunal.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TiendaComunal.aspx.designer.cs">
-      <DependentUpon>TiendaComunal.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaDatos\CapaDatos.csproj">
@@ -314,6 +301,9 @@
       <Project>{c2c52e42-b5be-4bf3-9784-9c4c5d69f06a}</Project>
       <Name>CapaLogica</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Estilo\images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
