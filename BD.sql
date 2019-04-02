@@ -119,7 +119,10 @@ GO
 INSERT INTO USUARIO VALUES ('Admin','123qwerty','Administrador');
 
 --Insercion de registro en tabla de login (Modificado) 
-INSERT INTO TB_CNTCINFO VALUES ('Admin','123qwerty','Administrador');
+INSERT INTO TB_CNTCINFO VALUES ('Admin','123qwerty');
+
+--Insercion de registro en tabla de login (Modificado) 
+INSERT INTO TB_CLIENT (USER_WEB,PWD_WEB) VALUES ('Admin','123qwerty');
 
 --Consulta de usuarios tabla login
 SELECT ROL FROM USUARIO WHERE USUARIO='Admin' AND PASS='123qwerty';

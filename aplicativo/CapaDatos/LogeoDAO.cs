@@ -27,7 +27,6 @@ namespace CapaDatos
                 if (rpt.Read() == true)
                 {
                     ok = rpt["true"].ToString();
-
                 }
                 return ok;
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaLogica;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -19,17 +20,9 @@ namespace CapaPresentacion
             }
             calcular_fecha();
 
-            string cadenaconexion = "Data Source=.;Initial Catalog =PROYECTO; Integrated security=true";//cadena de conexion  \\
-            SqlConnection conn = new SqlConnection(cadenaconexion);
-
-            //Se declara el dataadapter
-            SqlDataAdapter da = new SqlDataAdapter("SELECT ID_TBACTYMTR,DOC_ENTRY,DATE_ENTRY, ID_STATE FROM TB_ACTY_MTR", conn);
-            //Contenedor de datos
-            DataTable dt = new DataTable();
-            //Se llena el contenedor
-            da.Fill(dt);
-            //Agregamos a datagriedview con datasource
-            this.GridView1.DataSource = dt;
+            Consulta ci = new Consulta();               //Crea una instancia de clase
+            DataTable dt = ci.getConsultaInicial();     //Pasa el metodo consulta inicial
+            this.GridView1.DataSource = dt;             //Agrega al GridView el dataset
             GridView1.DataBind();
         }
 
@@ -83,17 +76,10 @@ namespace CapaPresentacion
 
         protected void actualizar_Click(object sender, EventArgs e)
         {
-            string cadenaconexion = "Data Source=.;Initial Catalog =PROYECTO; Integrated security=true";//cadena de conexion  \\
-            SqlConnection conn = new SqlConnection(cadenaconexion);
-
-            //Se declara el dataadapter
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM TB_ACTY_MTR WHERE ID_STATE = '" + estado.SelectedValue + " '", conn);
-            //Contenedor de datos
-            DataTable dt = new DataTable();
-            //Se llena el contenedor
-            da.Fill(dt);
-            //Agregamos a datagriedview con datasource
-            this.GridView1.DataSource = dt;
+            Consulta ca = new Consulta();               //Crea una instancia de clase
+            ca.Estado = estado.SelectedItem.Value;            //Pasa el valor de la lista
+            DataTable dt = ca.getConsultaActualizar();  //Pasa el metodo consulta inicial
+            this.GridView1.DataSource = dt;             //Agrega al GridView el dataset
             GridView1.DataBind();
         }
     }
