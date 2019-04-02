@@ -91,7 +91,6 @@ namespace CapaDatos
                 if (rpt.Read() == true)
                 {
                     bloqueo = rpt["WEB_LOCKED"].ToString();
-
                 }
                 return bloqueo;
             }
@@ -154,9 +153,40 @@ namespace CapaDatos
                 if (rpt.Read() == true)
                 {
                     bloqueado = rpt["WEB_LOCKED"].ToString();
-
                 }
                 return bloqueado;
+            }
+            catch (Exception exc)
+            {
+                return exc.Message;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
+        public string SP_acceder(string id, DateTime fecha)//Procedimiento para saber registrar el acceso
+        {
+            try
+            {
+                string acceder = "";
+
+                SqlDataReader rpt;
+                SqlCommand comando = new SqlCommand("SP_acceder", conn);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("@ID_USER", SqlDbType.Int).Value = id;
+                comando.Parameters.Add("@FECHA", SqlDbType.Date).Value = fecha;
+
+                conn.Open();
+                rpt = comando.ExecuteReader();
+                if (rpt.Read() == true)
+                {
+                    acceder = rpt["ID_TBLGWBSYS"].ToString();
+                }
+                return acceder;
             }
             catch (Exception exc)
             {

@@ -40,7 +40,8 @@ namespace CapaPresentacion
                     } else
                     {
                         if (ok == "true")//Valida si es correcto clave y contraseña
-                        {    
+                        {
+                            string acceso = em.getAccede();//Registra en tabla login el acceso
                             Session["Login"] = Usuario.Text;//Asigna usuario a variable Session
                             Response.Redirect("Inicial.aspx");//Redirecciona al menu
                             Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Bienvenido a MWCT10. '" + Usuario.Text + "');</script>");
