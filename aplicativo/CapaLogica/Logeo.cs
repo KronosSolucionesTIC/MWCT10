@@ -73,6 +73,15 @@ namespace CapaLogica
             string accede = SP_acceder(id,fecha);
             return accede;
         }
+
+        //Metodo para guardar en el log de inicio de sesion
+        public string getSalida()
+        {
+            DateTime fecha = DateTime.Now;
+            string id = getId();
+            string salida = SP_salida(id, fecha);
+            return salida;
+        }
     }
 
 }

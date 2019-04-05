@@ -70,7 +70,6 @@ namespace CapaPresentacion
             salida = Convert.ToInt32(logout.Value);//Toma el valor del contador
             Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'); </script>");*/
             Session.RemoveAll();
-
             Response.Redirect("Login.aspx");
         }
 

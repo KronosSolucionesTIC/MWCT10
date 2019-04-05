@@ -199,6 +199,37 @@ namespace CapaDatos
 
         }
 
+        public string SP_salida(string id, DateTime fecha)//Procedimiento para saber registrar la salida
+        {
+            try
+            {
+                string salida = "";
+
+                SqlDataReader rpt;
+                SqlCommand comando = new SqlCommand("SP_salida", conn);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("@ID_USER", SqlDbType.Int).Value = id;
+                comando.Parameters.Add("@FECHA", SqlDbType.Date).Value = fecha;
+
+                conn.Open();
+                rpt = comando.ExecuteReader();
+                if (rpt.Read() == true)
+                {
+                    salida = rpt["ID_TBLGWBSYS"].ToString();
+                }
+                return salida;
+            }
+            catch (Exception exc)
+            {
+                return exc.Message;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
         public DataSet DSET(string sentencia)
         {
             DataSet ds = new DataSet();

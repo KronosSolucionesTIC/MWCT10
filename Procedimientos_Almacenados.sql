@@ -30,8 +30,16 @@ DROP PROCEDURE SP_id
 --Sentencia para eliminar procedimiento SP_id
 DROP PROCEDURE SP_acceder
 
---Sentencia para ingresar en log de login
+--Sentencia para ingresar en log de login el acceso
 CREATE PROCEDURE SP_acceder
+@ID_USER INT,
+@FECHA DATE
+AS
+INSERT INTO TB_LOGWEBSYS (ID_TBCLIENT,DATE_OPERATION) VALUES (@ID_USER,@FECHA);
+GO 
+
+--Sentencia para ingresar en log de login la salida
+CREATE PROCEDURE SP_salida
 @ID_USER INT,
 @FECHA DATE
 AS
