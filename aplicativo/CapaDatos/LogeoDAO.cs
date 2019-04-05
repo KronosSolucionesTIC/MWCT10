@@ -57,7 +57,7 @@ namespace CapaDatos
                 rpt = comando.ExecuteReader();
                 if (rpt.Read() == true)
                 {
-                    Id = rpt["ID_TBCNTCINFO"].ToString();
+                    Id = rpt["ID_TBCLIENT"].ToString();
 
                 }
                 return Id;

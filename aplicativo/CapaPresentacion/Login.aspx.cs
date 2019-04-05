@@ -35,8 +35,7 @@ namespace CapaPresentacion
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Usuario Bloqueado. Contacte al Administrador');</script>");
                 } else
                 {
-
-                    if(activo == "0")//Valida si esta activo
+                    if (activo == "0")//Valida si esta activo
                     {
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Usuario Deshabilitado. Contacte al administrador');</script>");
                     } else
@@ -66,6 +65,7 @@ namespace CapaPresentacion
                                 Contraseña.Text = string.Empty; //Limpia campo contraseña
                                 contador = contador + 1;        //Suma uno al contador
                                 TextoContador.Value = Convert.ToString(contador); //Pone el nuevo valor en el campo
+                                Response.Write("<script language=javascript> alert('Contraseña errada'); </script>");
                                 Response.Write("<script language=javascript> alert('Intento fallido No " + contador + "'); </script>");
                             }  
                         }
