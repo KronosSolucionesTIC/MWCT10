@@ -14,6 +14,9 @@ AS
 SELECT USER_WEB,'true' FROM TB_CLIENT WHERE USER_WEB=@USER AND PWD_WEB=@PASS
 GO 
 
+--Sentencia para eliminar procedimiento SP_inicio_sesion
+DROP PROCEDURE SP_inicio_sesion
+
 --Sentencia para traer ID
 CREATE PROCEDURE SP_id
 @USER VARCHAR (20)

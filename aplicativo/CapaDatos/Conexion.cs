@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace CapaDatos
 {
@@ -22,7 +23,9 @@ namespace CapaDatos
 
         public conexion()
         {
-            string cadenaconexion = "Data Source=.;Initial Catalog =PROYECTO; Integrated security=true";//cadena de conexion  \\
+            //    string cadenaconexion = "Server=dbantsgsql.chvqhnsfueef.us-east-1.rds.amazonaws.com;Database=DBSIGELAB_MZL;User Id=WebApp;Password=DBl0g1nSQL19;";//cadena de conexion  \\ Data Source=.;Initial Catalog =PROYECTO; Integrated security=true
+            string cadenaconexion = ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString;
+            //string cadenaconexion = "Data Source=chvqhnsfueef.us-east-1.rds.amazonaws.com\\dbantsgsql;Initial Catalog =DBSIGELAB_MZL;User ID=webapp; Password=DBl0g1nSQL19; Integrated security=true";
             conn = new SqlConnection(cadenaconexion);
         }
     }

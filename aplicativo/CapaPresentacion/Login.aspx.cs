@@ -29,11 +29,13 @@ namespace CapaPresentacion
 
             if (Id != "")//Valida si existe el usuario
             {
+                
                 if (bloqueo == "1")//Valida si esta bloqueado
                 {
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Usuario Bloqueado. Contacte al Administrador');</script>");
                 } else
                 {
+
                     if(activo == "0")//Valida si esta activo
                     {
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Usuario Deshabilitado. Contacte al administrador');</script>");
@@ -48,6 +50,7 @@ namespace CapaPresentacion
 
                         } else
                         {
+                            
                             contador = Convert.ToInt32(TextoContador.Value);//Toma el valor del contador
                             
                             if(contador == 3)//Valida si es igual a 3
@@ -64,12 +67,14 @@ namespace CapaPresentacion
                                 contador = contador + 1;        //Suma uno al contador
                                 TextoContador.Value = Convert.ToString(contador); //Pone el nuevo valor en el campo
                                 Response.Write("<script language=javascript> alert('Intento fallido No " + contador + "'); </script>");
-                            }                                                        
+                            }  
                         }
                     }
-                    
+
                 }
-            } else
+ 
+            }
+            else
             {
                 Usuario.Text = string.Empty;    //Limpia campo usuario
                 Contraseña.Text = string.Empty; //Limpia campo contraseña
@@ -81,6 +86,11 @@ namespace CapaPresentacion
         protected void ImageButton1_Click1(object sender, ImageClickEventArgs e)
         {
             theDiv.Visible = true;
+        }
+
+        protected void SqlDataSource3_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+        {
+
         }
     }
 }
