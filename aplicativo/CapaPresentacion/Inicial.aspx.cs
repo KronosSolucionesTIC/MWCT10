@@ -16,7 +16,7 @@ namespace CapaPresentacion
         {
             if (!IsPostBack)
             {
-                llenar_cliente();
+                //llenar_cliente();
             }
             calcular_fecha();
 
@@ -27,30 +27,16 @@ namespace CapaPresentacion
         }
 
         protected void llenar_cliente()
-        {
+        {/*
             cliente.DataSource = consultar("SELECT ID_TBCLIENT,NAME_CLIENT FROM TB_CLIENT");
             cliente.DataTextField = "NAME_CLIENT";
             cliente.DataValueField = "ID_TBCLIENT";
-            cliente.DataBind();
+            cliente.DataBind();*/
         }
 
         protected void calcular_fecha()
         {
             //txtFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
-        }
-
-        public DataSet consultar(string sentencia)
-        {
-            string cadenaconexion = "Data Source=.;Initial Catalog =PROYECTO; Integrated security=true";//cadena de conexion  \\
-            SqlConnection conn = new SqlConnection(cadenaconexion);
-
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(sentencia, conn);
-            SqlDataAdapter SDA = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            SDA.Fill(ds);
-            conn.Close();
-            return ds;
         }
 
         protected void ciudad_SelectedIndexChanged(object sender, EventArgs e)
