@@ -1,7 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.Master.cs" Inherits="CapaPresentacion.Site1" %>
 
 <!DOCTYPE html>
-
 <html>
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -21,46 +20,30 @@
   <link href="DiseñoWeb/assets/css/now-ui-dashboard.css?v=1.1.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="DiseñoWeb/assets/demo/demo.css" rel="stylesheet" />
-    <asp:ContentPlaceHolder ID="head" runat="server">
+    <asp:ContentPlaceHolder ID="Head" runat="server">
     </asp:ContentPlaceHolder>
 
 </head>
 <body class="">
-    <form id="form1" runat="server">
-        <div class="wrapper ">
-            <div class="sidebar" data-color="blue">
-                <div class="logo">
-        <a href="Inicial.aspx" class="simple-text logo-mini">
-           <i class="now-ui-icons shopping_shop"></i>
-        </a>
-        <a href="Inicial.aspx" class="simple-text logo-normal">
-        ANTS GROUP LTDA 
-        </a>
-      </div>
-      <div class="sidebar-wrapper">
-                          <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-      </div>
-    </div>
-    <div class="main-panel">
-
-
-
-       
-      <div class="panel-header panel-header-lg align-content-center">
-        <canvas id="bigDashboardChart"></canvas>
-     
-
-          <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
-          </asp:ContentPlaceHolder>
-     
-
-     
-      </div>
-     
-    </form>
-    </div>
-  </div>
+    <form runat="server">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <asp:contentplaceholder id="Header" runat="server">
+                    </asp:contentplaceholder>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                    <asp:contentplaceholder id="Menu" runat="server">
+                    </asp:contentplaceholder>
+                </div>
+                <div class="col-11 contenido">
+                    <asp:contentplaceholder id="Contenido" runat="server">
+                    </asp:contentplaceholder>
+                </div>
+            </div>
+        </div>
 @section_scripts{
         <script
   src="http://code.jquery.com/jquery-3.3.1.js"
@@ -81,7 +64,6 @@
 
    </script>
 }    
-    <!---->
-
+        </form>
 </body>
 </html>

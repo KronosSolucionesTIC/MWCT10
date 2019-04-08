@@ -62,10 +62,15 @@ namespace CapaPresentacion
         protected void actualizar_Click(object sender, EventArgs e)
         {
             Consulta ca = new Consulta();               //Crea una instancia de clase
-            ca.Estado = estado.SelectedItem.Value;            //Pasa el valor de la lista
+            ca.Estado = estadoActividad.SelectedItem.Value;            //Pasa el valor de la lista
             DataTable dt = ca.getConsultaActualizar();  //Pasa el metodo consulta inicial
             this.GridView1.DataSource = dt;             //Agrega al GridView el dataset
             GridView1.DataBind();
+        }
+
+        protected void tareas_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+        {
+
         }
     }
 }
