@@ -487,3 +487,14 @@ iframe {
     padding-right: 15px;
   }
 }
+
+/*//////////////////////////////////////////////////////////////////
+[ contenido ]*/
+
+.contenido {
+    background: url(http://desarrollofrontend.com/wp-content/uploads/2014/11/img_default.png) no-repeat fixed center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}

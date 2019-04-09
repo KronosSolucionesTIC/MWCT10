@@ -1,47 +1,92 @@
 ﻿<%@ Page  enableEventValidation="false" Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Inicial.aspx.cs" Inherits="CapaPresentacion.Inicial" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
+    <asp:Button ID="cerrar" runat="server" Text="Cerrar Sesion"  class="btn btn-danger" OnClick="cerrar_Click" Width="150px" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Label ID="rango" runat="server" Text="Rango"></asp:Label>
+<asp:Content ID="Content2" ContentPlaceHolderID="Menu" runat="server">
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="Contenido" runat="server">
+    <div class="row">
+    <div class="col-1">
+        <asp:Label ID="Fec_ini" runat="server" Text="Fecha Inicial"></asp:Label>
+        <asp:DropDownList ID="fechaInicial" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
+        </asp:DropDownList>
+    </div>
+    
+    <div class="col-1">
+        <asp:Label ID="Fec_fin" runat="server" Text="Fecha Final"></asp:Label>
 
-               <asp:Calendar ID="txtFecha" runat="server"></asp:Calendar>
+    
+    <asp:DropDownList ID="fechaFinal" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
+    </asp:DropDownList>
 
-    <br />
+    
+    </div>
 
-               <asp:Label ID="Label1" runat="server" Text="Cliente"></asp:Label>
+    <div class="col-1">
+        <asp:Label ID="Label3" runat="server" Text="Cliente"></asp:Label>
 
-           <asp:DropDownList ID="cliente" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
-          </asp:DropDownList>
+    
+    <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
+    </asp:DropDownList>
 
-    <br />
-               <asp:Label ID="Label2" runat="server" Text="Estado"></asp:Label>
+    
+    </div>
 
-                   <asp:DropDownList ID="estado" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
+    <div class="col-1">
+        <asp:Label ID="Doc_Ent" runat="server" Text="Documento de entrada"></asp:Label>
+
+    
+    <asp:DropDownList ID="docEntrada" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
+    </asp:DropDownList>
+
+    
+    </div>
+
+    <div class="col-1">
+        <asp:Label ID="Num_Ser" runat="server" Text="Numero serial"></asp:Label>
+
+    
+    <asp:DropDownList ID="numeroSerial" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
+    </asp:DropDownList>
+
+    
+    </div>
+
+    <div class="col-1">
+        <asp:Label ID="Nom_Gru" runat="server" Text="Nombre de grupo"></asp:Label>
+
+    
+    <asp:DropDownList ID="nombreGrupo" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
+    </asp:DropDownList>
+
+    </div>
+
+    <div class="col-1">
+        <asp:Label ID="Esta_Acti" runat="server" Text="Estado actividad"></asp:Label>
+
+    <asp:DropDownList ID="estadoActividad" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
                        <asp:ListItem Value="0">Precarga</asp:ListItem>
                        <asp:ListItem Value="1">Alistamiento inicial</asp:ListItem>
-                       <asp:ListItem Value="2">Etapa de asignacion</asp:ListItem>
-                       <asp:ListItem Value="5">Ensayo en mesas</asp:ListItem>
-                       <asp:ListItem Value="6">Sellado de salida</asp:ListItem>
-                       <asp:ListItem Value="7">Etiquetado de salida</asp:ListItem>
-                       <asp:ListItem Value="8">Generacion certificado</asp:ListItem>
+                       <asp:ListItem Value="5">Operacion en mesas</asp:ListItem>
                        <asp:ListItem Value="9">Revision de certificado</asp:ListItem>
                        <asp:ListItem Value="11">Etapa de salida</asp:ListItem>
-                       <asp:ListItem Value="12">Dispositivo entregado</asp:ListItem>
+                       <asp:ListItem Value="12">En tramite</asp:ListItem>
                        <asp:ListItem Value="16">Rechazo de recepcion</asp:ListItem>
-                       <asp:ListItem Value="17">No recibido en recepcion</asp:ListItem>
+                       <asp:ListItem Value="17">No recibido en sitio</asp:ListItem>
           </asp:DropDownList>
+    
+    </div>
+    </div>
     <br />
+
+    
     <br />
 
     <div class="align-items-md-center">
         <asp:Button ID="actualizar" runat="server" Text="Actualizar" class="btn btn-success" Width="150px" OnClick="actualizar_Click"/>
-        <br />
-        <asp:Button ID="cerrar" runat="server" Text="Cerrar Sesion"  class="btn btn-danger" OnClick="cerrar_Click" Width="150px" />
+        <br />        
     </div>
 
-
-                   </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <asp:SqlDataSource ID="tareas" runat="server">
 
     </asp:SqlDataSource>

@@ -75,9 +75,14 @@ UPDATE TB_CLIENT set WEB_ENABLE=1 WHERE USER_WEB='Admin'
 
 --Sentencia para traer CONSULTA INICIAL
 CREATE PROCEDURE SP_consulta_inicial
+@ID_TBCLIENT INT
 AS
 SELECT ID_TBACTYMTR,DOC_ENTRY,DATE_ENTRY, ID_STATE FROM TB_ACTY_MTR
+WHERE DATEDIFF(day, DATE_ENTRY, GETDATE ( )) > 15 AND ID_TBCLIENT = @ID_TBCLIENT;
 GO 
+
+--Sentencia para eliminar SP_consulta_inicial
+DROP PROCEDURE SP_consulta_inicial;
 
 --Sentencia para traer CONSULTA ACTUALIZAR
 CREATE PROCEDURE SP_consulta_actualizar
@@ -97,4 +102,22 @@ GO
 --Sentencia para modificar el case sensitive de la columba USER_WEB tabla TB_CLIENT
 ALTER TABLE TB_CLIENT ALTER COLUMN PWD_WEB
             varchar(15)COLLATE Latin1_General_CS_AS NOT NULL;  
+GO 
+
+--Sentencia para cargar el filtro Documento de entrada
+CREATE PROCEDURE SP_documento_entrada
+AS
+SELECT DOC_ENTRY FROM TB_ACTY_MTR GROUP BY DOC_ENTRY
+GO 
+
+--Sentencia para cargar el filtro Numero de serial
+CREATE PROCEDURE SP_numero_serial
+AS
+SELECT NUM_SERIAL FROM TB_DEVICES GROUP BY NUM_SERIAL
+GO 
+
+--Sentencia para cargar el filtro Grupo
+CREATE PROCEDURE SP_grupo
+AS
+SELECT NAME_GROUP FROM TB_GROUP GROUP BY NAME_GROUP
 GO 
