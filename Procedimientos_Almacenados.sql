@@ -105,7 +105,7 @@ ALTER TABLE TB_CLIENT ALTER COLUMN PWD_WEB
 GO 
 
 --Sentencia para cargar el filtro Documento de entrada
-CREATE PROCEDURE SP_documento_entrada
+CREATE PROCEDURE SP_documentos_entrada
 AS
 SELECT DOC_ENTRY FROM TB_ACTY_MTR GROUP BY DOC_ENTRY
 GO 
