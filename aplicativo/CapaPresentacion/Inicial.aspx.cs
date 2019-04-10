@@ -16,9 +16,11 @@ namespace CapaPresentacion
         {
             if (!IsPostBack)
             {
-                llenar_documentos_entrada();
-                llenar_num_serial();
-                llenar_grupo();
+                llenar_documentos_entrada();        //Pasa funcion para llenar lista
+                llenar_num_serial();                //Pasa funcion para llenar lista
+                llenar_grupo();                     //Pasa funcion para llenar lista
+                Calendar1.Visible = false;          //Esconde calendario inicial
+                Calendar2.Visible = false;          //Esconde calendario final
             }
             calcular_fecha();
 
@@ -30,6 +32,7 @@ namespace CapaPresentacion
             DataTable dt = ci.getConsultaInicial();     //Pasa el metodo consulta inicial
             this.GridView1.DataSource = dt;             //Agrega al GridView el dataset
             GridView1.DataBind();
+            usuario.Text = usu;                         //Pone nombre usuario
         }
 
         protected void llenar_documentos_entrada()
@@ -89,16 +92,55 @@ namespace CapaPresentacion
 
         protected void actualizar_Click(object sender, EventArgs e)
         {
-            Consulta ca = new Consulta();               //Crea una instancia de clase
-            ca.Estado = estadoActividad.SelectedItem.Value;            //Pasa el valor de la lista
-            DataTable dt = ca.getConsultaActualizar();  //Pasa el metodo consulta inicial
-            this.GridView1.DataSource = dt;             //Agrega al GridView el dataset
+            Consulta ca = new Consulta();                       //Crea una instancia de clase
+            string usu = Convert.ToString(Session["Login"]);    //Lee la variable Session
+            ca.Usuario = usu;                                   //Pasa el valor de usuario
+            string Id = ca.getId();                             //Pasa el metodo getId para validar si existe el usuario     
+            ca.Cliente = Id;                                    //Pasa el valor de la lista
+            ca.Estado = estadoActividad.SelectedItem.Value;     //Pasa el valor de la lista
+            DataTable dt = ca.getConsultaActualizar();          //Pasa el metodo consulta inicial
+            this.GridView1.DataSource = dt;                     //Agrega al GridView el dataset
             GridView1.DataBind();
         }
 
         protected void tareas_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
 
+        }
+
+        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+        {
+            if (Calendar1.Visible)
+            {
+                Calendar1.Visible = false;
+            } else
+            {
+                Calendar1.Visible = true;
+            }
+        }
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+            TextBox1.Text = Calendar1.SelectedDate.ToShortDateString();
+            Calendar1.Visible = false;
+        }
+
+        protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
+        {
+            if (Calendar2.Visible)
+            {
+                Calendar2.Visible = false;
+            }
+            else
+            {
+                Calendar2.Visible = true;
+            }
+        }
+
+        protected void Calendar2_SelectionChanged(object sender, EventArgs e)
+        {
+            TextBox2.Text = Calendar2.SelectedDate.ToShortDateString();
+            Calendar2.Visible = false;
         }
     }
 }

@@ -43,10 +43,11 @@ namespace CapaDatos
 
         }
 
-        public DataTable SP_consulta_actualizar(string estado)//Procedimiento para inicio de sesion
+        public DataTable SP_consulta_actualizar(string estado,string cliente)//Procedimiento para inicio de sesion
         {
 
             int a = int.Parse(estado);
+            int b = int.Parse(cliente);
             try
             {              
                 //Se crea el comando que pasa el procedimiento almacenado
@@ -55,6 +56,7 @@ namespace CapaDatos
 
                 //Se agregan parametros
                 comando.Parameters.Add("@ESTADO", SqlDbType.BigInt).Value = a;
+                comando.Parameters.Add("@USUARIO", SqlDbType.BigInt).Value = b;
 
                 //Se declara el DataAdapter
                 SqlDataAdapter da = new SqlDataAdapter(comando);

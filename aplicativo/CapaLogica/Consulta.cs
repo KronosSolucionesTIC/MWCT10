@@ -50,7 +50,7 @@ namespace CapaLogica
         //Metodo para consulta actualizar
         public DataTable getConsultaActualizar()
         {
-            DataTable ok = SP_consulta_actualizar(this.estado);
+            DataTable ok = SP_consulta_actualizar(this.estado,this.cliente);
             return ok;
         }
 

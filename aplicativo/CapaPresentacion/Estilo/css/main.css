@@ -491,10 +491,33 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ contenido ]*/
 
-.contenido {
-    background: url(http://desarrollofrontend.com/wp-content/uploads/2014/11/img_default.png) no-repeat fixed center;
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-    text-align: center;
+.div-contenido {
+    background-image: url("../images/contenido.png");
+    background-size: 100% 100%;
+    width: 80%;
+    height: 600px;
+}
+
+.div-menu {
+    background-image: url("../images/menu.png");
+    background-size: 100% 100%;
+    width: 20%;
+    height: 600px;
+}
+
+.etiquetas {
+    background-color: #7B7D7D;
+    color: white;
+    padding: 10px;
+}
+
+.cajas {
+    background-color: #D0D3D4;
+    padding: 8px;
+}
+
+.usuario{
+    font-family:Verdana;
+    font-size:15px;
+    font-weight:bold;
 }

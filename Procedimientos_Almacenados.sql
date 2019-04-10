@@ -86,10 +86,19 @@ DROP PROCEDURE SP_consulta_inicial;
 
 --Sentencia para traer CONSULTA ACTUALIZAR
 CREATE PROCEDURE SP_consulta_actualizar
-@ESTADO INT
+@ESTADO INT,
+@USUARIO INT
 AS
-SELECT ID_TBACTYMTR,DOC_ENTRY,DATE_ENTRY, ID_STATE FROM TB_ACTY_MTR WHERE ID_STATE = @ESTADO
-GO 
+DECLARE @SQL varchar(MAX)
+DECLARE @condiciones varchar(20)
+IF @ESTADO != ''
+	SELECT @condiciones =  ' AND ID_STATE = ' + CONVERT(VARCHAR,@ESTADO)
+ELSE 
+	SELECT @condiciones =  @condiciones
+SELECT @SQL = 'SELECT * FROM TB_ACTY_MTR WHERE ID_TBCLIENT = ' + 
+CONVERT(VARCHAR,@USUARIO) + @condiciones
+EXEC (@SQL)
+GO
 
 --Sentencia para eliminar procedimiento SP_consulta_actualizar
 DROP PROCEDURE SP_consulta_actualizar
@@ -121,3 +130,4 @@ CREATE PROCEDURE SP_grupo
 AS
 SELECT NAME_GROUP FROM TB_GROUP GROUP BY NAME_GROUP
 GO 
+

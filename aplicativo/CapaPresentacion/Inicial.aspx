@@ -1,17 +1,17 @@
 ﻿<%@ Page  enableEventValidation="false" Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Inicial.aspx.cs" Inherits="CapaPresentacion.Inicial" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
     <asp:Button ID="cerrar" runat="server" Text="Cerrar Sesion"  class="btn btn-danger" OnClick="cerrar_Click" Width="150px" />
-    <asp:Label Text="Session['Login']" runat="server"></asp:Label>
+    <asp:Label ID="usuario" class="usuario" runat="server"></asp:Label>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Menu" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Contenido" runat="server">
     <div class="row">
-    <div class="col-1">
-        <asp:Label ID="Fec_ini" runat="server" Text="Fecha Inicial"></asp:Label>
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="Estilo/images/calendario.png" />
-        <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px">
+    <div class="col-12">
+        <asp:Label ID="Fec_ini" class="etiquetas" runat="server" Text="Inicial"></asp:Label>
+        <asp:TextBox ID="TextBox1" runat="server" class="cajas"></asp:TextBox>
+        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="Estilo/images/calendario.png" OnClick="ImageButton1_Click" />
+        <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" OnSelectionChanged="Calendar1_SelectionChanged">
             <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
             <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
             <OtherMonthDayStyle ForeColor="#999999" />
@@ -21,51 +21,48 @@
             <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
             <WeekendDayStyle BackColor="#CCCCFF" />
         </asp:Calendar>
-    </div>
     
-    <div class="col-1">
-        <asp:Label ID="Fec_fin" runat="server" Text="Fecha Final"></asp:Label>
+        <asp:Label ID="Fec_fin" class="etiquetas" runat="server" Text="Final"></asp:Label>
 
     
-    <asp:DropDownList ID="fechaFinal" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
+        <asp:TextBox ID="TextBox2" runat="server" class="cajas"></asp:TextBox>
+        <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="Estilo/images/calendario.png" OnClick="ImageButton2_Click" />
+        <asp:Calendar ID="Calendar2" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" OnSelectionChanged="Calendar2_SelectionChanged" Width="220px">
+            <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
+            <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
+            <OtherMonthDayStyle ForeColor="#999999" />
+            <SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
+            <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
+            <TitleStyle BackColor="#003399" BorderColor="#3366CC" BorderWidth="1px" Font-Bold="True" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
+            <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
+            <WeekendDayStyle BackColor="#CCCCFF" />
+        </asp:Calendar>
+
+        <asp:Label ID="Doc_Ent" class="etiquetas" runat="server" Text="Doc. Entrada"></asp:Label>
+
+    
+    <asp:DropDownList ID="docEntrada" class="cajas" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
+    </asp:DropDownList>
+        </div>
+        </div>
+    <br />
+    <div class="row">
+        <div class="col-12">
+        <asp:Label ID="Num_Ser" class="etiquetas" runat="server" Text="Num serial"></asp:Label>
+
+    
+    <asp:DropDownList ID="numeroSerial" class="cajas" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
     </asp:DropDownList>
 
-    
-    </div>
-
-    <div class="col-2">
-        <asp:Label ID="Doc_Ent" runat="server" Text="Documento de entrada"></asp:Label>
+        <asp:Label ID="Nom_Gru" class="etiquetas" runat="server" Text="Grupo"></asp:Label>
 
     
-    <asp:DropDownList ID="docEntrada" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
+    <asp:DropDownList ID="nombreGrupo" class="cajas" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
     </asp:DropDownList>
 
-    
-    </div>
+        <asp:Label ID="Esta_Acti" runat="server" class="etiquetas" Text="Estado"></asp:Label>
 
-    <div class="col-2">
-        <asp:Label ID="Num_Ser" runat="server" Text="Numero de serial"></asp:Label>
-
-    
-    <asp:DropDownList ID="numeroSerial" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
-    </asp:DropDownList>
-
-    
-    </div>
-
-    <div class="col-2">
-        <asp:Label ID="Nom_Gru" runat="server" Text="Nombre de grupo"></asp:Label>
-
-    
-    <asp:DropDownList ID="nombreGrupo" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
-    </asp:DropDownList>
-
-    </div>
-
-    <div class="col-2">
-        <asp:Label ID="Esta_Acti" runat="server" Text="Estado actividad"></asp:Label>
-
-    <asp:DropDownList ID="estadoActividad" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
+    <asp:DropDownList ID="estadoActividad" class="cajas" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
                        <asp:ListItem Value="0">Precarga</asp:ListItem>
                        <asp:ListItem Value="1">Alistamiento inicial</asp:ListItem>
                        <asp:ListItem Value="5">Operacion en mesas</asp:ListItem>
