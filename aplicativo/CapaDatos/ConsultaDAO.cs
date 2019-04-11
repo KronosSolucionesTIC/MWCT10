@@ -107,14 +107,19 @@ namespace CapaDatos
 
         }
 
-        public DataTable SP_documentos_entrada()//Procedimiento para documentos entrada
+        public DataTable SP_documentos_entrada(string cliente)//Procedimiento para documentos entrada
         {
+            int a = int.Parse(cliente);
+
             try
             {
                 //Se crea el comando que pasa el procedimiento almacenado
                 SqlCommand comando = new SqlCommand("SP_documentos_entrada", conn);
                 comando.CommandType = CommandType.StoredProcedure;
 
+                //Se agregan parametros
+                comando.Parameters.Add("@ID_TBCLIENT", SqlDbType.BigInt).Value = a;
+
                 //Se declara el DataAdapter
                 SqlDataAdapter da = new SqlDataAdapter(comando);
                 da.MissingSchemaAction = MissingSchemaAction.AddWithKey;
@@ -133,14 +138,19 @@ namespace CapaDatos
 
         }
 
-        public DataTable SP_numero_serial()//Procedimiento para numero serial
+        public DataTable SP_numero_serial(string cliente)//Procedimiento para numero serial
         {
+            int a = int.Parse(cliente);
+
             try
             {
                 //Se crea el comando que pasa el procedimiento almacenado
                 SqlCommand comando = new SqlCommand("SP_numero_serial", conn);
                 comando.CommandType = CommandType.StoredProcedure;
 
+                //Se agregan parametros
+                comando.Parameters.Add("@ID_TBCLIENT", SqlDbType.BigInt).Value = a;
+
                 //Se declara el DataAdapter
                 SqlDataAdapter da = new SqlDataAdapter(comando);
                 da.MissingSchemaAction = MissingSchemaAction.AddWithKey;
@@ -159,13 +169,18 @@ namespace CapaDatos
 
         }
 
-        public DataTable SP_grupo()//Procedimiento para numero serial
+        public DataTable SP_grupo(string cliente)//Procedimiento para numero serial
         {
+            int a = int.Parse(cliente);
+
             try
             {
                 //Se crea el comando que pasa el procedimiento almacenado
                 SqlCommand comando = new SqlCommand("SP_grupo", conn);
                 comando.CommandType = CommandType.StoredProcedure;
+
+                //Se agregan parametros
+                comando.Parameters.Add("@ID_TBCLIENT", SqlDbType.BigInt).Value = a;
 
                 //Se declara el DataAdapter
                 SqlDataAdapter da = new SqlDataAdapter(comando);

@@ -38,6 +38,10 @@ namespace CapaPresentacion
         protected void llenar_documentos_entrada()
         {
             Consulta de = new Consulta();               //Crea una instancia de clase
+            string usu = Convert.ToString(Session["Login"]); //Lee la variable Session
+            de.Usuario = usu;                           //Pasa el valor de usuario
+            string Id = de.getId();                     //Pasa el metodo getId para validar si existe el usuario     
+            de.Cliente = Id;                            //Pasa el valor de la lista
             DataTable dt = de.getDocumentosEntrada();   //Pasa el metodo consulta inicial
             this.docEntrada.DataSource = dt;            //Agrega al GridView el dataset
             docEntrada.DataTextField = "DOC_ENTRY";     //Selecciona el campo a mostrar
@@ -47,8 +51,12 @@ namespace CapaPresentacion
 
         protected void llenar_num_serial()
         {
-            Consulta de = new Consulta();               //Crea una instancia de clase
-            DataTable dt = de.getNumeroSerial();   //Pasa el metodo consulta inicial
+            Consulta nm = new Consulta();               //Crea una instancia de clase
+            string usu = Convert.ToString(Session["Login"]); //Lee la variable Session
+            nm.Usuario = usu;                           //Pasa el valor de usuario
+            string Id = nm.getId();                     //Pasa el metodo getId para validar si existe el usuario     
+            nm.Cliente = Id;                            //Pasa el valor de la lista
+            DataTable dt = nm.getNumeroSerial();   //Pasa el metodo consulta inicial
             this.numeroSerial.DataSource = dt;            //Agrega al GridView el dataset
             numeroSerial.DataTextField = "NUM_SERIAL";     //Selecciona el campo a mostrar
             numeroSerial.DataValueField = "NUM_SERIAL";    //Selecciona el campo para el valor
@@ -58,6 +66,10 @@ namespace CapaPresentacion
         protected void llenar_grupo()
         {
             Consulta gru = new Consulta();               //Crea una instancia de clase
+            string usu = Convert.ToString(Session["Login"]); //Lee la variable Session
+            gru.Usuario = usu;                           //Pasa el valor de usuario
+            string Id = gru.getId();                     //Pasa el metodo getId para validar si existe el usuario     
+            gru.Cliente = Id;                            //Pasa el valor de la lista
             DataTable dt = gru.getGrupo();   //Pasa el metodo consulta inicial
             this.nombreGrupo.DataSource = dt;            //Agrega al GridView el dataset
             nombreGrupo.DataTextField = "NAME_GROUP";     //Selecciona el campo a mostrar

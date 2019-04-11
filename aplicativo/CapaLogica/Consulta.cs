@@ -64,21 +64,21 @@ namespace CapaLogica
         //Metodo para documentos entrada
         public DataTable getDocumentosEntrada()
         {
-            DataTable ok = SP_documentos_entrada();
+            DataTable ok = SP_documentos_entrada(this.cliente);
             return ok;
         }
 
         //Metodo para numero serial
         public DataTable getNumeroSerial()
         {
-            DataTable ok = SP_numero_serial();
+            DataTable ok = SP_numero_serial(this.cliente);
             return ok;
         }
 
         //Metodo para grupo
         public DataTable getGrupo()
         {
-            DataTable ok = SP_grupo();
+            DataTable ok = SP_grupo(this.cliente);
             return ok;
         }
     }

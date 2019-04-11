@@ -4,7 +4,7 @@
 <html>
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
+    <link rel="stylesheet" type="text/css" href="Estilo/css/main.css"/>
 
     <link rel="apple-touch-icon" sizes="76x76" href="DiseñoWeb/assets/img/apple-icon.png/">
   <link rel="icon" type="image/png" href="DiseñoWeb/assets/img/favicon.png"/>
@@ -26,27 +26,22 @@
 </head>
 <body class="">
     <form runat="server">
-        <div class="container">
             <div class="row">
-                <div class="col-2">
+                <div class="col-12">
                     <asp:contentplaceholder id="Header" runat="server">
                     </asp:contentplaceholder>
                 </div>
-                <div class="col-10">
-
-                </div>
             </div>
             <div class="row">
-                <div class="col-2">
+                <div class="col-2 div-menu">
                     <asp:contentplaceholder id="Menu" runat="server">
                     </asp:contentplaceholder>
                 </div>
-                <div class="col-10 contenido">
+                <div class="col-10 div-contenido">
                     <asp:contentplaceholder id="Contenido" runat="server">
                     </asp:contentplaceholder>
                 </div>
             </div>
-        </div>
 @section_scripts{
         <script
   src="http://code.jquery.com/jquery-3.3.1.js"

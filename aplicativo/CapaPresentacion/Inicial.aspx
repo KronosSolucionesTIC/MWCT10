@@ -94,8 +94,11 @@
         <AlternatingRowStyle BackColor="#F7F7F7" />
         <Columns>
             <asp:BoundField DataField="DOC_ENTRY" HeaderText="Documento Entrada" />
-            <asp:BoundField DataField="DATE_ENTRY" HeaderText="Fecha Creacion" />
-            <asp:BoundField DataField="ID_STATE" HeaderText="Estado" />
+            <asp:BoundField DataField="NUM_SERIAL" HeaderText="Numero de serial" />
+            <asp:BoundField DataField="NAME_GROUP" HeaderText="Nombre del grupo" />
+            <asp:BoundField DataField="DATE_ENTRY" HeaderText="Fecha de ingreso" />
+            <asp:BoundField DataField="DATE_ENTRY" HeaderText="Nombre certificado" />
+            <asp:BoundField DataField="ID_STATE" HeaderText="Estado actual" />
         </Columns>
 
         <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
