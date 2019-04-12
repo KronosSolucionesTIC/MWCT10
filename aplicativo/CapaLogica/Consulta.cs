@@ -11,17 +11,22 @@ namespace CapaLogica
     public class Consulta : ConsultaDAO
     {
         //atributos o campos 
-        private string estado;
-        private string cliente;
         private string usuario;
+        private string cliente;
+        private string documento;
+        private string serial;
+        private string grupo;
+        private string inicial;
+        private string final;
+        private string estado;
 
         //metodos get y set 
-        public string Estado
+        public string Usuario
         {
             get
-            { return estado; }
+            { return usuario; }
             set
-            { estado = value; }
+            { usuario = value; }
         }
 
         public string Cliente
@@ -32,12 +37,51 @@ namespace CapaLogica
             { cliente = value; }
         }
 
-        public string Usuario
+        public string Documento
         {
             get
-            { return usuario; }
+            { return documento; }
             set
-            { usuario = value; }
+            { documento = value; }
+        }
+        public string Serial
+        {
+            get
+            { return serial; }
+            set
+            { serial = value; }
+        }
+
+        public string Grupo
+        {
+            get
+            { return grupo; }
+            set
+            { grupo = value; }
+        }
+
+        public string Inicial
+        {
+            get
+            { return inicial; }
+            set
+            { inicial = value; }
+        }
+
+        public string Final
+        {
+            get
+            { return final; }
+            set
+            { final = value; }
+        }
+
+        public string Estado
+        {
+            get
+            { return estado; }
+            set
+            { estado = value; }
         }
 
         //Metidi para consulta inicial
@@ -50,7 +94,7 @@ namespace CapaLogica
         //Metodo para consulta actualizar
         public DataTable getConsultaActualizar()
         {
-            DataTable ok = SP_consulta_actualizar(this.estado,this.cliente);
+            DataTable ok = SP_consulta_actualizar(this.cliente, this.documento, this.serial,this.grupo, this.inicial, this.final, this.estado);
             return ok;
         }
 

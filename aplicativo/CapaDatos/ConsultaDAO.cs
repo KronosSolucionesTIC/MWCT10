@@ -43,11 +43,30 @@ namespace CapaDatos
 
         }
 
-        public DataTable SP_consulta_actualizar(string estado,string cliente)//Procedimiento para inicio de sesion
+        public DataTable SP_consulta_actualizar(string cliente,string documento, string serial, string grupo, string inicial,string final,string estado)//Procedimiento para inicio de sesion
         {
 
-            int a = int.Parse(estado);
-            int b = int.Parse(cliente);
+            int a = int.Parse(cliente);
+
+            if(documento == "Seleccione...")
+            {
+                documento = "";
+            }
+
+            if (serial == "Seleccione...")
+            {
+                serial = "";
+            }
+
+            if (grupo == "Seleccione...")
+            {
+                grupo = "";
+            }
+
+            DateTime e = DateTime.Parse(inicial);
+            DateTime f = DateTime.Parse(final);     
+            int g = int.Parse(estado);
+
             try
             {              
                 //Se crea el comando que pasa el procedimiento almacenado
@@ -55,8 +74,13 @@ namespace CapaDatos
                 comando.CommandType = CommandType.StoredProcedure;
 
                 //Se agregan parametros
-                comando.Parameters.Add("@ESTADO", SqlDbType.BigInt).Value = a;
-                comando.Parameters.Add("@USUARIO", SqlDbType.BigInt).Value = b;
+                comando.Parameters.Add("@USUARIO", SqlDbType.BigInt).Value = a;
+                comando.Parameters.Add("@DOC_ENTRADA", SqlDbType.VarChar).Value = documento;
+                comando.Parameters.Add("@NUM_SERIAL", SqlDbType.VarChar).Value = serial;
+                comando.Parameters.Add("@GRUPO", SqlDbType.VarChar).Value = grupo;
+                comando.Parameters.Add("@FECHAINI", SqlDbType.Date).Value = e;
+                comando.Parameters.Add("@FECHAFIN", SqlDbType.Date).Value = f;
+                comando.Parameters.Add("@ESTADO", SqlDbType.BigInt).Value = g;
 
                 //Se declara el DataAdapter
                 SqlDataAdapter da = new SqlDataAdapter(comando);

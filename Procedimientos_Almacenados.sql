@@ -79,10 +79,9 @@ CREATE PROCEDURE SP_consulta_inicial
 @ID_TBCLIENT INT
 AS
 SELECT DOC_ENTRY,NUM_SERIAL,NAME_GROUP,DATE_ENTRY,ID_TBACTYMTR,ID_STATE FROM TB_GROUP
-INNER JOIN TB_DEVICES ON TB_DEVICES.ID_TBGROUP = TB_GROUP.ID_TBGROUP 
-INNER JOIN TB_ACTY_MTR ON TB_ACTY_MTR.ID_TBDEVICES = TB_DEVICES.ID_TBDEVICES
-INNER JOIN TB_CLIENT ON TB_CLIENT.ID_TBCLIENT = TB_ACTY_MTR.ID_TBCLIENT
-WHERE DATEDIFF(day, DATE_ENTRY, GETDATE ( )) > 15 AND ID_TBCLIENT = @ID_TBCLIENT;
+INNER JOIN (TB_DEVICES INNER JOIN TB_ACTY_MTR ON TB_DEVICES.ID_TBDEVICES = TB_ACTY_MTR.ID_TBDEVICES) 
+ON TB_GROUP.ID_TBGROUP =  TB_DEVICES.ID_TBGROUP
+WHERE DATEDIFF(day, DATE_ENTRY, GETDATE ( )) > 15 AND ID_TBCLIENT = @ID_TBCLIENT
 GO 
 
 --Sentencia para documentos entrada
@@ -94,24 +93,53 @@ WHERE DATEDIFF(day, DATE_ENTRY, GETDATE ( )) > 15 AND ID_TBCLIENT = @ID_TBCLIENT
 --Sentencia para eliminar SP_consulta_inicial
 DROP PROCEDURE SP_consulta_inicial;
 
---Sentencia para traer CONSULTA ACTUALIZAR
+--Sentencia para eliminar procedimiento SP_consulta_actualizar
+DROP PROCEDURE SP_consulta_actualizar;
+
+--Sentencia para CREAR procedimiento SP_consulta_actualizar
 CREATE PROCEDURE SP_consulta_actualizar
-@ESTADO INT,
-@USUARIO INT
+@USUARIO INT,
+@DOC_ENTRADA varchar(20),
+@NUM_SERIAL varchar(20),
+@FECHAINI AS DATE,
+@FECHAFIN AS DATE,
+@ESTADO INT
 AS
-DECLARE @SQL varchar(MAX)
-DECLARE @condiciones varchar(20)
-IF @ESTADO != ''
-	SELECT @condiciones =  ' AND ID_STATE = ' + CONVERT(VARCHAR,@ESTADO)
+DECLARE @SQL_SENTENCIA VARCHAR(5000) = ''
+DECLARE @FECINI VARCHAR(15) = LTRIM(RTRIM(CONVERT(CHAR, @FECHAINI)))
+DECLARE @FECFIN VARCHAR(15) = LTRIM(RTRIM(CONVERT(CHAR, @FECHAFIN)))
+DECLARE @condiciones varchar(5000)
+SET @condiciones = ''
+
+IF @DOC_ENTRADA != ''
+	SELECT @condiciones =  @condiciones + ' AND DOC_ENTRY = ' + CONVERT(VARCHAR,@DOC_ENTRADA)
 ELSE 
 	SELECT @condiciones =  @condiciones
-SELECT @SQL = 'SELECT * FROM TB_ACTY_MTR WHERE ID_TBCLIENT = ' + 
-CONVERT(VARCHAR,@USUARIO) + @condiciones
-EXEC (@SQL)
+
+IF @NUM_SERIAL != ''
+	SELECT @condiciones =  @condiciones + ' AND NUM_SERIAL = ' + CONVERT(VARCHAR,@NUM_SERIAL)
+ELSE 
+	SELECT @condiciones =  @condiciones
+
+IF @FECHAINI != ''
+	SELECT @condiciones =  @condiciones + ' AND (DATE_ENTRY>='''+@FECINI+''' AND DATE_ENTRY<= '''+@FECFIN+''' )'
+ELSE 
+	SELECT @condiciones =  @condiciones
+
+IF @ESTADO != ''
+	SELECT @condiciones =  @condiciones + ' AND ID_STATE = ' + CONVERT(VARCHAR,@ESTADO)
+ELSE 
+	SELECT @condiciones =  @condiciones
+
+SET @SQL_SENTENCIA = 'SELECT DOC_ENTRY,NUM_SERIAL,NAME_GROUP,DATE_ENTRY,ID_TBACTYMTR,ID_STATE FROM TB_GROUP
+INNER JOIN (TB_DEVICES INNER JOIN TB_ACTY_MTR ON TB_DEVICES.ID_TBDEVICES = TB_ACTY_MTR.ID_TBDEVICES) 
+ON TB_GROUP.ID_TBGROUP =  TB_DEVICES.ID_TBGROUP 
+WHERE ID_TBCLIENT = ' + CONVERT(VARCHAR,@USUARIO) + @condiciones
+EXEC (@SQL_SENTENCIA)
 GO
 
---Sentencia para eliminar procedimiento SP_consulta_actualizar
-DROP PROCEDURE SP_consulta_actualizar
+--Sentencia para probar procedimiento SP_consulta_actualizar
+EXEC SP_consulta_actualizar 3,'','2019-01-01','2019-04-12',2;
 
 --Sentencia para modificar el case sensitive de la columba USER_WEB tabla TB_CLIENT
 ALTER TABLE TB_CLIENT ALTER COLUMN USER_WEB  

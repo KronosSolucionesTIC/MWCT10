@@ -9,6 +9,7 @@
     <div class="row">
     <div class="col-12">
         <asp:Label ID="Fec_ini" class="etiquetas" runat="server" Text="Inicial"></asp:Label>
+
         <asp:TextBox ID="TextBox1" runat="server" class="cajas"></asp:TextBox>
         <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="Estilo/images/calendario.png" OnClick="ImageButton1_Click" />
         <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" OnSelectionChanged="Calendar1_SelectionChanged">
@@ -70,7 +71,7 @@
                        <asp:ListItem Value="11">Etapa de salida</asp:ListItem>
                        <asp:ListItem Value="12">En tramite</asp:ListItem>
                        <asp:ListItem Value="16">Rechazo de recepcion</asp:ListItem>
-                       <asp:ListItem Value="17">No recibido en sitio</asp:ListItem>
+                       <asp:ListItem Value="2">No recibido en sitio</asp:ListItem>
           </asp:DropDownList>
     
     </div>
@@ -89,9 +90,9 @@
 
     </asp:SqlDataSource>
 
-    <asp:GridView ID="GridView1" runat="server" 
-        AutoGenerateColumns="False" DataKeyNames="ID_TBACTYMTR" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
-        <AlternatingRowStyle BackColor="#F7F7F7" />
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" GridLines="None"
+                AllowPaging="true" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
+                PageSize="6" >
         <Columns>
             <asp:BoundField DataField="DOC_ENTRY" HeaderText="Documento Entrada" />
             <asp:BoundField DataField="NUM_SERIAL" HeaderText="Numero de serial" />
@@ -101,15 +102,8 @@
             <asp:BoundField DataField="ID_STATE" HeaderText="Estado actual" />
         </Columns>
 
-        <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
-        <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
-        <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
-        <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
-        <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
-        <SortedAscendingCellStyle BackColor="#F4F4FD" />
-        <SortedAscendingHeaderStyle BackColor="#5A4C9D" />
-        <SortedDescendingCellStyle BackColor="#D8D8F0" />
-        <SortedDescendingHeaderStyle BackColor="#3E3277" />
-
     </asp:GridView>
+
+            <div>
+        </div>
 </asp:Content>

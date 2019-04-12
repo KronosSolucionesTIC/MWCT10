@@ -29,6 +29,9 @@ namespace CapaPresentacion
             ci.Usuario = usu;                       //Pasa el valor de usuario
             string Id = ci.getId();                     //Pasa el metodo getId para validar si existe el usuario     
             ci.Cliente = Id;                           //Pasa el valor de la lista
+            DateTime fecha = DateTime.Today.AddDays(-15);
+            TextBox1.Text = fecha.ToString("dd/MM/yyyy");
+            TextBox2.Text = DateTime.Now.ToString("dd/MM/yyyy"); //Toma la fecha actual
             DataTable dt = ci.getConsultaInicial();     //Pasa el metodo consulta inicial
             this.GridView1.DataSource = dt;             //Agrega al GridView el dataset
             GridView1.DataBind();
@@ -43,6 +46,8 @@ namespace CapaPresentacion
             string Id = de.getId();                     //Pasa el metodo getId para validar si existe el usuario     
             de.Cliente = Id;                            //Pasa el valor de la lista
             DataTable dt = de.getDocumentosEntrada();   //Pasa el metodo consulta inicial
+            docEntrada.AppendDataBoundItems = true;
+            docEntrada.Items.Add("Seleccione...");
             this.docEntrada.DataSource = dt;            //Agrega al GridView el dataset
             docEntrada.DataTextField = "DOC_ENTRY";     //Selecciona el campo a mostrar
             docEntrada.DataValueField = "DOC_ENTRY";    //Selecciona el campo para el valor
@@ -57,6 +62,8 @@ namespace CapaPresentacion
             string Id = nm.getId();                     //Pasa el metodo getId para validar si existe el usuario     
             nm.Cliente = Id;                            //Pasa el valor de la lista
             DataTable dt = nm.getNumeroSerial();   //Pasa el metodo consulta inicial
+            numeroSerial.AppendDataBoundItems = true;
+            numeroSerial.Items.Add("Seleccione...");
             this.numeroSerial.DataSource = dt;            //Agrega al GridView el dataset
             numeroSerial.DataTextField = "NUM_SERIAL";     //Selecciona el campo a mostrar
             numeroSerial.DataValueField = "NUM_SERIAL";    //Selecciona el campo para el valor
@@ -71,6 +78,8 @@ namespace CapaPresentacion
             string Id = gru.getId();                     //Pasa el metodo getId para validar si existe el usuario     
             gru.Cliente = Id;                            //Pasa el valor de la lista
             DataTable dt = gru.getGrupo();   //Pasa el metodo consulta inicial
+            nombreGrupo.AppendDataBoundItems = true;
+            nombreGrupo.Items.Add("Seleccione...");
             this.nombreGrupo.DataSource = dt;            //Agrega al GridView el dataset
             nombreGrupo.DataTextField = "NAME_GROUP";     //Selecciona el campo a mostrar
             nombreGrupo.DataValueField = "NAME_GROUP";    //Selecciona el campo para el valor
@@ -109,6 +118,11 @@ namespace CapaPresentacion
             ca.Usuario = usu;                                   //Pasa el valor de usuario
             string Id = ca.getId();                             //Pasa el metodo getId para validar si existe el usuario     
             ca.Cliente = Id;                                    //Pasa el valor de la lista
+            ca.Inicial = TextBox1.Text;                          //Pasa el valor de la lista
+            ca.Final = TextBox2.Text;                            //Pasa el valor de la lista
+            ca.Documento = docEntrada.SelectedItem.Value;     //Pasa el valor de la lista
+            ca.Serial = numeroSerial.SelectedItem.Value;     //Pasa el valor de la lista
+            ca.Grupo = nombreGrupo.SelectedItem.Value;     //Pasa el valor de la lista
             ca.Estado = estadoActividad.SelectedItem.Value;     //Pasa el valor de la lista
             DataTable dt = ca.getConsultaActualizar();          //Pasa el metodo consulta inicial
             this.GridView1.DataSource = dt;                     //Agrega al GridView el dataset
