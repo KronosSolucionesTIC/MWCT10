@@ -82,7 +82,7 @@ SELECT DOC_ENTRY,NUM_SERIAL,NAME_GROUP,DATE_ENTRY,ID_TBACTYMTR,CASE ID_STATE
          WHEN '2' then 'No recibido en sitio'                        
          WHEN '0' THEN 'Precarga'
          WHEN '1' THEN 'Alistamiento inicial'
-         WHEN '5O' THEN 'peracion en mesas'
+         WHEN '5' THEN 'Operacion en mesas'
          WHEN '9' THEN 'Revision de certificado'
          WHEN '11' THEN 'Etapa de salida'
          WHEN '12' THEN 'En tramite'
@@ -151,16 +151,16 @@ ELSE
 	SELECT @condiciones =  @condiciones
 
 SET @SQL_SENTENCIA = 'SELECT DOC_ENTRY,NUM_SERIAL,NAME_GROUP,DATE_ENTRY,ID_TBACTYMTR,CASE ID_STATE
-         WHEN '2' then 'No recibido en sitio'                        
-         WHEN '0' THEN 'Precarga'
-         WHEN '1' THEN 'Alistamiento inicial'
-         WHEN '5O' THEN 'peracion en mesas'
-         WHEN '9' THEN 'Revision de certificado'
-         WHEN '11' THEN 'Etapa de salida'
-         WHEN '12' THEN 'En tramite'
-         WHEN '16' THEN 'Rechazo de recepcion'
-         WHEN '2' THEN 'No recibido en sitio'
-         ELSE 'No encontrado'
+         WHEN ''2'' then ''No recibido en sitio''                        
+         WHEN ''0'' THEN ''Precarga''
+         WHEN ''1'' THEN ''Alistamiento inicial''
+         WHEN ''5'' THEN ''peracion en mesas''
+         WHEN ''9'' THEN ''Revision de certificado''
+         WHEN ''11'' THEN ''Etapa de salida''
+         WHEN ''12'' THEN ''En tramite''
+         WHEN ''16'' THEN ''Rechazo de recepcion''
+         WHEN ''2'' THEN ''No recibido en sitio''
+         ELSE ''No encontrado''
        end 
        AS ID_STATE FROM TB_GROUP
 INNER JOIN (TB_DEVICES INNER JOIN TB_ACTY_MTR ON TB_DEVICES.ID_TBDEVICES = TB_ACTY_MTR.ID_TBDEVICES) 
@@ -189,7 +189,7 @@ AS
 SELECT DOC_ENTRY FROM TB_GROUP 
 INNER JOIN (TB_DEVICES INNER JOIN TB_ACTY_MTR ON TB_DEVICES.ID_TBDEVICES = TB_ACTY_MTR.ID_TBDEVICES) 
 ON TB_GROUP.ID_TBGROUP =  TB_DEVICES.ID_TBGROUP
-WHERE DATEDIFF(day, DATE_ENTRY, GETDATE ( )) > 15 AND ID_TBCLIENT = @ID_TBCLIENT
+WHERE DATEDIFF(day, DATE_ENTRY, GETDATE ( )) < 15 AND ID_TBCLIENT = @ID_TBCLIENT
 GO 
 
 --Sentencia para eliminar SP_documentos_entrada
@@ -202,7 +202,7 @@ AS
 SELECT NUM_SERIAL FROM TB_GROUP 
 INNER JOIN (TB_DEVICES INNER JOIN TB_ACTY_MTR ON TB_DEVICES.ID_TBDEVICES = TB_ACTY_MTR.ID_TBDEVICES) 
 ON TB_GROUP.ID_TBGROUP =  TB_DEVICES.ID_TBGROUP
-WHERE DATEDIFF(day, DATE_ENTRY, GETDATE ( )) > 15 AND ID_TBCLIENT = @ID_TBCLIENT
+WHERE DATEDIFF(day, DATE_ENTRY, GETDATE ( )) < 15 AND ID_TBCLIENT = @ID_TBCLIENT
 GO 
 
 --Sentencia para eliminar SP_numero_serial
@@ -215,7 +215,7 @@ AS
 SELECT NAME_GROUP FROM TB_GROUP 
 INNER JOIN (TB_DEVICES INNER JOIN TB_ACTY_MTR ON TB_DEVICES.ID_TBDEVICES = TB_ACTY_MTR.ID_TBDEVICES) 
 ON TB_GROUP.ID_TBGROUP =  TB_DEVICES.ID_TBGROUP
-WHERE DATEDIFF(day, DATE_ENTRY, GETDATE ( )) > 15 AND ID_TBCLIENT = @ID_TBCLIENT
+WHERE DATEDIFF(day, DATE_ENTRY, GETDATE ( )) < 15 AND ID_TBCLIENT = @ID_TBCLIENT
 GO 
 
 --Sentencia para eliminar SP_numero_serial
