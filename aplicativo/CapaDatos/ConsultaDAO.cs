@@ -64,7 +64,8 @@ namespace CapaDatos
             }
 
             DateTime e = DateTime.Parse(inicial);
-            DateTime f = DateTime.Parse(final);     
+            DateTime f = DateTime.Parse(final);
+ 
             int g = int.Parse(estado);
 
             try

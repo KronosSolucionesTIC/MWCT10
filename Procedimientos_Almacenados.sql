@@ -78,7 +78,20 @@ UPDATE TB_CLIENT set WEB_ENABLE=1 WHERE USER_WEB='Admin'
 CREATE PROCEDURE SP_consulta_inicial
 @ID_TBCLIENT INT
 AS
-SELECT DOC_ENTRY,NUM_SERIAL,NAME_GROUP,DATE_ENTRY,ID_TBACTYMTR,ID_STATE FROM TB_GROUP
+SELECT DOC_ENTRY,NUM_SERIAL,NAME_GROUP,DATE_ENTRY,ID_TBACTYMTR,CASE ID_STATE
+         WHEN '2' then 'No recibido en sitio'                        
+         WHEN '0' THEN 'Precarga'
+         WHEN '1' THEN 'Alistamiento inicial'
+         WHEN '5O' THEN 'peracion en mesas'
+         WHEN '9' THEN 'Revision de certificado'
+         WHEN '11' THEN 'Etapa de salida'
+         WHEN '12' THEN 'En tramite'
+         WHEN '16' THEN 'Rechazo de recepcion'
+         WHEN '2' THEN 'No recibido en sitio'
+         ELSE 'No encontrado'
+       end 
+       AS ID_STATE
+       FROM TB_GROUP
 INNER JOIN (TB_DEVICES INNER JOIN TB_ACTY_MTR ON TB_DEVICES.ID_TBDEVICES = TB_ACTY_MTR.ID_TBDEVICES) 
 ON TB_GROUP.ID_TBGROUP =  TB_DEVICES.ID_TBGROUP
 WHERE DATEDIFF(day, DATE_ENTRY, GETDATE ( )) > 15 AND ID_TBCLIENT = @ID_TBCLIENT
@@ -101,6 +114,7 @@ CREATE PROCEDURE SP_consulta_actualizar
 @USUARIO INT,
 @DOC_ENTRADA varchar(20),
 @NUM_SERIAL varchar(20),
+@GRUPO varchar(10),
 @FECHAINI AS DATE,
 @FECHAFIN AS DATE,
 @ESTADO INT
@@ -112,12 +126,17 @@ DECLARE @condiciones varchar(5000)
 SET @condiciones = ''
 
 IF @DOC_ENTRADA != ''
-	SELECT @condiciones =  @condiciones + ' AND DOC_ENTRY = ' + CONVERT(VARCHAR,@DOC_ENTRADA)
+	SELECT @condiciones =  @condiciones + ' AND DOC_ENTRY = ' + QUOTENAME(@DOC_ENTRADA,'''')
 ELSE 
 	SELECT @condiciones =  @condiciones
 
 IF @NUM_SERIAL != ''
-	SELECT @condiciones =  @condiciones + ' AND NUM_SERIAL = ' + CONVERT(VARCHAR,@NUM_SERIAL)
+	SELECT @condiciones =  @condiciones + ' AND NUM_SERIAL = ' + QUOTENAME(@NUM_SERIAL,'''')
+ELSE 
+	SELECT @condiciones =  @condiciones
+
+IF @GRUPO != ''
+	SELECT @condiciones =  @condiciones + ' AND NAME_GROUP = ' + QUOTENAME(@GRUPO,'''')
 ELSE 
 	SELECT @condiciones =  @condiciones
 
@@ -131,7 +150,19 @@ IF @ESTADO != ''
 ELSE 
 	SELECT @condiciones =  @condiciones
 
-SET @SQL_SENTENCIA = 'SELECT DOC_ENTRY,NUM_SERIAL,NAME_GROUP,DATE_ENTRY,ID_TBACTYMTR,ID_STATE FROM TB_GROUP
+SET @SQL_SENTENCIA = 'SELECT DOC_ENTRY,NUM_SERIAL,NAME_GROUP,DATE_ENTRY,ID_TBACTYMTR,CASE ID_STATE
+         WHEN '2' then 'No recibido en sitio'                        
+         WHEN '0' THEN 'Precarga'
+         WHEN '1' THEN 'Alistamiento inicial'
+         WHEN '5O' THEN 'peracion en mesas'
+         WHEN '9' THEN 'Revision de certificado'
+         WHEN '11' THEN 'Etapa de salida'
+         WHEN '12' THEN 'En tramite'
+         WHEN '16' THEN 'Rechazo de recepcion'
+         WHEN '2' THEN 'No recibido en sitio'
+         ELSE 'No encontrado'
+       end 
+       AS ID_STATE FROM TB_GROUP
 INNER JOIN (TB_DEVICES INNER JOIN TB_ACTY_MTR ON TB_DEVICES.ID_TBDEVICES = TB_ACTY_MTR.ID_TBDEVICES) 
 ON TB_GROUP.ID_TBGROUP =  TB_DEVICES.ID_TBGROUP 
 WHERE ID_TBCLIENT = ' + CONVERT(VARCHAR,@USUARIO) + @condiciones

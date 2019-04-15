@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 
 namespace CapaPresentacion
 {
@@ -19,19 +20,16 @@ namespace CapaPresentacion
                 llenar_documentos_entrada();        //Pasa funcion para llenar lista
                 llenar_num_serial();                //Pasa funcion para llenar lista
                 llenar_grupo();                     //Pasa funcion para llenar lista
-                Calendar1.Visible = false;          //Esconde calendario inicial
-                Calendar2.Visible = false;          //Esconde calendario final
+                TextBox2.Text = DateTime.Now.ToString("dd/MM/yyyy"); //Toma la fecha actual
+                DateTime fecha = DateTime.Today.AddDays(-15);
+                TextBox1.Text = fecha.ToString("yyyy/MM/dd");
             }
-            calcular_fecha();
 
             Consulta ci = new Consulta();               //Crea una instancia de clase
             string usu = Convert.ToString(Session["Login"]); //Lee la variable Session
-            ci.Usuario = usu;                       //Pasa el valor de usuario
+            ci.Usuario = usu;                           //Pasa el valor de usuario
             string Id = ci.getId();                     //Pasa el metodo getId para validar si existe el usuario     
-            ci.Cliente = Id;                           //Pasa el valor de la lista
-            DateTime fecha = DateTime.Today.AddDays(-15);
-            TextBox1.Text = fecha.ToString("dd/MM/yyyy");
-            TextBox2.Text = DateTime.Now.ToString("dd/MM/yyyy"); //Toma la fecha actual
+            ci.Cliente = Id;                            //Pasa el valor de la lista
             DataTable dt = ci.getConsultaInicial();     //Pasa el metodo consulta inicial
             this.GridView1.DataSource = dt;             //Agrega al GridView el dataset
             GridView1.DataBind();
@@ -86,10 +84,35 @@ namespace CapaPresentacion
             nombreGrupo.DataBind();
         }
 
-        protected void calcular_fecha()
+
+        public bool ValidarCampos()
         {
-            //txtFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            if (this.TextBox1.Text.Equals(""))
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('El campo fecha inicial no puede ser vacio');</script>");
+                return false;
+            } else if (this.TextBox2.Text.Equals(""))
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('El campo fecha final no puede ser vacio');</script>");
+                return false;
+            }
+            return true;
         }
+
+        public bool Rango60()
+        {
+            DateTime ini = DateTime.Parse(TextBox1.Text);
+            DateTime fin = DateTime.Parse(TextBox2.Text);
+            TimeSpan tSpan = fin - ini;
+            int dias = tSpan.Days;
+            if(dias > 60)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Rango " + dias + ", el rango debe ser menor a 60 dias');</script>");
+                return false;
+            }
+            return true;
+        }
+
 
         protected void ciudad_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -113,20 +136,33 @@ namespace CapaPresentacion
 
         protected void actualizar_Click(object sender, EventArgs e)
         {
-            Consulta ca = new Consulta();                       //Crea una instancia de clase
-            string usu = Convert.ToString(Session["Login"]);    //Lee la variable Session
-            ca.Usuario = usu;                                   //Pasa el valor de usuario
-            string Id = ca.getId();                             //Pasa el metodo getId para validar si existe el usuario     
-            ca.Cliente = Id;                                    //Pasa el valor de la lista
-            ca.Inicial = TextBox1.Text;                          //Pasa el valor de la lista
-            ca.Final = TextBox2.Text;                            //Pasa el valor de la lista
-            ca.Documento = docEntrada.SelectedItem.Value;     //Pasa el valor de la lista
-            ca.Serial = numeroSerial.SelectedItem.Value;     //Pasa el valor de la lista
-            ca.Grupo = nombreGrupo.SelectedItem.Value;     //Pasa el valor de la lista
-            ca.Estado = estadoActividad.SelectedItem.Value;     //Pasa el valor de la lista
-            DataTable dt = ca.getConsultaActualizar();          //Pasa el metodo consulta inicial
-            this.GridView1.DataSource = dt;                     //Agrega al GridView el dataset
-            GridView1.DataBind();
+            actualiza();    //Proceso de actualizar
+        }
+
+        protected void actualiza()
+        {
+            bool revision = ValidarCampos();                                    //Valida las fechas
+            if (revision == true)
+            {
+                bool dias = Rango60();
+                if (dias == true)
+                {
+                    Consulta ca = new Consulta();                       //Crea una instancia de clase
+                    string usu = Convert.ToString(Session["Login"]);    //Lee la variable Session
+                    ca.Usuario = usu;                                   //Pasa el valor de usuario
+                    string Id = ca.getId();                             //Pasa el metodo getId para validar si existe el usuario     
+                    ca.Cliente = Id;                                    //Pasa el valor de la lista
+                    ca.Inicial = TextBox1.Text;                          //Pasa el valor de la lista
+                    ca.Final = TextBox2.Text;                            //Pasa el valor de la lista
+                    ca.Documento = docEntrada.SelectedItem.Value;     //Pasa el valor de la lista
+                    ca.Serial = numeroSerial.SelectedItem.Value;     //Pasa el valor de la lista
+                    ca.Grupo = nombreGrupo.SelectedItem.Value;     //Pasa el valor de la lista
+                    ca.Estado = estadoActividad.SelectedItem.Value;     //Pasa el valor de la lista
+                    DataTable dt = ca.getConsultaActualizar();          //Pasa el metodo consulta inicial
+                    this.GridView1.DataSource = dt;                     //Agrega al GridView el dataset
+                    GridView1.DataBind();
+                }
+            }
         }
 
         protected void tareas_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
@@ -134,39 +170,39 @@ namespace CapaPresentacion
 
         }
 
-        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
-            if (Calendar1.Visible)
-            {
-                Calendar1.Visible = false;
-            } else
-            {
-                Calendar1.Visible = true;
-            }
+
         }
 
-        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        protected void exportar_click(object sender, EventArgs e)
         {
-            TextBox1.Text = Calendar1.SelectedDate.ToShortDateString();
-            Calendar1.Visible = false;
+            actualiza();
+
+                    StringWriter stringWrite = new StringWriter();
+                    for (int i = 0; i <= (GridView1.Rows.Count - 1); i++)
+                    {
+                        stringWrite.WriteLine(GridView1.Rows[i].Cells[0].Text.ToString() + "\t"
+                                + GridView1.Rows[i].Cells[1].Text.ToString() + "\t"
+                                + GridView1.Rows[i].Cells[2].Text.ToString() + "\t"
+                                + GridView1.Rows[i].Cells[3].Text.ToString() + "\t"
+                                + GridView1.Rows[i].Cells[4].Text.ToString() + "\t"
+                                );
+                        stringWrite.WriteLine("");
+                    }
+                    Response.Clear();
+                    Response.AddHeader("content-disposition", "attachment;filename=prueba.txt");
+                    Response.Charset = "";
+                    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                    Response.ContentType = "application/vnd.text";
+                    HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
+                    Response.Write(stringWrite.ToString());
+                    Response.End();
         }
 
-        protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Calendar2.Visible)
-            {
-                Calendar2.Visible = false;
-            }
-            else
-            {
-                Calendar2.Visible = true;
-            }
-        }
 
-        protected void Calendar2_SelectionChanged(object sender, EventArgs e)
-        {
-            TextBox2.Text = Calendar2.SelectedDate.ToShortDateString();
-            Calendar2.Visible = false;
         }
     }
 }

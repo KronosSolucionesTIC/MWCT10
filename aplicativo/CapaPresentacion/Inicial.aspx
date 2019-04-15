@@ -10,34 +10,12 @@
     <div class="col-12">
         <asp:Label ID="Fec_ini" class="etiquetas" runat="server" Text="Inicial"></asp:Label>
 
-        <asp:TextBox ID="TextBox1" runat="server" class="cajas"></asp:TextBox>
-        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="Estilo/images/calendario.png" OnClick="ImageButton1_Click" />
-        <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" OnSelectionChanged="Calendar1_SelectionChanged">
-            <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
-            <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
-            <OtherMonthDayStyle ForeColor="#999999" />
-            <SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
-            <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
-            <TitleStyle BackColor="#003399" BorderColor="#3366CC" BorderWidth="1px" Font-Bold="True" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
-            <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
-            <WeekendDayStyle BackColor="#CCCCFF" />
-        </asp:Calendar>
+        <asp:TextBox ID="TextBox1" runat="server" class="cajas" OnTextChanged="TextBox1_TextChanged" TextMode="Date"></asp:TextBox>
     
         <asp:Label ID="Fec_fin" class="etiquetas" runat="server" Text="Final"></asp:Label>
 
     
-        <asp:TextBox ID="TextBox2" runat="server" class="cajas"></asp:TextBox>
-        <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="Estilo/images/calendario.png" OnClick="ImageButton2_Click" />
-        <asp:Calendar ID="Calendar2" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" OnSelectionChanged="Calendar2_SelectionChanged" Width="220px">
-            <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
-            <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
-            <OtherMonthDayStyle ForeColor="#999999" />
-            <SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
-            <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
-            <TitleStyle BackColor="#003399" BorderColor="#3366CC" BorderWidth="1px" Font-Bold="True" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
-            <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
-            <WeekendDayStyle BackColor="#CCCCFF" />
-        </asp:Calendar>
+        <asp:TextBox ID="TextBox2" runat="server" class="cajas" TextMode="Date"></asp:TextBox>
 
         <asp:Label ID="Doc_Ent" class="etiquetas" runat="server" Text="Doc. Entrada"></asp:Label>
 
@@ -83,6 +61,7 @@
 
     <div class="align-items-md-center">
         <asp:Button ID="actualizar" runat="server" Text="Buscar" class="btn btn-success" Width="150px" OnClick="actualizar_Click"/>
+        <asp:Button ID="exportar" runat="server" Text="Exportar" class="btn btn-alert" Width="150px" OnClick="exportar_click"/>
         <br />        
     </div>
 
@@ -92,13 +71,12 @@
 
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" GridLines="None"
                 AllowPaging="true" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
-                PageSize="6" >
+                PageSize="6" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" >
         <Columns>
             <asp:BoundField DataField="DOC_ENTRY" HeaderText="Documento Entrada" />
             <asp:BoundField DataField="NUM_SERIAL" HeaderText="Numero de serial" />
             <asp:BoundField DataField="NAME_GROUP" HeaderText="Nombre del grupo" />
             <asp:BoundField DataField="DATE_ENTRY" HeaderText="Fecha de ingreso" />
-            <asp:BoundField DataField="DATE_ENTRY" HeaderText="Nombre certificado" />
             <asp:BoundField DataField="ID_STATE" HeaderText="Estado actual" />
         </Columns>
 
