@@ -20,9 +20,9 @@ namespace CapaPresentacion
                 llenar_documentos_entrada();        //Pasa funcion para llenar lista
                 llenar_num_serial();                //Pasa funcion para llenar lista
                 llenar_grupo();                     //Pasa funcion para llenar lista
-                TextBox2.Text = DateTime.Now.ToString("dd/MM/yyyy"); //Toma la fecha actual
+                TextBox2.Text = DateTime.Now.ToString("yyyy-MM-dd"); //Toma la fecha actual
                 DateTime fecha = DateTime.Today.AddDays(-15);
-                TextBox1.Text = fecha.ToString("yyyy/MM/dd");
+                TextBox1.Text = fecha.ToString("yyyy-MM-dd");
             }
 
             Consulta ci = new Consulta();               //Crea una instancia de clase
