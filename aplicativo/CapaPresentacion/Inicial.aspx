@@ -4,6 +4,13 @@
     <asp:Label ID="usuario" class="usuario" runat="server"></asp:Label>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Menu" runat="server">
+    <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Estilo/images/con_tarea.png" />
+    <br />
+    <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/Estilo/images/con_doc.png" />
+    <br />
+    <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/Estilo/images/car_archi.png" />
+    <br />
+    <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/Estilo/images/crear_tarea.png" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Contenido" runat="server">
     <div class="row">
