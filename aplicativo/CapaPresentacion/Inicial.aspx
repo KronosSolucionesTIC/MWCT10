@@ -42,7 +42,8 @@
         <asp:Label ID="Esta_Acti" runat="server" class="etiquetas" Text="Estado"></asp:Label>
 
     <asp:DropDownList ID="estadoActividad" class="cajas" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
-                       <asp:ListItem Value="0">Precarga</asp:ListItem>
+        <asp:ListItem Value="">Seleccione...</asp:ListItem>               
+        <asp:ListItem Value="0">Precarga</asp:ListItem>
                        <asp:ListItem Value="1">Alistamiento inicial</asp:ListItem>
                        <asp:ListItem Value="5">Operacion en mesas</asp:ListItem>
                        <asp:ListItem Value="9">Revision de certificado</asp:ListItem>
