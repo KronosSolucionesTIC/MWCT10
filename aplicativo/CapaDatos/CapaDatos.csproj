@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Conexion.cs" />
     <Compile Include="ConsultaDAO.cs" />
+    <Compile Include="GrupoDAO.cs" />
     <Compile Include="LogeoDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

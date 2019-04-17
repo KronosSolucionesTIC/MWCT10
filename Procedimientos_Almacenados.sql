@@ -220,3 +220,31 @@ GO
 
 --Sentencia para eliminar SP_numero_serial
 DROP PROCEDURE SP_grupo
+
+--Sentencia para cargar el filtro Marca
+CREATE PROCEDURE SP_marca
+AS
+SELECT DISTINCT MARK FROM TB_GROUP
+GO
+
+--Sentencia para cargar el filtro 
+CREATE PROCEDURE SP_modelo
+@MARCA varchar(20)
+AS
+DECLARE @SQL_SENTENCIA VARCHAR(5000) = ''
+DECLARE @condiciones varchar(5000)
+SET @condiciones = ''
+
+IF @MARCA != ''
+    SELECT @condiciones =  @condiciones + ' WHERE MARK = ' + QUOTENAME(@MARCA,'''')
+ELSE 
+    SELECT @condiciones =  @condiciones
+
+SET @SQL_SENTENCIA = 'SELECT DISTINCT NAME_MODEL FROM TB_GROUP' + @condiciones
+EXEC (@SQL_SENTENCIA)
+GO
+
+DROP PROCEDURE SP_modelo;
+
+EXEC SP_modelo '';
+

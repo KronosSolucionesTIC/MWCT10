@@ -4,6 +4,13 @@
     <asp:Label ID="usuario" class="usuario" runat="server"></asp:Label>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Menu" runat="server">
+     <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Estilo/images/con_tarea.png" />
+    <br />
+     <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/Estilo/images/con_doc.png" />
+    <br /> 
+    <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/Estilo/images/carga_archi.png" />
+    <br /> 
+    <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/Estilo/images/crea_tarea.png"  />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Contenido" runat="server">
     <div class="row">
@@ -42,7 +49,8 @@
         <asp:Label ID="Esta_Acti" runat="server" class="etiquetas" Text="Estado"></asp:Label>
 
     <asp:DropDownList ID="estadoActividad" class="cajas" runat="server" OnSelectedIndexChanged="ciudad_SelectedIndexChanged">
-                       <asp:ListItem Value="0">Precarga</asp:ListItem>
+        <asp:ListItem Value="0">Seleccione...</asp:ListItem>               
+        <asp:ListItem Value="0">Precarga</asp:ListItem>
                        <asp:ListItem Value="1">Alistamiento inicial</asp:ListItem>
                        <asp:ListItem Value="5">Operacion en mesas</asp:ListItem>
                        <asp:ListItem Value="9">Revision de certificado</asp:ListItem>

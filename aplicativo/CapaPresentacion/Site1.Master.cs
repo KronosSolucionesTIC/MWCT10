@@ -41,5 +41,15 @@ namespace CapaPresentacion
         {
 
         }
+
+        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("Inicial.aspx");//Redirecciona consulta tarea
+        }
+
+        protected void ImageButton4_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("Creacion.aspx");//Redirecciona creacion tarea
+        }
     }
     }
