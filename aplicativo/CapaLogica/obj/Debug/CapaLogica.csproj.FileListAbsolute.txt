@@ -25,3 +25,12 @@ C:\APLICATIVO\aplicativo\CapaLogica\obj\Debug\CapaLogica.csproj.CoreCompileInput
 C:\APLICATIVO\aplicativo\CapaLogica\obj\Debug\CapaLogica.csproj.CopyComplete
 C:\APLICATIVO\aplicativo\CapaLogica\obj\Debug\CapaLogica.dll
 C:\APLICATIVO\aplicativo\CapaLogica\obj\Debug\CapaLogica.pdb
+C:\Users\Desarrollador\Desktop\MWCT10\aplicativo\CapaLogica\bin\Debug\CapaLogica.dll
+C:\Users\Desarrollador\Desktop\MWCT10\aplicativo\CapaLogica\bin\Debug\CapaLogica.pdb
+C:\Users\Desarrollador\Desktop\MWCT10\aplicativo\CapaLogica\bin\Debug\CapaDatos.dll
+C:\Users\Desarrollador\Desktop\MWCT10\aplicativo\CapaLogica\bin\Debug\CapaDatos.pdb
+C:\Users\Desarrollador\Desktop\MWCT10\aplicativo\CapaLogica\obj\Debug\CapaLogica.csprojAssemblyReference.cache
+C:\Users\Desarrollador\Desktop\MWCT10\aplicativo\CapaLogica\obj\Debug\CapaLogica.csproj.CoreCompileInputs.cache
+C:\Users\Desarrollador\Desktop\MWCT10\aplicativo\CapaLogica\obj\Debug\CapaLogica.csproj.CopyComplete
+C:\Users\Desarrollador\Desktop\MWCT10\aplicativo\CapaLogica\obj\Debug\CapaLogica.dll
+C:\Users\Desarrollador\Desktop\MWCT10\aplicativo\CapaLogica\obj\Debug\CapaLogica.pdb

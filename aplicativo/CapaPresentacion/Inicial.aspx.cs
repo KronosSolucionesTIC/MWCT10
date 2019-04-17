@@ -52,29 +52,6 @@ namespace CapaPresentacion
             docEntrada.DataBind();
         }
 
-        protected void llenar_documentos_entrada_actualizar()
-        {
-            Consulta de = new Consulta();               //Crea una instancia de clase
-            string usu = Convert.ToString(Session["Login"]); //Lee la variable Session
-            de.Usuario = usu;                           //Pasa el valor de usuario
-            string Id = de.getId();                     //Pasa el metodo getId para validar si existe el usuario     
-            de.Cliente = Id;                            //Pasa el valor de la lista
-            de.Inicial = TextBox1.Text;                          //Pasa el valor de la lista
-            de.Final = TextBox2.Text;                            //Pasa el valor de la lista
-            de.Documento = docEntrada.SelectedItem.Value;     //Pasa el valor de la lista
-            de.Serial = numeroSerial.SelectedItem.Value;     //Pasa el valor de la lista
-            de.Grupo = nombreGrupo.SelectedItem.Value;     //Pasa el valor de la lista
-            de.Estado = estadoActividad.SelectedItem.Value;     //Pasa el valor de la lista
-            DataTable dt = de.getDEActualizar();   //Pasa el metodo consulta inicial
-            docEntrada.Items.Clear();
-            docEntrada.AppendDataBoundItems = true;
-            docEntrada.Items.Add("Seleccione...");
-            this.docEntrada.DataSource = dt;            //Agrega al GridView el dataset
-            docEntrada.DataTextField = "DOC_ENTRY";     //Selecciona el campo a mostrar
-            docEntrada.DataValueField = "DOC_ENTRY";    //Selecciona el campo para el valor
-            docEntrada.DataBind();
-        }
-
         protected void llenar_num_serial()
         {
             Consulta nm = new Consulta();               //Crea una instancia de clase
@@ -91,30 +68,6 @@ namespace CapaPresentacion
             numeroSerial.DataBind();
         }
 
-        protected void llenar_numero_serial_actualizar()
-        {
-            Consulta nm = new Consulta();               //Crea una instancia de clase
-            string usu = Convert.ToString(Session["Login"]); //Lee la variable Session
-            nm.Usuario = usu;                           //Pasa el valor de usuario
-            string Id = nm.getId();                     //Pasa el metodo getId para validar si existe el usuario     
-            nm.Cliente = Id;                            //Pasa el valor de la lista
-            nm.Inicial = TextBox1.Text;                          //Pasa el valor de la lista
-            nm.Final = TextBox2.Text;                            //Pasa el valor de la lista
-            nm.Documento = docEntrada.SelectedItem.Value;     //Pasa el valor de la lista
-            nm.Serial = numeroSerial.SelectedItem.Value;     //Pasa el valor de la lista
-            nm.Grupo = nombreGrupo.SelectedItem.Value;     //Pasa el valor de la lista
-            nm.Estado = estadoActividad.SelectedItem.Value;     //Pasa el valor de la lista
-
-            DataTable dt = nm.getNSActualizar();   //Pasa el metodo consulta inicial
-            numeroSerial.Items.Clear();
-            numeroSerial.AppendDataBoundItems = true;
-            numeroSerial.Items.Add("Seleccione...");
-            this.numeroSerial.DataSource = dt;            //Agrega al GridView el dataset
-            numeroSerial.DataTextField = "NUM_SERIAL";     //Selecciona el campo a mostrar
-            numeroSerial.DataValueField = "NUM_SERIAL";    //Selecciona el campo para el valor
-            numeroSerial.DataBind();
-        }
-
         protected void llenar_grupo()
         {
             Consulta gru = new Consulta();               //Crea una instancia de clase
@@ -123,30 +76,6 @@ namespace CapaPresentacion
             string Id = gru.getId();                     //Pasa el metodo getId para validar si existe el usuario     
             gru.Cliente = Id;                            //Pasa el valor de la lista
             DataTable dt = gru.getGrupo();   //Pasa el metodo consulta inicial
-            nombreGrupo.AppendDataBoundItems = true;
-            nombreGrupo.Items.Add("Seleccione...");
-            this.nombreGrupo.DataSource = dt;            //Agrega al GridView el dataset
-            nombreGrupo.DataTextField = "NAME_GROUP";     //Selecciona el campo a mostrar
-            nombreGrupo.DataValueField = "NAME_GROUP";    //Selecciona el campo para el valor
-            nombreGrupo.DataBind();
-        }
-
-        protected void llenar_grupo_actualizar()
-        {
-            Consulta gru = new Consulta();               //Crea una instancia de clase
-            string usu = Convert.ToString(Session["Login"]); //Lee la variable Session
-            gru.Usuario = usu;                           //Pasa el valor de usuario
-            string Id = gru.getId();                     //Pasa el metodo getId para validar si existe el usuario     
-            gru.Cliente = Id;                            //Pasa el valor de la lista
-            gru.Inicial = TextBox1.Text;                          //Pasa el valor de la lista
-            gru.Final = TextBox2.Text;                            //Pasa el valor de la lista
-            gru.Documento = docEntrada.SelectedItem.Value;     //Pasa el valor de la lista
-            gru.Serial = numeroSerial.SelectedItem.Value;     //Pasa el valor de la lista
-            gru.Grupo = nombreGrupo.SelectedItem.Value;     //Pasa el valor de la lista
-            gru.Estado = estadoActividad.SelectedItem.Value;     //Pasa el valor de la lista
-
-            DataTable dt = gru.getGRUActualizar();   //Pasa el metodo consulta inicial
-            nombreGrupo.Items.Clear();
             nombreGrupo.AppendDataBoundItems = true;
             nombreGrupo.Items.Add("Seleccione...");
             this.nombreGrupo.DataSource = dt;            //Agrega al GridView el dataset
@@ -207,10 +136,81 @@ namespace CapaPresentacion
 
         protected void actualizar_Click(object sender, EventArgs e)
         {
-            actualiza();                                //Proceso de actualizar
+            actualiza();    //Proceso de actualizar
             llenar_documentos_entrada_actualizar();     //Proceso de llenar documento entrada
             llenar_numero_serial_actualizar();          //Proceso de llenar numero serial
             llenar_grupo_actualizar();                  //Proceso de llenar grupo
+        }
+
+        protected void llenar_documentos_entrada_actualizar()
+        {
+            Consulta de = new Consulta();               //Crea una instancia de clase
+            string usu = Convert.ToString(Session["Login"]); //Lee la variable Session
+            de.Usuario = usu;                           //Pasa el valor de usuario
+            string Id = de.getId();                     //Pasa el metodo getId para validar si existe el usuario     
+            de.Cliente = Id;                            //Pasa el valor de la lista
+            de.Inicial = TextBox1.Text;                          //Pasa el valor de la lista
+            de.Final = TextBox2.Text;                            //Pasa el valor de la lista
+            de.Documento = docEntrada.SelectedItem.Value;     //Pasa el valor de la lista
+            de.Serial = numeroSerial.SelectedItem.Value;     //Pasa el valor de la lista
+            de.Grupo = nombreGrupo.SelectedItem.Value;     //Pasa el valor de la lista
+            de.Estado = estadoActividad.SelectedItem.Value;     //Pasa el valor de la lista
+            DataTable dt = de.getDEActualizar();   //Pasa el metodo consulta inicial
+            docEntrada.Items.Clear();
+            docEntrada.AppendDataBoundItems = true;
+            docEntrada.Items.Add("Seleccione...");
+            this.docEntrada.DataSource = dt;            //Agrega al GridView el dataset
+            docEntrada.DataTextField = "DOC_ENTRY";     //Selecciona el campo a mostrar
+            docEntrada.DataValueField = "DOC_ENTRY";    //Selecciona el campo para el valor
+            docEntrada.DataBind();
+        }
+
+        protected void llenar_numero_serial_actualizar()
+        {
+            Consulta nm = new Consulta();               //Crea una instancia de clase
+            string usu = Convert.ToString(Session["Login"]); //Lee la variable Session
+            nm.Usuario = usu;                           //Pasa el valor de usuario
+            string Id = nm.getId();                     //Pasa el metodo getId para validar si existe el usuario     
+            nm.Cliente = Id;                            //Pasa el valor de la lista
+            nm.Inicial = TextBox1.Text;                          //Pasa el valor de la lista
+            nm.Final = TextBox2.Text;                            //Pasa el valor de la lista
+            nm.Documento = docEntrada.SelectedItem.Value;     //Pasa el valor de la lista
+            nm.Serial = numeroSerial.SelectedItem.Value;     //Pasa el valor de la lista
+            nm.Grupo = nombreGrupo.SelectedItem.Value;     //Pasa el valor de la lista
+            nm.Estado = estadoActividad.SelectedItem.Value;     //Pasa el valor de la lista
+
+            DataTable dt = nm.getNSActualizar();   //Pasa el metodo consulta inicial
+            numeroSerial.Items.Clear();
+            numeroSerial.AppendDataBoundItems = true;
+            numeroSerial.Items.Add("Seleccione...");
+            this.numeroSerial.DataSource = dt;            //Agrega al GridView el dataset
+            numeroSerial.DataTextField = "NUM_SERIAL";     //Selecciona el campo a mostrar
+            numeroSerial.DataValueField = "NUM_SERIAL";    //Selecciona el campo para el valor
+            numeroSerial.DataBind();
+        }
+
+        protected void llenar_grupo_actualizar()
+        {
+            Consulta gru = new Consulta();               //Crea una instancia de clase
+            string usu = Convert.ToString(Session["Login"]); //Lee la variable Session
+            gru.Usuario = usu;                           //Pasa el valor de usuario
+            string Id = gru.getId();                     //Pasa el metodo getId para validar si existe el usuario     
+            gru.Cliente = Id;                            //Pasa el valor de la lista
+            gru.Inicial = TextBox1.Text;                          //Pasa el valor de la lista
+            gru.Final = TextBox2.Text;                            //Pasa el valor de la lista
+            gru.Documento = docEntrada.SelectedItem.Value;     //Pasa el valor de la lista
+            gru.Serial = numeroSerial.SelectedItem.Value;     //Pasa el valor de la lista
+            gru.Grupo = nombreGrupo.SelectedItem.Value;     //Pasa el valor de la lista
+            gru.Estado = estadoActividad.SelectedItem.Value;     //Pasa el valor de la lista
+
+            DataTable dt = gru.getGRUActualizar();   //Pasa el metodo consulta inicial
+            nombreGrupo.Items.Clear();
+            nombreGrupo.AppendDataBoundItems = true;
+            nombreGrupo.Items.Add("Seleccione...");
+            this.nombreGrupo.DataSource = dt;            //Agrega al GridView el dataset
+            nombreGrupo.DataTextField = "NAME_GROUP";     //Selecciona el campo a mostrar
+            nombreGrupo.DataValueField = "NAME_GROUP";    //Selecciona el campo para el valor
+            nombreGrupo.DataBind();
         }
 
         protected void actualiza()

@@ -101,23 +101,27 @@ namespace CapaLogica
         //Metodo para consulta actualizar
         public DataTable getDEActualizar()
         {
-            DataTable ok = SP_de_actualizar(this.cliente, this.documento, this.serial, this.grupo, this.inicial, this.final, this.estado);
+            DataTable ok = SP_documentos_entrada_actualizar(this.cliente, this.documento, this.serial, this.grupo, this.inicial, this.final, this.estado);
             return ok;
         }
 
         //Metodo para consulta actualizar
         public DataTable getNSActualizar()
         {
-            DataTable ok = SP_ns_actualizar(this.cliente, this.documento, this.serial, this.grupo, this.inicial, this.final, this.estado);
+            DataTable ok = SP_numero_serial_actualizar(this.cliente, this.documento, this.serial, this.grupo, this.inicial, this.final, this.estado);
             return ok;
         }
 
         //Metodo para consulta actualizar
         public DataTable getGRUActualizar()
         {
-            DataTable ok = SP_gru_actualizar(this.cliente, this.documento, this.serial, this.grupo, this.inicial, this.final, this.estado);
+            DataTable ok = SP_grupo_actualizar(this.cliente, this.documento, this.serial, this.grupo, this.inicial, this.final, this.estado);
             return ok;
         }
+
+        
+
+
 
         //Metodo para retornar el ID
         public string getId()

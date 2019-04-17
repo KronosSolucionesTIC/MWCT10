@@ -65,8 +65,8 @@ namespace CapaDatos
 
             DateTime e = DateTime.Parse(inicial);
             DateTime f = DateTime.Parse(final);
- 
-            int g = int.Parse(estado);
+
+            int g = int.Parse(estado); 
 
             try
             {              
@@ -101,7 +101,7 @@ namespace CapaDatos
 
         }
 
-        public DataTable SP_de_actualizar(string cliente, string documento, string serial, string grupo, string inicial, string final, string estado)//Procedimiento para inicio de sesion
+        public DataTable SP_documentos_entrada_actualizar(string cliente, string documento, string serial, string grupo, string inicial, string final, string estado)//Procedimiento para inicio de sesion
         {
 
             int a = int.Parse(cliente);
@@ -159,7 +159,7 @@ namespace CapaDatos
 
         }
 
-        public DataTable SP_ns_actualizar(string cliente, string documento, string serial, string grupo, string inicial, string final, string estado)//Procedimiento para inicio de sesion
+        public DataTable SP_numero_serial_actualizar(string cliente, string documento, string serial, string grupo, string inicial, string final, string estado)//Procedimiento para inicio de sesion
         {
 
             int a = int.Parse(cliente);
@@ -217,7 +217,7 @@ namespace CapaDatos
 
         }
 
-        public DataTable SP_gru_actualizar(string cliente, string documento, string serial, string grupo, string inicial, string final, string estado)//Procedimiento para inicio de sesion
+        public DataTable SP_grupo_actualizar(string cliente, string documento, string serial, string grupo, string inicial, string final, string estado)//Procedimiento para inicio de sesion
         {
 
             int a = int.Parse(cliente);
