@@ -230,6 +230,7 @@
     <Content Include="DiseñoWeb\assets\scss\now-ui-dashboard\_variables.scss" />
     <Content Include="Site1.Master" />
     <Content Include="Creacion.aspx" />
+    <Content Include="Medidores.aspx" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -309,6 +310,13 @@
     </Compile>
     <Compile Include="Creacion.aspx.designer.cs">
       <DependentUpon>Creacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Medidores.aspx.cs">
+      <DependentUpon>Medidores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Medidores.aspx.designer.cs">
+      <DependentUpon>Medidores.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

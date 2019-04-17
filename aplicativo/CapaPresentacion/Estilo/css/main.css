@@ -467,11 +467,13 @@ iframe {
     padding: 10px;
 }
 .cajas {
+    background-color
+.cajas {
     background-color: #D0D3D4;
     padding: 8px;
+    height: 32px;
 }
-.usuario {
-    font-family: Verdana;
+dana;
     font-size: 15px;
     font-weight: bold;
 }

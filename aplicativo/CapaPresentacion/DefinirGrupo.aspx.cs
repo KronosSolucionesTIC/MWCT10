@@ -62,9 +62,9 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             Response.Redirect("Login.aspx");
         }
 
-        protected void docEntrada_SelectedIndexChanged(object sender, EventArgs e)
+        protected void marca_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            llenar_modelo(); //Llena lista modelo
         }
 
         protected void modelo_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,7 +77,16 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             bool campo = ValidarCampos();
             if(campo == true)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Campos ok');</script>");
+                string nomGrupo = "";   //Variable para nombre de grupo
+                nomGrupo = marca.SelectedItem.Value.Substring(0, 3); //Toma los 3 primeros de marca
+                int cantModelo = modelo.SelectedItem.Value.Length; //Cantidad de caracteres de filtro modelo
+                int index = cantModelo - 4; //Le resta 4 a ese total
+                nomGrupo = nomGrupo + modelo.SelectedItem.Value.Substring(index, 4); //Toma los 4 ultimos de modelo
+                nomGrupo = nomGrupo + fase.SelectedItem.Value.Substring(0, 1); //Toma el valor de fase
+                nomGrupo = nomGrupo + energia.SelectedItem.Value.Substring(0, 1); //Toma el valor de energia
+                //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Nombre grupo "+nomGrupo+"');</script>");
+                nombreGrupo.Text = nomGrupo;    //Pone valor a campo nombre grupo
+                Response.Redirect("Medidores.aspx?nomGrupo="+nombreGrupo.Text); //Redirecciona a medidores
             }
             else
             {
@@ -111,6 +120,11 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         }
 
         protected void energia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cancelar_Click(object sender, EventArgs e)
         {
 
         }
