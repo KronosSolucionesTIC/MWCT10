@@ -6,6 +6,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="Contenido" runat="server">
     <asp:Label runat="server">Definicion grupo</asp:Label>
     <br />
+    <br />
     <asp:Label ID="Doc_Ent" class="etiquetas" runat="server" Text="Marca"></asp:Label>
     <asp:DropDownList ID="marca" class="cajas" runat="server" OnSelectedIndexChanged="marca_SelectedIndexChanged" >
     </asp:DropDownList>
@@ -28,7 +29,7 @@
         <asp:ListItem Value="E">Fase 3 / Hilos 4</asp:ListItem>
     </asp:DropDownList>
     <br />
-    <asp:TextBox runat="server" ID="nombreGrupo"></asp:TextBox>
+    <asp:HiddenField runat="server" ID="nombreGrupo" />
     <br />
     <asp:Button ID="continuar" runat="server" Text="Continuar"  class="btn btn-success" Width="150px" OnClick="continuar_Click" />
     <asp:Button ID="cancelar" runat="server" Text="Cancelar"  class="btn btn-danger" Width="150px" OnClick="cancelar_Click" />

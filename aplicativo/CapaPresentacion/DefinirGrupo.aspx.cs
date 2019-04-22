@@ -17,12 +17,14 @@ namespace CapaPresentacion
         {
             if (!IsPostBack)
             {
-                llenar_marca();        //Pasa funcion para llenar lista
-                llenar_modelo();       //Pasa funcion para llenar lista
+                cant_medidores.Text = Session["cantidad"].ToString();      //Pasa funcion para llenar cantidad
+                doc_entrada.Text = Session["docEntrada"].ToString();      //Pasa funcion para llenar cantidad
+                tipoGrupo.SelectedValue = Session["tipo"].ToString();          //Pasa funcion para llenar cantidad
+                llenar_marca();         //Pasa funcion para llenar lista
+                llenar_modelo();        //Pasa funcion para llenar lista
             }
         }
-
-        protected void llenar_marca()
+            protected void llenar_marca()
         {
             Grupo dg = new Grupo();               //Crea una instancia de clase
             DataTable dt = dg.getMarca();   //Pasa el metodo consulta inicial
@@ -121,6 +123,16 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         }
 
         protected void cancelar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void actualizar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void definirGrupo_Click(object sender, ImageClickEventArgs e)
         {
 
         }
