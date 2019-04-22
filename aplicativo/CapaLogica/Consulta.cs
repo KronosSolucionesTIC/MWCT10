@@ -130,6 +130,13 @@ namespace CapaLogica
             return Id;
         }
 
+        //Metodo para retornar el Cliente
+        public string getCliente()
+        {
+            string Cli = SP_cliente(this.usuario);
+            return Cli;
+        }
+
         //Metodo para documentos entrada
         public DataTable getDocumentosEntrada()
         {
@@ -150,6 +157,8 @@ namespace CapaLogica
             DataTable ok = SP_grupo(this.cliente);
             return ok;
         }
+
+
     }
 
 }

@@ -30,11 +30,13 @@ namespace CapaPresentacion
             string usu = Convert.ToString(Session["Login"]); //Lee la variable Session
             ci.Usuario = usu;                           //Pasa el valor de usuario
             string Id = ci.getId();                     //Pasa el metodo getId para validar si existe el usuario     
+            string cli = ci.getCliente();                     //Pasa el metodo getId para validar si existe el usuario     
             ci.Cliente = Id;                            //Pasa el valor de la lista
             DataTable dt = ci.getConsultaInicial();     //Pasa el metodo consulta inicial
             this.GridView1.DataSource = dt;             //Agrega al GridView el dataset
             GridView1.DataBind();
             usuario.Text = usu;                         //Pone nombre usuario
+            cliente.Text = cli;                         //Pone nombre cliente
         }
 
         protected void llenar_documentos_entrada()

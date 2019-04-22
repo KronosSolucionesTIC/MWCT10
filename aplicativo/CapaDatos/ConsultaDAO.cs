@@ -306,6 +306,37 @@ namespace CapaDatos
 
         }
 
+        public string SP_cliente(string usuario)//Procedimiento que trae el cliente
+        {
+            try
+            {
+                string Cli = "";
+
+                SqlDataReader rpt;
+                SqlCommand comando = new SqlCommand("SP_cliente", conn);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("@USER", SqlDbType.VarChar, 15).Value = usuario;
+
+                conn.Open();
+                rpt = comando.ExecuteReader();
+                if (rpt.Read() == true)
+                {
+                    Cli = rpt["NAME_CLIENT"].ToString();
+                }
+                return Cli;
+            }
+            catch (Exception exc)
+            {
+                return exc.Message;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
         public DataTable SP_documentos_entrada(string cliente)//Procedimiento para documentos entrada
         {
             int a = int.Parse(cliente);

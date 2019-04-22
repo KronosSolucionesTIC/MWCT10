@@ -19,10 +19,6 @@ namespace CapaPresentacion
             {
                 llenar_marca();        //Pasa funcion para llenar lista
                 llenar_modelo();       //Pasa funcion para llenar lista
-                /*llenar_grupo();                     //Pasa funcion para llenar lista
-                TextBox2.Text = DateTime.Now.ToString("yyyy-MM-dd"); //Toma la fecha actual
-                DateTime fecha = DateTime.Today.AddDays(-15);
-                TextBox1.Text = fecha.ToString("yyyy-MM-dd");*/
             }
         }
 
@@ -85,8 +81,8 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
                 nomGrupo = nomGrupo + fase.SelectedItem.Value.Substring(0, 1); //Toma el valor de fase
                 nomGrupo = nomGrupo + energia.SelectedItem.Value.Substring(0, 1); //Toma el valor de energia
                 //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Nombre grupo "+nomGrupo+"');</script>");
-                nombreGrupo.Text = nomGrupo;    //Pone valor a campo nombre grupo
-                Response.Redirect("Medidores.aspx?nomGrupo="+nombreGrupo.Text); //Redirecciona a medidores
+                nombreGrupo.Value = nomGrupo;    //Pone valor a campo nombre grupo
+                Response.Redirect("Medidores.aspx?nomGrupo="+nombreGrupo.Value); //Redirecciona a medidores
             }
             else
             {

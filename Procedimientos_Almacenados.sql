@@ -24,6 +24,13 @@ AS
 SELECT ID_TBCLIENT FROM TB_CLIENT WHERE USER_WEB=@USER
 GO 
 
+--Sentencia para traer Cliente
+CREATE PROCEDURE SP_cliente
+@USER VARCHAR (20)
+AS
+SELECT NAME_CLIENT FROM TB_CLIENT WHERE USER_WEB=@USER
+GO 
+
 --Sentencia para eliminar procedimiento SP_id
 DROP PROCEDURE SP_id
 
@@ -248,3 +255,26 @@ DROP PROCEDURE SP_modelo;
 
 EXEC SP_modelo '';
 
+--Sentencia para cargar el filtro Marca
+CREATE PROCEDURE SP_zona
+AS
+SELECT DISTINCT NAME_ZONE FROM TB_CL_ZONE
+GO
+
+DROP PROCEDURE SP_zona;
+
+--Sentencia para cargar el filtro Codigos de error
+CREATE PROCEDURE SP_codigos
+AS
+SELECT DISTINCT CODE FROM TB_INCODE_MTR
+GO
+
+DROP PROCEDURE SP_codigos;
+
+--Sentencia para cargar arreglo de Ayuda
+CREATE PROCEDURE SP_ayuda
+AS
+SELECT DISTINCT CODE,DESCRIPTION FROM TB_INCODE_MTR
+GO
+
+DROP PROCEDURE SP_codigos;

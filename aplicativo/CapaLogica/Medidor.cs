@@ -11,28 +11,44 @@ namespace CapaLogica
     public class Medidor : MedidorDAO
     {
         //atributos o campos 
-        private string marca;
+        private string zona;
+        private string codigos;
 
         //metodos get y set 
-        public string Marca
+        public string Zona
         {
             get
-            { return marca; }
+            { return zona; }
             set
-            { marca = value; }
+            { zona = value; }
+        }
+
+        public string Codigos
+        {
+            get
+            { return codigos; }
+            set
+            { codigos = value; }
         }
 
         //Metodo para marca
-        public DataTable getMarca()
+        public DataTable getZona()
         {
-            DataTable ok = SP_marca();
+            DataTable ok = SP_zona();
             return ok;
         }
 
-        //Metodo para modelo
-        public DataTable getModelo()
+        //Metodo para codigos
+        public DataTable getCodigos()
         {
-            DataTable ok = SP_modelo(this.marca);
+            DataTable ok = SP_codigos();
+            return ok;
+        }
+
+        //Metido para ayuda
+        public DataTable getAyuda()
+        {
+            DataTable ok = SP_ayuda();
             return ok;
         }
     }

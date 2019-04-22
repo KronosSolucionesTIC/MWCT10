@@ -10,22 +10,22 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/CapaDatos.dll">
-      <publishTime>04/17/2019 09:14:06</publishTime>
+      <publishTime>04/17/2019 17:46:37</publishTime>
     </File>
     <File Include="bin/CapaDatos.pdb">
-      <publishTime>04/17/2019 09:14:06</publishTime>
+      <publishTime>04/17/2019 17:46:37</publishTime>
     </File>
     <File Include="bin/CapaLogica.dll">
-      <publishTime>04/17/2019 09:14:06</publishTime>
+      <publishTime>04/17/2019 17:46:37</publishTime>
     </File>
     <File Include="bin/CapaLogica.pdb">
-      <publishTime>04/17/2019 09:14:06</publishTime>
+      <publishTime>04/17/2019 17:46:37</publishTime>
     </File>
     <File Include="bin/CapaPresentacion.dll">
-      <publishTime>04/17/2019 09:14:12</publishTime>
+      <publishTime>04/17/2019 17:46:44</publishTime>
     </File>
     <File Include="bin/CapaPresentacion.pdb">
-      <publishTime>04/17/2019 09:14:12</publishTime>
+      <publishTime>04/17/2019 17:46:44</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>03/29/2019 09:10:11</publishTime>
@@ -107,6 +107,12 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
       <publishTime>03/29/2019 09:10:11</publishTime>
+    </File>
+    <File Include="Creacion.aspx">
+      <publishTime>04/17/2019 10:42:59</publishTime>
+    </File>
+    <File Include="DefinirGrupo.aspx">
+      <publishTime>04/17/2019 16:54:49</publishTime>
     </File>
     <File Include="DiseñoWeb/assets/css/bootstrap.min.css">
       <publishTime>03/29/2019 09:10:11</publishTime>
@@ -292,7 +298,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>03/29/2019 09:10:11</publishTime>
     </File>
     <File Include="Estilo/css/main.css">
-      <publishTime>04/12/2019 09:43:41</publishTime>
+      <publishTime>04/17/2019 17:22:09</publishTime>
     </File>
     <File Include="Estilo/css/util.css">
       <publishTime>03/29/2019 09:10:11</publishTime>
@@ -673,16 +679,19 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>03/29/2019 09:10:11</publishTime>
     </File>
     <File Include="Inicial.aspx">
-      <publishTime>04/17/2019 08:45:44</publishTime>
+      <publishTime>04/17/2019 10:07:18</publishTime>
     </File>
     <File Include="Login.aspx">
       <publishTime>04/05/2019 10:10:40</publishTime>
+    </File>
+    <File Include="Medidores.aspx">
+      <publishTime>04/17/2019 17:30:15</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>03/29/2019 09:10:11</publishTime>
     </File>
     <File Include="Site1.Master">
-      <publishTime>04/17/2019 08:32:14</publishTime>
+      <publishTime>04/17/2019 10:34:00</publishTime>
     </File>
     <File Include="Web.config">
       <publishTime>04/12/2019 17:02:37</publishTime>
