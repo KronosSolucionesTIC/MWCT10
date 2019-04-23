@@ -41,7 +41,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void bloquea_campos_cant()
         {
-            cant_medidores.Enabled = false; //Bloquea cantidad
+            cant_medidores.Disabled = true; //Bloquea cantidad
             doc_entrada.Enabled = false;    //Bloquea documento entrada
             act_cantidad.Enabled = false;     //Bloquea actualizar
         }
@@ -55,7 +55,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         protected void agrega_items()
         {
             // Generate rows and cells. 
-            int cant = int.Parse(cant_medidores.Text);
+            int cant = int.Parse(cant_medidores.Value);
             int numRows =  cant;
             int numCells = 2;
             int counter = 1;
@@ -85,7 +85,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         public bool ValidarCampos()
         {
-            if (this.cant_medidores.Text.Equals(""))
+            if (this.cant_medidores.Value.Equals("0"))
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('La cantidad debe ser mayor a 0');</script>");
                 return false;
@@ -103,6 +103,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             if (this.tipoGrupo.Text.Equals("0"))
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Seleccione el tipo de grupo');</script>");
+                agrega_items();             //Agrega items a la tabla
                 return false;
             }
             return true;
@@ -118,7 +119,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             bool campos = ValidarCamposGrupo();                  //Valida campos
             if (campos == true)
             {
-                int cant = int.Parse(cant_medidores.Text);      //Toma la cantidad de medidores
+                int cant = int.Parse(cant_medidores.Value);      //Toma la cantidad de medidores
                 string tipo = tipoGrupo.SelectedItem.Value;    //Pasa el valor de la lista
                 string doc = doc_entrada.Text;    //Pasa el valor de la lista
                 Session["cantidad"] = cant;                     //Asigna cantidad a variable Session
@@ -126,6 +127,11 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
                 Session["docEntrada"] = doc;                         //Asigna tipo a variable Session
                 Response.Redirect("DefinirGrupo.aspx");         //Redirecciona a Definicion grupo
             }
+        }
+
+        protected void act_serial_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -55,7 +55,7 @@ namespace CapaPresentacion {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox cant_medidores;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText cant_medidores;
         
         /// <summary>
         /// Control Label3.

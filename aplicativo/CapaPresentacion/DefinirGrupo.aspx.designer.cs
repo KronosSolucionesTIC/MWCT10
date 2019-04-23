@@ -175,6 +175,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Button act_serial;
         
         /// <summary>
+        /// Control definicion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl definicion;
+        
+        /// <summary>
         /// Control Doc_Ent.
         /// </summary>
         /// <remarks>
@@ -254,15 +263,6 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField nombreGrupo;
-        
-        /// <summary>
-        /// Control continuar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button continuar;
         
         /// <summary>
         /// Control cancelar.

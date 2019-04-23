@@ -89,6 +89,7 @@
     <Content Include="DiseñoWeb\assets\js\plugins\perfect-scrollbar.jquery.min.js" />
     <Content Include="DiseñoWeb\docs\documentation.html" />
     <Content Include="Inicial.aspx" />
+    <Content Include="js\functions.js" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <Content Include="Estilo\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
