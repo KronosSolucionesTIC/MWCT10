@@ -15,7 +15,7 @@
             <br />
             <br />
             <asp:Label ID="Label1" runat="server" Class="etiquetas" Text="Cantidad de medidores"></asp:Label>
-            <asp:TextBox ID="cant_medidores" runat="server" Class="cajas" Enabled="False">0</asp:TextBox>
+            <asp:TextBox ID="cant_medidores" runat="server" Class="cajas" Enabled="False" OnTextChanged="cant_medidores_TextChanged">0</asp:TextBox>
             <br />
             <br />
             <asp:Label ID="Label3" runat="server" Class="etiquetas" Text="Documentos de entrada"></asp:Label>
@@ -53,20 +53,31 @@
             <asp:TextBox ID="TextBox4" runat="server" Class="cajas"></asp:TextBox>
             <br />
             <br />
-            <asp:Button ID="act_serial" runat="server" Text="Actualizar" width="100%" Class="btn btn-success" Enabled="False" />
+            <asp:Button ID="act_serial" runat="server" Text="Actualizar" width="100%" Class="btn btn-success" Enabled="False" OnClick="act_serial_Click" />
             <br />
         </div>
     <div>
-    <div class="row">
+    <div ID="definicion" runat="server"></div>
+<div class="modal fade" id="exampleModalLive" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Definir grupo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+ <div class="row">
         <div class="col-12">
                 <asp:Label runat="server">Definicion grupo</asp:Label>
     <br />
     <br />
     <asp:Label ID="Doc_Ent" class="etiquetas" runat="server" Text="Marca"></asp:Label>
-    <asp:DropDownList ID="marca" class="cajas" runat="server" OnSelectedIndexChanged="marca_SelectedIndexChanged" >
+    <asp:DropDownList ID="marca" class="cajas" runat="server" OnSelectedIndexChanged="marca_SelectedIndexChanged" AutoPostBack="True" >
     </asp:DropDownList>
         <asp:Label ID="Label4" class="etiquetas" runat="server" Text="Modelo"></asp:Label>
-    <asp:DropDownList ID="modelo" class="cajas" runat="server" OnSelectedIndexChanged="modelo_SelectedIndexChanged" >
+    <asp:DropDownList ID="modelo" class="cajas" runat="server" OnSelectedIndexChanged="modelo_SelectedIndexChanged" OnClick="modelo_Click" >
     </asp:DropDownList>
         <asp:Label ID="Label10" class="etiquetas" runat="server" Text="Tipo de energia"></asp:Label>
     <asp:DropDownList ID="energia" class="cajas" runat="server" OnSelectedIndexChanged="energia_SelectedIndexChanged" >
@@ -86,10 +97,18 @@
     <br />
     <asp:HiddenField runat="server" ID="nombreGrupo" />
     <br />
-    <asp:Button ID="continuar" runat="server" Text="Continuar"  class="btn btn-success" Width="150px" OnClick="continuar_Click" />
+    
     <asp:Button ID="cancelar" runat="server" Text="Cancelar"  class="btn btn-danger" Width="150px" OnClick="cancelar_Click" />
         </div>
     </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <asp:Button runat="server" Text="Continuar"  class="btn btn-success" Width="150px" OnClick="continuar_Click" />
+      </div>
+    </div>
+  </div>
+</div>
     <div class="row">
         <div class="col-12">
             <h3>Creacion de tareas</h3>

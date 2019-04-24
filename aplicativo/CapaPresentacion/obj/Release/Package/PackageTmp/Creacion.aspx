@@ -15,7 +15,7 @@
             <br />
             <br />
             <asp:Label ID="Label1" runat="server" Class="etiquetas" Text="Cantidad de medidores"></asp:Label>
-            <asp:TextBox ID="cant_medidores" runat="server" Class="cajas" TextMode="Number">0</asp:TextBox>
+            <input type="text" id="cant_medidores" runat="server" Class="cajas" value="0" />
             <br />
             <br />
             <asp:Label ID="Label3" runat="server" Class="etiquetas" Text="Documentos de entrada"></asp:Label>

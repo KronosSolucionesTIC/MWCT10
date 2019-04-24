@@ -33,7 +33,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             bool campos = ValidarCampos();    //Valida campos
             if(campos == true)
             {
-                agrega_items();             //Agrega items a la tabla
+                //agrega_items();             //Agrega items a la tabla
                 bloquea_campos_cant();      //Bloquea campos cantidad/documento
                 desbloquea_campos_grupo();   //Desbloque campos grupo
             }
@@ -41,6 +41,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void bloquea_campos_cant()
         {
+            //tipoGrupo.Enabled = false;       //Bloquea cantidad
             cant_medidores.Disabled = true; //Bloquea cantidad
             doc_entrada.Enabled = false;    //Bloquea documento entrada
             act_cantidad.Enabled = false;     //Bloquea actualizar
@@ -48,8 +49,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void desbloquea_campos_grupo()
         {
-            tipoGrupo.Enabled = true;       //Bloquea cantidad
-            act_grupo.Enabled = true;       //Desbloquea actualizar
+            //act_grupo.Enabled = true;       //Desbloquea actualizar
         }
 
         protected void agrega_items()
@@ -98,40 +98,50 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             return true;
         }
 
-        public bool ValidarCamposGrupo()
-        {
-            if (this.tipoGrupo.Text.Equals("0"))
-            {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Seleccione el tipo de grupo');</script>");
-                agrega_items();             //Agrega items a la tabla
-                return false;
-            }
-            return true;
-        }
-
-        protected void definirGrupo_Click(object sender, ImageClickEventArgs e)
-        {
-
-        }
-
         protected void act_grupo_Click(object sender, EventArgs e)
         {
-            bool campos = ValidarCamposGrupo();                  //Valida campos
-            if (campos == true)
-            {
                 int cant = int.Parse(cant_medidores.Value);      //Toma la cantidad de medidores
-                string tipo = tipoGrupo.SelectedItem.Value;    //Pasa el valor de la lista
+                //string tipo = tipoGrupo.SelectedItem.Value;    //Pasa el valor de la lista
                 string doc = doc_entrada.Text;    //Pasa el valor de la lista
                 Session["cantidad"] = cant;                     //Asigna cantidad a variable Session
-                Session["tipo"] = tipo;                         //Asigna tipo a variable Session
+                //Session["tipo"] = tipo;                         //Asigna tipo a variable Session
                 Session["docEntrada"] = doc;                         //Asigna tipo a variable Session
                 Response.Redirect("DefinirGrupo.aspx");         //Redirecciona a Definicion grupo
-            }
         }
 
         protected void act_serial_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void act_serial_Click1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ImageButton4_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("Creacion.aspx");//Redirecciona creacion tarea
+        }
+
+        protected void marca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            llenar_modelo();        //LLena modelo
+        }
+
+        protected void llenar_modelo()
+        {
+            /*
+            Grupo dg = new Grupo();               //Crea una instancia de clase
+            dg.Marca = marca.SelectedItem.Value;  //Pasa el valor de la lista
+            DataTable dt = dg.getModelo();        //Pasa el metodo consulta inicial
+            modelo.Items.Clear();
+            modelo.AppendDataBoundItems = true;
+            modelo.Items.Add("Seleccione...");
+            this.modelo.DataSource = dt;            //Agrega al GridView el dataset
+            modelo.DataTextField = "NAME_MODEL";     //Selecciona el campo a mostrar
+            modelo.DataValueField = "NAME_MODEL";    //Selecciona el campo para el valor
+            modelo.DataBind();*/
         }
     }
 }
