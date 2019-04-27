@@ -20,15 +20,15 @@
         <div class="col-12">
             <Label ID="Label" runat="server" Class="etiquetas text-center">Tipo de grupo</Label>
             <br />
-            <input id="Individual" type="checkbox" />Individual
-            <input id="Unico" type="checkbox" />Unico
+            <input id="Individual" type="checkbox" checked runat="server"/>Individual
+            <input id="Unico" type="checkbox" runat="server"/>Unico
             <br />
             <Label ID="medidores" runat="server" Class="etiquetas text-center">Cantidad medidores</Label>
             <input type="text" id="cant_medidores" runat="server" Class="cajas" value="0" />
             <br />
             <br />
             <Label ID="doc" runat="server" Class="etiquetas text-center">Documento entrada</Label>
-            <asp:TextBox ID="doc_entrada" runat="server" Class="cajas"></asp:TextBox>
+            <input type="text" ID="doc_entrada" runat="server" Class="cajas" disabled/>
             <br />
             <br />
             <asp:Button ID="act_cantidad" runat="server" Text="Agregar" width="100%" Class="btn btn-success" OnClick="actualizar_Click" />
@@ -95,7 +95,7 @@
 </div>
     <div class="row">
         <div class="col-6 text-center">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLive" disabled>Habilitar grupo</button>   
+            <button id="habilitar_grupo" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLive" disabled>Habilitar grupo</button>   
         </div>
         <div class="col-6 text-center">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLive" disabled>Habilitar serial</button>

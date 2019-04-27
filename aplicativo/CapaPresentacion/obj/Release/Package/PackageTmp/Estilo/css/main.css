@@ -464,7 +464,8 @@ iframe {
 .etiquetas {
     background-color: #7B7D7D;
     color: white;
-    padding: 10px;
+    padding: 4px;
+    width: 100%;
 }
 .cajas {
     background-color
@@ -516,3 +517,4 @@ iframe {
     color: #000;
     text-decoration: none;
 }
+/*Clase de tabla*/

@@ -76,6 +76,24 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label;
         
         /// <summary>
+        /// Control Individual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Individual;
+        
+        /// <summary>
+        /// Control Unico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Unico;
+        
+        /// <summary>
         /// Control medidores.
         /// </summary>
         /// <remarks>
@@ -109,7 +127,7 @@ namespace CapaPresentacion {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox doc_entrada;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText doc_entrada;
         
         /// <summary>
         /// Control act_cantidad.

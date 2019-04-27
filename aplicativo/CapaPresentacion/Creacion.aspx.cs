@@ -43,7 +43,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         {
             //tipoGrupo.Enabled = false;       //Bloquea cantidad
             cant_medidores.Disabled = true; //Bloquea cantidad
-            doc_entrada.Enabled = false;    //Bloquea documento entrada
+            doc_entrada.Disabled = false;    //Bloquea documento entrada
             act_cantidad.Enabled = false;     //Bloquea actualizar
         }
 
@@ -68,7 +68,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
                     TableCell cel = new TableCell();
                     if(cellNum == 0)
                     {
-                        cel.Text = doc_entrada.Text.ToString();
+                        cel.Text = doc_entrada.Value.ToString();
                     } else
                     {
                         cel.Text = "";
@@ -85,12 +85,20 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         public bool ValidarCampos()
         {
+            if(Individual.Checked == false)
+            {
+                if (Unico.Checked == false)
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Seleccione tipo grupo');</script>");
+                    return false;
+                }
+            }
             if (this.cant_medidores.Value.Equals("0"))
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('La cantidad debe ser mayor a 0');</script>");
                 return false;
             }
-            else if (this.doc_entrada.Text.Equals(""))
+            else if (this.doc_entrada.Value.Equals(""))
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('El documento de entrada no puede ser vacio');</script>");
                 return false;
@@ -102,7 +110,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         {
                 int cant = int.Parse(cant_medidores.Value);      //Toma la cantidad de medidores
                 //string tipo = tipoGrupo.SelectedItem.Value;    //Pasa el valor de la lista
-                string doc = doc_entrada.Text;    //Pasa el valor de la lista
+                string doc = doc_entrada.Value;    //Pasa el valor de la lista
                 Session["cantidad"] = cant;                     //Asigna cantidad a variable Session
                 //Session["tipo"] = tipo;                         //Asigna tipo a variable Session
                 Session["docEntrada"] = doc;                         //Asigna tipo a variable Session
