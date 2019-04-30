@@ -17,9 +17,18 @@ namespace CapaPresentacion
             {
                 llenar_marca();         //Pasa funcion para llenar lista
                 llenar_modelo();        //Pasa funcion para llenar lista
+                llenar_zona();        //Pasa funcion para llenar lista
+                llenar_codigos();     //Pasa funcion para llenar lista 
+                llenar_ayuda();       //Pasa funcion para llenar lista 
             } else {
                 habilitar_grupo.Disabled = false;
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('show');</script>");
+                if (nombreGrupo.Text == "")
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('show');</script>");
+                } else
+                {
+                    habilitar_serial.Disabled = false;
+                }
             }
         }
 
@@ -78,9 +87,9 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         protected void agrega_items()
         {
             // Generate rows and cells. 
-            int cant = int.Parse(cant_medidores.Value);
+            int cant = 1;
             int numRows =  cant;
-            int numCells = 2;
+            int numCells = 4;
             int counter = 1;
 
             for (int rowNum = 0; rowNum<numRows; rowNum++)
@@ -91,12 +100,21 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
                     TableCell cel = new TableCell();
                     if(cellNum == 0)
                     {
-                        cel.Text = doc_entrada.Value.ToString();
-                    } else
+                        cel.Text = codigos.SelectedValue.ToString();
+                    }
+                    if (cellNum == 1)
                     {
-                        cel.Text = "";
-                    }                    
-                    rw.Cells.Add(cel);
+                        cel.Text = nombreGrupo.Text.ToString();
+                    }
+                    if (cellNum == 2)
+                    {
+                        cel.Text = zona.SelectedValue.ToString();
+                    }
+                    if (cellNum == 3)
+                    {
+                        cel.Text = doc_entrada.Value.ToString();
+                    }
+                        rw.Cells.Add(cel);
                     counter++;
                 }
                 Table1.Rows.Add(rw);
@@ -137,7 +155,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
                 Session["cantidad"] = cant;                     //Asigna cantidad a variable Session
                 //Session["tipo"] = tipo;                         //Asigna tipo a variable Session
                 Session["docEntrada"] = doc;                         //Asigna tipo a variable Session
-                Response.Redirect("DefinirGrupo.aspx");         //Redirecciona a Definicion grupo
+                //Response.Redirect("DefinirGrupo.aspx");         //Redirecciona a Definicion grupo
         }
 
         protected void act_serial_Click(object sender, EventArgs e)
@@ -157,8 +175,6 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void marca_Selected(object sender, EventArgs e)
         {   
-            string id_marca = marca.SelectedValue.ToString();
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Cambio "+id_marca+"');</script>");
             llenar_modelo();        //LLena modelo
         }
 
@@ -176,28 +192,124 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             modelo.DataBind();
         }
 
+        public bool ValidarCamposGrupo()
+        {
+            if (this.marca.Text.Equals("Seleccione..."))
+            {
+                //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Seleccione marca');</script>");
+                return false;
+            }
+            else if (this.modelo.Text.Equals("Seleccione..."))
+            {
+                //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Seleccione modelo');</script>");
+                return false;
+            }
+            else if (this.energia.Text.Equals("0"))
+            {
+                //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Seleccione energia');</script>");
+                return false;
+            }
+            else if (this.fase.Text.Equals("0"))
+            {
+                //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Seleccione fase');</script>");
+                return false;
+            }
+            return true;
+        }
+
+        protected void ayuda_Click(object sender, EventArgs e)
+        {
+            if (GridView1.Visible == true)
+            {
+                GridView1.Visible = false;
+            }
+            else
+            {
+                GridView1.Visible = true;
+            }
+        }
+
         protected void continuar_Click(object sender, EventArgs e)
         {
-
-            bool campo = ValidarCampos();
+            //error.Visible = true;
+            bool campo = ValidarCamposGrupo();
             if (campo == true)
             {
                 string nomGrupo = "";   //Variable para nombre de grupo
                 nomGrupo = marca.SelectedItem.Value.Substring(0, 3); //Toma los 3 primeros de marca
-                //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Marca " + nomGrupo + "');</script>");
                 int cantModelo = modelo.SelectedItem.Value.Length; //Cantidad de caracteres de filtro modelo
                 int index = cantModelo - 4; //Le resta 4 a ese total
                 nomGrupo = nomGrupo + modelo.SelectedItem.Value.Substring(index, 4); //Toma los 4 ultimos de modelo
                 nomGrupo = nomGrupo + fase.SelectedItem.Value.Substring(0, 1); //Toma el valor de fase
                 nomGrupo = nomGrupo + energia.SelectedItem.Value.Substring(0, 1); //Toma el valor de energia
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Nombre grupo "+nomGrupo+"');</script>");
-                nombreGrupo.Value = nomGrupo;    //Pone valor a campo nombre grupo
+                nombreGrupo.Text = nomGrupo;    //Pone valor a campo nombre grupo
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#modalSerial').modal('show');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('hide');</script>");
                 //Response.Redirect("Medidores.aspx?nomGrupo=" + nombreGrupo.Value); //Redirecciona a medidores
             }
             else
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Faltan campos');</script>");
+                error.Visible = true;
             }
+        }
+
+        protected void asignaSerial(object sender, EventArgs e)
+        {
+            //error.Visible = true;
+            //bool campo = ValidarCamposGrupo();
+            //if (campo == true)
+            //{
+            agrega_items();
+            agrega_array();
+            //}
+            //else
+            //{
+                //error.Visible = true;
+            //}
+        }
+
+        protected void agrega_array()
+        {
+            Session["GRUPO"] = nombreGrupo.Text; 
+        }
+
+        protected void llenar_ayuda()
+        {
+            Medidor ayu = new Medidor();               //Crea una instancia de clase  
+            DataTable dt = ayu.getAyuda();     //Pasa el metodo consulta inicial
+            this.GridView1.DataSource = dt;             //Agrega al GridView el dataset
+            GridView1.DataBind();
+        }
+
+        protected void llenar_zona()
+        {
+            Medidor med = new Medidor();               //Crea una instancia de clase
+            DataTable dt = med.getZona();   //Pasa el metodo consulta inicial
+            zona.Items.Clear();
+            zona.AppendDataBoundItems = true;
+            zona.Items.Add("Seleccione...");
+            this.zona.DataSource = dt;            //Agrega al GridView el dataset
+            zona.DataTextField = "NAME_ZONE";     //Selecciona el campo a mostrar
+            zona.DataValueField = "NAME_ZONE";    //Selecciona el campo para el valor
+            zona.DataBind();
+        }
+
+        protected void llenar_codigos()
+        {
+            Medidor med = new Medidor();               //Crea una instancia de clase
+            DataTable dt = med.getCodigos();   //Pasa el metodo consulta inicial
+            codigos.Items.Clear();
+            codigos.AppendDataBoundItems = true;
+            codigos.Items.Add("Seleccione...");
+            this.codigos.DataSource = dt;            //Agrega al GridView el dataset
+            codigos.DataTextField = "CODE";     //Selecciona el campo a mostrar
+            codigos.DataValueField = "CODE";    //Selecciona el campo para el valor
+            codigos.DataBind();
+        }
+
+        protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
