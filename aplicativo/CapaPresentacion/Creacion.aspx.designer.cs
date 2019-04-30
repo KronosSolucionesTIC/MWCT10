@@ -229,6 +229,24 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.HiddenField nombreGrupo;
         
         /// <summary>
+        /// Control grupo_ok.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button grupo_ok;
+        
+        /// <summary>
+        /// Control habilitar_grupo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton habilitar_grupo;
+        
+        /// <summary>
         /// Control Table1.
         /// </summary>
         /// <remarks>

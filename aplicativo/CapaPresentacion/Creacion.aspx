@@ -31,8 +31,8 @@
             <input type="text" ID="doc_entrada" runat="server" Class="cajas" disabled/>
             <br />
             <br />
-            <asp:Button ID="act_cantidad" runat="server" Text="Agregar" width="100%" Class="btn btn-success" OnClick="actualizar_Click" />
-            <asp:Button ID="eliminar" runat="server" Text="Eliminar" width="100%" Class="btn btn-danger" />
+            <asp:Button enabled="false" ID="act_cantidad" runat="server" Text="Agregar" width="100%" Class="btn btn-success" OnClick="actualizar_Click" />
+            <asp:Button enabled="false" ID="eliminar" runat="server" Text="Eliminar" width="100%" Class="btn btn-danger" />
             <br />
         </div>
     </div>
@@ -59,7 +59,7 @@
     <br />
     <br />
     <asp:Label ID="Doc_Ent" class="etiquetas" runat="server" Text="Marca"></asp:Label>
-    <asp:DropDownList ID="marca" class="cajas" runat="server" OnSelectedIndexChanged="marca_SelectedIndexChanged" AutoPostBack="True" >
+    <asp:DropDownList ID="marca" class="cajas" runat="server" OnSelectedIndexChanged="marca_Selected" AutoPostBack="true">
     </asp:DropDownList>
         <asp:Label ID="Label4" class="etiquetas" runat="server" Text="Modelo"></asp:Label>
     <asp:DropDownList ID="modelo" class="cajas" runat="server" >
@@ -88,17 +88,17 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <asp:Button runat="server" Text="Continuar"  class="btn btn-success" Width="150px" />
+        <asp:Button runat="server" Text="Continuar" id="grupo_ok" class="btn btn-success" Width="150px" onClick="continuar_Click"/>
       </div>
     </div>
   </div>
 </div>
     <div class="row">
         <div class="col-6 text-center">
-            <button id="habilitar_grupo" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLive" disabled>Habilitar grupo</button>   
+            <button runat="server" id="habilitar_grupo" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLive" disabled>Habilitar grupo</button>   
         </div>
         <div class="col-6 text-center">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLive" disabled>Habilitar serial</button>
+            <button runat="server" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLive" disabled>Habilitar serial</button>
         </div>
     <div>
     <div class="row">

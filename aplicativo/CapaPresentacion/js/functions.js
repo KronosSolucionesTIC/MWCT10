@@ -15,7 +15,7 @@
     //Funcion para habilitar boton
     $('#Menu_doc_entrada').keypress(function (event) {
         console.log('Cambio');
-        document.getElementById("habilitar_grupo").disabled = true;
+        document.getElementById("Contenido_habilitar_grupo").disabled = false;
     });
     //Activa o desactiva checkbox
     $('#Menu_Individual').click(function (event) {

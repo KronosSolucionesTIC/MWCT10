@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CapaLogica;
 
 namespace CapaPresentacion
 {
@@ -11,7 +13,14 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                llenar_marca();         //Pasa funcion para llenar lista
+                llenar_modelo();        //Pasa funcion para llenar lista
+            } else {
+                habilitar_grupo.Disabled = false;
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('show');</script>");
+            }
         }
 
         protected void cerrar_Click(object sender, EventArgs e)
@@ -31,12 +40,26 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         protected void actualizar_Click(object sender, EventArgs e)
         {
             bool campos = ValidarCampos();    //Valida campos
-            if(campos == true)
+            if (campos == true)
             {
                 //agrega_items();             //Agrega items a la tabla
                 bloquea_campos_cant();      //Bloquea campos cantidad/documento
                 desbloquea_campos_grupo();   //Desbloque campos grupo
             }
+        }
+
+        protected void llenar_marca()
+        {
+            Grupo dg = new Grupo();               //Crea una instancia de clase
+            DataTable dt = dg.getMarca();   //Pasa el metodo consulta inicial
+            //marca.AppendDataBoundItems = true;
+            DataRow fila = dt.NewRow();
+            fila["MARK"] = "Seleccione...";
+            dt.Rows.InsertAt(fila, 0);
+            marca.DataTextField = "MARK";     //Selecciona el campo a mostrar
+            marca.DataValueField = "MARK";    //Selecciona el campo para el valor
+            this.marca.DataSource = dt;            //Agrega al GridView el dataset
+            marca.DataBind();
         }
 
         protected void bloquea_campos_cant()
@@ -132,16 +155,17 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             Response.Redirect("Creacion.aspx");//Redirecciona creacion tarea
         }
 
-        protected void marca_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        protected void marca_Selected(object sender, EventArgs e)
+        {   
+            string id_marca = marca.SelectedValue.ToString();
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Cambio "+id_marca+"');</script>");
             llenar_modelo();        //LLena modelo
         }
 
         protected void llenar_modelo()
         {
-            /*
             Grupo dg = new Grupo();               //Crea una instancia de clase
-            dg.Marca = marca.SelectedItem.Value;  //Pasa el valor de la lista
+            dg.Marca = marca.SelectedValue;  //Pasa el valor de la lista
             DataTable dt = dg.getModelo();        //Pasa el metodo consulta inicial
             modelo.Items.Clear();
             modelo.AppendDataBoundItems = true;
@@ -149,7 +173,31 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             this.modelo.DataSource = dt;            //Agrega al GridView el dataset
             modelo.DataTextField = "NAME_MODEL";     //Selecciona el campo a mostrar
             modelo.DataValueField = "NAME_MODEL";    //Selecciona el campo para el valor
-            modelo.DataBind();*/
+            modelo.DataBind();
+        }
+
+        protected void continuar_Click(object sender, EventArgs e)
+        {
+
+            bool campo = ValidarCampos();
+            if (campo == true)
+            {
+                string nomGrupo = "";   //Variable para nombre de grupo
+                nomGrupo = marca.SelectedItem.Value.Substring(0, 3); //Toma los 3 primeros de marca
+                //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Marca " + nomGrupo + "');</script>");
+                int cantModelo = modelo.SelectedItem.Value.Length; //Cantidad de caracteres de filtro modelo
+                int index = cantModelo - 4; //Le resta 4 a ese total
+                nomGrupo = nomGrupo + modelo.SelectedItem.Value.Substring(index, 4); //Toma los 4 ultimos de modelo
+                nomGrupo = nomGrupo + fase.SelectedItem.Value.Substring(0, 1); //Toma el valor de fase
+                nomGrupo = nomGrupo + energia.SelectedItem.Value.Substring(0, 1); //Toma el valor de energia
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Nombre grupo "+nomGrupo+"');</script>");
+                nombreGrupo.Value = nomGrupo;    //Pone valor a campo nombre grupo
+                //Response.Redirect("Medidores.aspx?nomGrupo=" + nombreGrupo.Value); //Redirecciona a medidores
+            }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Faltan campos');</script>");
+            }
         }
     }
 }
