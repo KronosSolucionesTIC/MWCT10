@@ -29,6 +29,7 @@ namespace CapaPresentacion
                 {
                     habilitar_serial.Disabled = false;
                 }
+                bloquea_campos_cant();
             }
         }
 
@@ -73,10 +74,25 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void bloquea_campos_cant()
         {
-            //tipoGrupo.Enabled = false;       //Bloquea cantidad
-            cant_medidores.Disabled = true; //Bloquea cantidad
-            doc_entrada.Disabled = false;    //Bloquea documento entrada
-            act_cantidad.Enabled = false;     //Bloquea actualizar
+            if (Individual.Checked == true)
+            {
+                Individual.Disabled = true;   //Deshabilita boton habilitar grupo    
+                Individual.Checked = true;
+            } else
+            {
+                Individual.Disabled = true;   //Deshabilita boton habilitar grupo   
+            }
+            if (Unico.Checked == true)
+            {
+                Unico.Disabled = true;
+                Unico.Checked = true;
+            } else
+            {
+                Unico.Disabled = true;
+            }
+            cant_medidores.Disabled = true;     //Bloquea cantidad
+            doc_entrada.Disabled = true;        //Bloquea documento entrada
+            act_cantidad.Enabled = false;       //Bloquea actualizar
         }
 
         protected void desbloquea_campos_grupo()
@@ -100,7 +116,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
                     TableCell cel = new TableCell();
                     if(cellNum == 0)
                     {
-                        cel.Text = codigos.SelectedValue.ToString();
+                        cel.Text = serial.Text.ToString();
                     }
                     if (cellNum == 1)
                     {
@@ -112,7 +128,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
                     }
                     if (cellNum == 3)
                     {
-                        cel.Text = doc_entrada.Value.ToString();
+                        cel.Text = codigos.SelectedValue.ToString();
                     }
                         rw.Cells.Add(cel);
                     counter++;
@@ -196,6 +212,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         {
             if (this.marca.Text.Equals("Seleccione..."))
             {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('.alert').alert()</script>");
                 //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Seleccione marca');</script>");
                 return false;
             }
@@ -249,7 +266,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             }
             else
             {
-                error.Visible = true;
+                //error.Visible = true;
             }
         }
 
@@ -259,6 +276,11 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             //bool campo = ValidarCamposGrupo();
             //if (campo == true)
             //{
+            if (Unico.Checked == true)
+            {
+                deshabilita_grupo();    //Deshabilita boton habilitar grupo                    
+            }
+            bloquea_campos_cant();
             agrega_items();
             agrega_array();
             //}
@@ -270,7 +292,12 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void agrega_array()
         {
-            Session["GRUPO"] = nombreGrupo.Text; 
+            
+        }
+
+        protected void deshabilita_grupo()
+        {
+            habilitar_grupo.Disabled = true;    //Deshabilita boton de habilitar grupo
         }
 
         protected void llenar_ayuda()

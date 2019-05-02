@@ -229,15 +229,6 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox nombreGrupo;
         
         /// <summary>
-        /// Control error.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl error;
-        
-        /// <summary>
         /// Control grupo_ok.
         /// </summary>
         /// <remarks>
@@ -247,13 +238,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Button grupo_ok;
         
         /// <summary>
-        /// Control Label1.
+        /// Control serial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.TextBox serial;
         
         /// <summary>
         /// Control zona.

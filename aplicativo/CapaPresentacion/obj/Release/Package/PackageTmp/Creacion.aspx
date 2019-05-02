@@ -20,19 +20,19 @@
         <div class="col-12">
             <Label ID="Label" runat="server" Class="etiquetas text-center">Tipo de grupo</Label>
             <br />
-            <input id="Individual" type="checkbox" />Individual
-            <input id="Unico" type="checkbox" />Unico
+            <input id="Individual" type="checkbox" checked runat="server"/>Individual
+            <input id="Unico" type="checkbox" runat="server"/>Unico
             <br />
             <Label ID="medidores" runat="server" Class="etiquetas text-center">Cantidad medidores</Label>
             <input type="text" id="cant_medidores" runat="server" Class="cajas" value="0" />
             <br />
             <br />
             <Label ID="doc" runat="server" Class="etiquetas text-center">Documento entrada</Label>
-            <asp:TextBox ID="doc_entrada" runat="server" Class="cajas"></asp:TextBox>
+            <input type="text" ID="doc_entrada" runat="server" Class="cajas" disabled/>
             <br />
             <br />
-            <asp:Button ID="act_cantidad" runat="server" Text="Agregar" width="100%" Class="btn btn-success" OnClick="actualizar_Click" />
-            <asp:Button ID="eliminar" runat="server" Text="Eliminar" width="100%" Class="btn btn-danger" />
+            <asp:Button enabled="false" ID="act_cantidad" runat="server" Text="Agregar" width="100%" Class="btn btn-success" OnClick="actualizar_Click" />
+            <asp:Button enabled="false" ID="eliminar" runat="server" Text="Eliminar" width="100%" Class="btn btn-danger" />
             <br />
         </div>
     </div>
@@ -59,7 +59,7 @@
     <br />
     <br />
     <asp:Label ID="Doc_Ent" class="etiquetas" runat="server" Text="Marca"></asp:Label>
-    <asp:DropDownList ID="marca" class="cajas" runat="server" OnSelectedIndexChanged="marca_SelectedIndexChanged" AutoPostBack="True" >
+    <asp:DropDownList ID="marca" class="cajas" runat="server" OnSelectedIndexChanged="marca_Selected" AutoPostBack="true">
     </asp:DropDownList>
         <asp:Label ID="Label4" class="etiquetas" runat="server" Text="Modelo"></asp:Label>
     <asp:DropDownList ID="modelo" class="cajas" runat="server" >
@@ -80,38 +80,96 @@
         <asp:ListItem Value="E">Fase 3 / Hilos 4</asp:ListItem>
     </asp:DropDownList>
     <br />
-    <asp:HiddenField runat="server" ID="nombreGrupo" />
+    <asp:TextBox runat="server" ID="nombreGrupo" ReadOnly/>
     <br />
-
+     <div class="alert alert-danger" hidden id="error" runat="server">
+        Faltan datos
+     </div>
         </div>
     </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <asp:Button runat="server" Text="Continuar"  class="btn btn-success" Width="150px" />
+        <asp:Button runat="server" Text="Continuar" id="grupo_ok" class="btn btn-success" Width="150px" onClick="continuar_Click"/>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modalSerial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalSerialLabel">Definir Serial</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+ <div class="row">
+        <div class="col-12">
+    <div class="row">
+        <div class="col-12">
+            <asp:Label runat="server">Nombre del grupo</asp:Label>
+            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+            <br />
+            <br />
+            <asp:Label class="etiquetas" runat="server" Text="Zona"></asp:Label>
+            <asp:DropDownList ID="zona" class="cajas" runat="server" >
+            </asp:DropDownList>
+            <asp:Label class="etiquetas" runat="server" Text="Codigos de error"></asp:Label>
+            <asp:DropDownList ID="codigos" class="cajas" runat="server" >
+            </asp:DropDownList>
+            <br />
+            <asp:Button ID="ayuda" runat="server" Text="Ayuda" class="btn btn-warning" Width="150px" OnClick="ayuda_Click"/>
+            <br />
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" GridLines="None"
+                AllowPaging="true" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
+                PageSize="6" Visible="False" >
+        <Columns>
+            <asp:BoundField DataField="CODE" HeaderText="Codigo" />
+            <asp:BoundField DataField="DESCRIPTION" HeaderText="Descripcion" />
+        </Columns>
+
+            </asp:GridView>
+        </div>
+    </div>
+        </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <asp:Button runat="server" Text="Continuar" id="Button1" class="btn btn-success" Width="150px" onClick="asignaSerial"/>
       </div>
     </div>
   </div>
 </div>
     <div class="row">
         <div class="col-6 text-center">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLive" disabled>Habilitar grupo</button>   
+            <button runat="server" id="habilitar_grupo" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLive" disabled>Habilitar grupo</button>   
         </div>
         <div class="col-6 text-center">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLive" disabled>Habilitar serial</button>
+            <button runat="server" id="habilitar_serial" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSerial" disabled>Habilitar serial</button>
         </div>
     <div>
     <div class="row">
         <div class="col-12">
+            <asp:HiddenField ID="Item_actual" runat="server" value="0"/>
+            <asp:HiddenField ID="Saldo" runat="server"/>
             <asp:Table id="Table1" runat="server" CellPadding="10" 
                 GridLines="Both"
                 HorizontalAlign="Center" CssClass="mGRID">
                 <asp:TableRow>
                     <asp:TableCell>
-                        Documento de entrada
+                        Serial
                     </asp:TableCell>
                     <asp:TableCell>
                         Grupo
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        Zona
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        Documento de ingreso
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>

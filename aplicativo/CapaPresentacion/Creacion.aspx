@@ -82,7 +82,7 @@
     <br />
     <asp:TextBox runat="server" ID="nombreGrupo" ReadOnly/>
     <br />
-     <div class="alert alert-danger" hidden id="error" runat="server">
+    <div class="alert alert-danger" role="alert">
         Faltan datos
      </div>
         </div>
@@ -109,10 +109,8 @@
         <div class="col-12">
     <div class="row">
         <div class="col-12">
-            <asp:Label runat="server">Nombre del grupo</asp:Label>
-            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
-            <br />
-            <br />
+            <asp:Label runat="server">Serial</asp:Label>
+            <asp:Textbox ID="serial" runat="server" Text=""></asp:Textbox>
             <asp:Label class="etiquetas" runat="server" Text="Zona"></asp:Label>
             <asp:DropDownList ID="zona" class="cajas" runat="server" >
             </asp:DropDownList>
@@ -169,7 +167,7 @@
                         Zona
                     </asp:TableCell>
                     <asp:TableCell>
-                        Documento de ingreso
+                        Codigo de ingreso
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>

@@ -4,19 +4,31 @@
         console.log('Entro');
     });
     //Funcion para validar solo numeros
-    $('#Contenido_cant_medidores').on('input', function () {
+    $('#Menu_cant_medidores').on('input', function () {
         this.value = this.value.replace(/[^0-9]/g, '');
+        if (this.value > 0) {
+            document.getElementById("Menu_doc_entrada").disabled = false;
+        } else {
+            document.getElementById("Menu_doc_entrada").disabled = true;
+        }
+    });
+    //Funcion para habilitar boton
+    $('#Menu_doc_entrada').keypress(function (event) {
+        console.log('Cambio');
+        document.getElementById("Contenido_habilitar_grupo").disabled = false;
     });
     //Activa o desactiva checkbox
-    $('#Individual').click(function (event) {
+    $('#Menu_Individual').click(function (event) {
         console.log('Leyo click');
-        /*
-        if (this.is(':checked')) {
-            $('#Unico').attr("disabled", 'disabled');
+        if ($('#Menu_Individual').is(':checked')) {
+            document.getElementById("Menu_Unico").checked = false;
         }
-        else {
-            $('#Unico').attr("disabled", 'disabled');;
-            $('#Unico').attr('checked', false);
-        }*/
+    });
+    //Activa o desactiva checkbox
+    $('#Menu_Unico').click(function (event) {
+        console.log('Leyo click');
+        if ($('#Menu_Unico').is(':checked')) {
+            document.getElementById("Menu_Individual").checked = false;
+        }
     });
 });
