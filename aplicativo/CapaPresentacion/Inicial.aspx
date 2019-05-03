@@ -62,7 +62,7 @@
 
     <div class="align-items-md-center">
         <asp:Button ID="actualizar" runat="server" Text="Buscar" class="btn btn-success" Width="150px" OnClick="actualizar_Click"/>
-        <asp:Button ID="exportar" runat="server" Text="Exportar" class="btn btn-alert" Width="150px" OnClick="exportar_click"/>
+        <asp:Button ID="exportar" runat="server" Text="Exportar" class="btn btn-info" Width="150px" OnClick="exportar_click"/>
         <br />        
     </div>
 

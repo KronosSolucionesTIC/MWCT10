@@ -37,6 +37,11 @@ namespace CapaPresentacion
             GridView1.DataBind();
             usuario.Text = usu;                         //Pone nombre usuario
             cliente.Text = cli;                         //Pone nombre cliente
+
+            if(dt.Rows.Count <= 0)
+            {
+                exportar.Enabled = false;
+            } 
         }
 
         protected void llenar_documentos_entrada()

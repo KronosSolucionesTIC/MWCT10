@@ -14,8 +14,9 @@
     });
     //Funcion para habilitar boton
     $('#Menu_doc_entrada').keypress(function (event) {
-        console.log('Cambio');
         document.getElementById("Contenido_habilitar_grupo").disabled = false;
+        document.getElementById("Menu_Individual").disabled = true;
+        document.getElementById("Menu_Unico").disabled = true;
     });
     //Activa o desactiva checkbox
     $('#Menu_Individual').click(function (event) {

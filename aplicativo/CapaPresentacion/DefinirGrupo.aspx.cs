@@ -17,13 +17,13 @@ namespace CapaPresentacion
         {
             if (!IsPostBack)
             {
-                cant_medidores.Text = Session["cantidad"].ToString();      //Pasa funcion para llenar cantidad
-                doc_entrada.Text = Session["docEntrada"].ToString();      //Pasa funcion para llenar cantidad
+                //cant_medidores.Text = Session["cantidad"].ToString();      //Pasa funcion para llenar cantidad
+                /*doc_entrada.Text = Session["docEntrada"].ToString();      //Pasa funcion para llenar cantidad
                 tipoGrupo.SelectedValue = Session["tipo"].ToString();          //Pasa funcion para llenar cantidad
                 llenar_marca();         //Pasa funcion para llenar lista
                 llenar_modelo();        //Pasa funcion para llenar lista
                 divDefinir();           //Crea los botones para definir grupos
-                agrega_items();         //Agrega items a la tabla
+                agrega_items();         //Agrega items a la tabla*/
             }
         }
 
