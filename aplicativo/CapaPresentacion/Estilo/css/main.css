@@ -625,3 +625,12 @@ iframe {
 div.dhtmlx_window_active, div.dhx_modal_cover_dv {
     position: fixed !important;
 }
+.tabla{
+    border-color: #00CC00;
+    border-style: solid;
+    background-color: #FF6600;
+    color: #FFFFFF;
+    font-family: Arial;
+    font-size: 10pt;
+    font-weight: bold;
+}

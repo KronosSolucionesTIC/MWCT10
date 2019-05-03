@@ -32,4 +32,17 @@
             document.getElementById("Menu_Individual").checked = false;
         }
     });
+    //Limpia campos
+    $('#Contenido_cancelar').click(function (event) {
+        $("#Contenido_marca").val('Seleccione...');
+        $("#Contenido_modelo").val('Seleccione...');
+        $("#Contenido_energia").val('0');
+        $("#Contenido_fase").val('0');
+        $("#Contenido_nombreGrupo").val('');
+    });
+    //Validar campos
+    $('#Contenido_actualizarSerial').click(function (event) {
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#modalSerial').modal('show');</script>");
+        console.log('Entro actualizar serial');
+    });
 });

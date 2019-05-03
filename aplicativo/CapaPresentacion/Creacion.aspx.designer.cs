@@ -13,15 +13,6 @@ namespace CapaPresentacion {
     public partial class WebForm1 {
         
         /// <summary>
-        /// Control cerrar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cerrar;
-        
-        /// <summary>
         /// Control usuario.
         /// </summary>
         /// <remarks>
@@ -229,6 +220,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox nombreGrupo;
         
         /// <summary>
+        /// Control cancelar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button cancelar;
+        
+        /// <summary>
         /// Control grupo_ok.
         /// </summary>
         /// <remarks>
@@ -244,7 +244,7 @@ namespace CapaPresentacion {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox serial;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText serial;
         
         /// <summary>
         /// Control zona.
@@ -281,6 +281,24 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView1;
+        
+        /// <summary>
+        /// Control TxtError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtError;
+        
+        /// <summary>
+        /// Control ok.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ok;
         
         /// <summary>
         /// Control Button1.

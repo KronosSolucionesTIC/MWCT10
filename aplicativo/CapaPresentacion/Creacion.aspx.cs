@@ -19,8 +19,9 @@ namespace CapaPresentacion
                 llenar_modelo();        //Pasa funcion para llenar lista
                 llenar_zona();        //Pasa funcion para llenar lista
                 llenar_codigos();     //Pasa funcion para llenar lista 
-                llenar_ayuda();       //Pasa funcion para llenar lista 
-            } else {
+                llenar_ayuda();       //Pasa funcion para llenar lista
+            }
+            else {
                 habilitar_grupo.Disabled = false;
                 if (nombreGrupo.Text == "")
                 {
@@ -30,6 +31,10 @@ namespace CapaPresentacion
                     habilitar_serial.Disabled = false;
                 }
                 bloquea_campos_cant();
+                if (ok.Value == "0")
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#modalSerial').modal('show');</script>");
+                }
             }
         }
 
@@ -116,7 +121,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
                     TableCell cel = new TableCell();
                     if(cellNum == 0)
                     {
-                        cel.Text = serial.Text.ToString();
+                        cel.Text = serial.Value.ToString();
                     }
                     if (cellNum == 1)
                     {
@@ -208,27 +213,44 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             modelo.DataBind();
         }
 
+        protected void mostrar_errores()
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#error').show();</script>"); //Esconde los alert   
+        }
+
         public bool ValidarCamposGrupo()
         {
             if (this.marca.Text.Equals("Seleccione..."))
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('.alert').alert()</script>");
-                //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Seleccione marca');</script>");
                 return false;
             }
             else if (this.modelo.Text.Equals("Seleccione..."))
             {
-                //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Seleccione modelo');</script>");
                 return false;
             }
             else if (this.energia.Text.Equals("0"))
             {
-                //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Seleccione energia');</script>");
                 return false;
             }
             else if (this.fase.Text.Equals("0"))
             {
-                //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Seleccione fase');</script>");
+                return false;
+            }
+            return true;
+        }
+
+        public bool ValidarCamposSerial()
+        {
+            if (this.serial.Value.Equals(""))
+            {
+                return false;
+            }
+            else if (this.zona.SelectedValue.Equals("Seleccione..."))
+            {
+                return false;
+            }
+            else if (this.codigos.SelectedValue.Equals("Seleccione..."))
+            {
                 return false;
             }
             return true;
@@ -272,24 +294,28 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void asignaSerial(object sender, EventArgs e)
         {
-            //error.Visible = true;
-            //bool campo = ValidarCamposGrupo();
-            //if (campo == true)
-            //{
-            if (Unico.Checked == true)
+            bool campo = ValidarCamposSerial();
+            if (campo == true)
             {
-                deshabilita_grupo();    //Deshabilita boton habilitar grupo                    
-            }
-            bloquea_campos_cant();
-            agrega_items();
-            agrega_array();
-            //}
-            //else
-            //{
+                ok.Value = "1";    //Pone valor a campo ok
+                if (Unico.Checked == true)
+                {
+                    deshabilita_grupo();    //Deshabilita boton habilitar grupo                    
+                }
+                bloquea_campos_cant();
+                agrega_items();
+                agrega_array();
+                activa_agregar();
+            } else
+            {
                 //error.Visible = true;
-            //}
+            }
         }
 
+        protected void activa_agregar()
+        {
+            act_cantidad.Enabled = true;
+        }
         protected void agrega_array()
         {
             
