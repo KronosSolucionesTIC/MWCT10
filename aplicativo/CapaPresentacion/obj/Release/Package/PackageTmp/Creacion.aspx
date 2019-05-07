@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Creacion.aspx.cs" Inherits="CapaPresentacion.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
     <asp:Button ID="cerrar" runat="server" Text="Cerrar Sesion"  class="btn btn-danger" OnClick="cerrar_Click" Width="150px" />
-    <asp:Label ID="usuario" class="usuario" runat="server"></asp:Label>
+    <asp:Label ID="cliente" class="cliente" runat="server"></asp:Label>
+    <asp:Label class="cliente" runat="server">/</asp:Label>
+    <asp:Label ID="usuario" class="cliente" runat="server"></asp:Label>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Menu" runat="server">
     <div class="row">
@@ -82,15 +84,12 @@
     <br />
     <asp:TextBox runat="server" ID="nombreGrupo" ReadOnly/>
     <br />
-    <div class="alert alert-danger" role="alert">
-        Faltan datos
-     </div>
         </div>
     </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <asp:Button runat="server" Text="Continuar" id="grupo_ok" class="btn btn-success" Width="150px" onClick="continuar_Click"/>
+        <asp:Button runat="server" Text="Cancelar" id="cancelar" class="btn btn-danger" Width="150px" data-dismiss="modal"></asp:Button>
+        <asp:Button runat="server" Text="Continuar" id="grupo_ok" class="btn btn-success" Width="150px" onClick="continuar_Click"/></asp:Button>
       </div>
     </div>
   </div>
@@ -110,7 +109,7 @@
     <div class="row">
         <div class="col-12">
             <asp:Label runat="server">Serial</asp:Label>
-            <asp:Textbox ID="serial" runat="server" Text=""></asp:Textbox>
+            <input type="text" ID="serial" runat="server" value="Serial" required></input>
             <asp:Label class="etiquetas" runat="server" Text="Zona"></asp:Label>
             <asp:DropDownList ID="zona" class="cajas" runat="server" >
             </asp:DropDownList>
@@ -123,12 +122,15 @@
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" GridLines="None"
                 AllowPaging="true" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
                 PageSize="6" Visible="False" >
+           
         <Columns>
             <asp:BoundField DataField="CODE" HeaderText="Codigo" />
             <asp:BoundField DataField="DESCRIPTION" HeaderText="Descripcion" />
         </Columns>
 
             </asp:GridView>
+             <asp:TextBox runat="server" id="TxtError"></asp:TextBox>
+            <asp:HiddenField ID="ok" runat="server" value="0"/>
         </div>
     </div>
         </div>
@@ -136,7 +138,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <asp:Button runat="server" Text="Continuar" id="Button1" class="btn btn-success" Width="150px" onClick="asignaSerial"/>
+        <asp:Button runat="server" Text="Continuar" id="Button1" class="btn btn-success" Width="150px" onClick="asignaSerial"/></asp:Button>
       </div>
     </div>
   </div>
@@ -155,7 +157,7 @@
             <asp:HiddenField ID="Saldo" runat="server"/>
             <asp:Table id="Table1" runat="server" CellPadding="10" 
                 GridLines="Both"
-                HorizontalAlign="Center" CssClass="mGRID">
+                HorizontalAlign="Center" Class="tabla">
                 <asp:TableRow>
                     <asp:TableCell>
                         Serial

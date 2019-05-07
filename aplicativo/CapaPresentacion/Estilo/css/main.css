@@ -175,8 +175,8 @@ iframe {
     z-index: 1;
 }
 .divLogin {
-    background-image: url("../images/fondo_ingreso.png");
-    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url("../images/fondo_ingreso_50.png");
     background-position: top;
 }
 .container-login100::before {
@@ -322,7 +322,6 @@ iframe {
     border-radius: 25px;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100% auto;
     background-image: url("../images/ingresar_btn_activo.png");
 }
 .login100-form-btn::before {
@@ -523,7 +522,10 @@ iframe {
     text-align: left;
     width: 100%;
 }
-
+.cliente {
+    font-size: 32px;
+    font-weight: bold;
+}
 .datagrid {
     font: normal 12px/150% Arial, Helvetica, sans-serif;
     background: #fff;

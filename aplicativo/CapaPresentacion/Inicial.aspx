@@ -1,10 +1,10 @@
 ﻿<%@ Page  enableEventValidation="false" Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Inicial.aspx.cs" Inherits="CapaPresentacion.Inicial" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
     <asp:Button ID="cerrar" runat="server" Text="Cerrar Sesion"  class="btn btn-danger" OnClick="cerrar_Click" Width="150px" />
-    <asp:Label ID="cliente" class="usuario" runat="server"></asp:Label>
-    <asp:Label class="usuario" runat="server">/</asp:Label>
-    <asp:Label ID="usuario" class="usuario" runat="server"></asp:Label>
-    </asp:Content>
+    <asp:Label ID="cliente" class="cliente" runat="server"></asp:Label>
+    <asp:Label class="cliente" runat="server">/</asp:Label>
+    <asp:Label ID="usuario" class="cliente" runat="server"></asp:Label>
+</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Contenido" runat="server">
     <div class="row">
     <div class="col-12">
