@@ -66,6 +66,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cargue.aspx" />
     <Content Include="DefinirGrupo.aspx" />
     <Content Include="DiseñoWeb\assets\css\bootstrap.min.css" />
     <Content Include="DiseñoWeb\assets\css\now-ui-dashboard.css" />
@@ -276,6 +277,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cargue.aspx.cs">
+      <DependentUpon>Cargue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cargue.aspx.designer.cs">
+      <DependentUpon>Cargue.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DefinirGrupo.aspx.cs">
       <DependentUpon>DefinirGrupo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -332,6 +340,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Estilo\images\" />
+    <Folder Include="tmp\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

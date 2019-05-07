@@ -51,5 +51,10 @@ namespace CapaPresentacion
         {
             Response.Redirect("Creacion.aspx");//Redirecciona creacion tarea
         }
+
+        protected void ImageButton3_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("Cargue.aspx");//Redirecciona cargue por archivo plano
+        }
     }
     }
