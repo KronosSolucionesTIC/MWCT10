@@ -10,7 +10,7 @@ using System.Data.OleDb;
 
 namespace CapaPresentacion
 {
-    public partial class Cargue : System.Web.UI.Page
+    public partial class Archivo : System.Web.UI.Page
     {
         #region "Metodos ADO.NET"
         private void procesarArchivoTxt()
@@ -59,7 +59,7 @@ namespace CapaPresentacion
         }
 
         /// Armando un data table para la carga de los archivos
-        private System.Data.DataTable armandoColumnDataTable()
+        private DataTable armandoColumnDataTable()
         {
             DataTable dt = new System.Data.DataTable();
 
@@ -184,6 +184,23 @@ namespace CapaPresentacion
                     lblMensaje.ForeColor = System.Drawing.Color.Red;
                 }
             }
+        }
+
+        protected void salvar_Click(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in gv.Rows)
+            {
+                string zona = row.Cells[6].Text;
+                string idZona = reemplazarZona(zona);
+            }
+        }
+
+        protected string reemplazarZona(string zona)
+        {
+            Cargue ca = new Cargue();               //Crea una instancia de clase
+            ca.Zona = zona;                           //Pasa el valor de zona
+            string idZona = ca.getZona();                     //Pasa el metodo getId para validar si existe el usuario                int idZona = 1;
+            return idZona;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Cargue.aspx.cs" Inherits="CapaPresentacion.Cargue" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Archivo.aspx.cs" Inherits="CapaPresentacion.Archivo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
     <asp:Button ID="cerrar" runat="server" Text="Cerrar Sesion"  class="btn btn-danger" OnClick="cerrar_Click" Width="150px" />
     <asp:Label ID="cliente" class="cliente" runat="server"></asp:Label>
@@ -15,8 +15,12 @@
 &nbsp;&nbsp;
         <asp:Label ID="lblMensaje" runat="server" Text="esto es un caso de prueba :)" Font-Size="X-Large"></asp:Label>
         <br />
-        <asp:GridView ID="gv" runat="server">
+        <asp:GridView ID="gv" runat="server" CssClass="tabla">
         </asp:GridView>
+        <asp:GridView ID="gv2" runat="server">
+        </asp:GridView>
+        <asp:Button ID="btn_guardar" Class="btn btn-success" runat="server" OnClick="salvar_Click" Text="Salvar" />
+
         <br />
     </div>
     </form>

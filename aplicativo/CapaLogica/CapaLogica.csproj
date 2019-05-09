@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cargue.cs" />
     <Compile Include="Consulta.cs" />
     <Compile Include="Grupo.cs" />
-    <Compile Include="HomeController.cs" />
     <Compile Include="Logeo.cs" />
     <Compile Include="Medidor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -10,7 +10,7 @@
 namespace CapaPresentacion {
     
     
-    public partial class Cargue {
+    public partial class Archivo {
         
         /// <summary>
         /// Control cerrar.
@@ -74,5 +74,23 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gv;
+        
+        /// <summary>
+        /// Control gv2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv2;
+        
+        /// <summary>
+        /// Control btn_guardar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_guardar;
     }
 }

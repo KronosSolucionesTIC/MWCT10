@@ -373,5 +373,10 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         {
 
         }
+
+        protected void ImageButton3_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("Archivo.aspx");//Redirecciona cargue por archivo plano
+        }
     }
 }

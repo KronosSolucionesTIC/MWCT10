@@ -70,9 +70,13 @@
 
     </asp:SqlDataSource>
 
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" GridLines="None"
-                AllowPaging="true" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
-                PageSize="6" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" >
+    <asp:GridView 
+        ID="GridView1" 
+        runat="server"
+        CssClass="tabla" 
+        AutoGenerateColumns="false"
+        AllowPagging="True"
+    >
         <Columns>
             <asp:BoundField DataField="DOC_ENTRY" HeaderText="Documento Entrada" />
             <asp:BoundField DataField="NUM_SERIAL" HeaderText="Numero de serial" />

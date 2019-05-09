@@ -54,7 +54,7 @@ namespace CapaPresentacion
 
         protected void ImageButton3_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("Cargue.aspx");//Redirecciona cargue por archivo plano
+            Response.Redirect("Archivo.aspx");//Redirecciona cargue por archivo plano
         }
     }
     }

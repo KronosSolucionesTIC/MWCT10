@@ -12,7 +12,7 @@
             <br />
             <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/Estilo/images/con_doc.png" />
             <br /> 
-            <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/Estilo/images/carga_archi.png" />
+            <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/Estilo/images/carga_archi.png" OnClick="ImageButton3_Click" />
             <br /> 
             <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/Estilo/images/crea_tarea.png" OnClick="ImageButton4_Click"  />
             <br />
@@ -155,9 +155,7 @@
         <div class="col-12">
             <asp:HiddenField ID="Item_actual" runat="server" value="0"/>
             <asp:HiddenField ID="Saldo" runat="server"/>
-            <asp:Table id="Table1" runat="server" CellPadding="10" 
-                GridLines="Both"
-                HorizontalAlign="Center" Class="tabla">
+            <asp:Table id="Table1" runat="server" CssClass="tabla2">
                 <asp:TableRow>
                     <asp:TableCell>
                         Serial

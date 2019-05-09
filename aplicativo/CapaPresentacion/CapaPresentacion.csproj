@@ -66,7 +66,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Cargue.aspx" />
+    <Content Include="Archivo.aspx" />
     <Content Include="DefinirGrupo.aspx" />
     <Content Include="DiseñoWeb\assets\css\bootstrap.min.css" />
     <Content Include="DiseñoWeb\assets\css\now-ui-dashboard.css" />
@@ -277,12 +277,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cargue.aspx.cs">
-      <DependentUpon>Cargue.aspx</DependentUpon>
+    <Compile Include="Archivo.aspx.cs">
+      <DependentUpon>Archivo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Cargue.aspx.designer.cs">
-      <DependentUpon>Cargue.aspx</DependentUpon>
+    <Compile Include="Archivo.aspx.designer.cs">
+      <DependentUpon>Archivo.aspx</DependentUpon>
     </Compile>
     <Compile Include="DefinirGrupo.aspx.cs">
       <DependentUpon>DefinirGrupo.aspx</DependentUpon>
