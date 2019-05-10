@@ -4,12 +4,12 @@
         console.log('Entro');
     });
     //Funcion para validar solo numeros
-    $('#Menu_cant_medidores').on('input', function () {
+    $('#Contenido_cant_medidores').on('input', function () {
         this.value = this.value.replace(/[^0-9]/g, '');
         if (this.value > 0) {
-            document.getElementById("Menu_doc_entrada").disabled = false;
+            document.getElementById("agregar_dispositivo").disabled = false;
         } else {
-            document.getElementById("Menu_doc_entrada").disabled = true;
+            document.getElementById("agregar_dispositivo").disabled = true;
         }
     });
     //Funcion para habilitar boton

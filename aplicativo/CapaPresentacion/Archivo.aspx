@@ -17,7 +17,7 @@
         <br />
         <asp:GridView ID="gv" runat="server" CssClass="tabla">
         </asp:GridView>
-        <asp:GridView ID="gv2" runat="server">
+        <asp:GridView ID="gv3" runat="server">
         </asp:GridView>
         <asp:Button ID="btn_guardar" Class="btn btn-success" runat="server" OnClick="salvar_Click" Text="Salvar" />
 

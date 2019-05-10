@@ -4,7 +4,7 @@
 <html>
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="Estilo/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="~/Estilo/css/main.css"/>
     <link rel="apple-touch-icon" sizes="76x76" href="DiseñoWeb/assets/img/apple-icon.png/">
     <link rel="icon" type="image/png" href="DiseñoWeb/assets/img/favicon.png"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />

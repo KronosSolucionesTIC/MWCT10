@@ -468,9 +468,6 @@ iframe {
 }
 .cajas {
     background-color
-.cajas {
-    background-color: #D0D3D4;
-    height: 20px;
 }
 .mGrid {
     width: 100%;
@@ -523,7 +520,7 @@ iframe {
     width: 100%;
 }
 .cliente {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: bold;
 }
 .datagrid {
@@ -627,12 +624,30 @@ iframe {
 div.dhtmlx_window_active, div.dhx_modal_cover_dv {
     position: fixed !important;
 }
-.tabla{
-    border-color: #00CC00;
-    border-style: solid;
-    background-color: #FF6600;
-    color: #FFFFFF;
+.tabla {
+    width: 100%;
+    background: #CFEDF7;
+    border: solid 1px black;
+    font-family: Arial;
+    font-size: 10pt;
+    font-weight: bold;
+    text-align:center;
+}
+    .tabla th {
+        background: #0096C8;
+        color:white;
+    }
+
+.tabla2 {
+    width: 1000px;
+    background: #CFEDF7;
+    border: solid 1px black;
     font-family: Arial;
     font-size: 10pt;
     font-weight: bold;
 }
+
+    .tabla th {
+        background: #0096C8;
+        color: white;
+    }

@@ -13,6 +13,7 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            llenar_index();
             Consulta ci = new Consulta();               //Crea una instancia de clase
             string usu = Convert.ToString(Session["Login"]); //Lee la variable Session
             ci.Usuario = usu;                           //Pasa el valor de usuario
@@ -31,13 +32,13 @@ namespace CapaPresentacion
                 llenar_ayuda();       //Pasa funcion para llenar lista
             }
             else {
-                habilitar_grupo.Disabled = false;
+                //habilitar_grupo.Disabled = false;
                 if (nombreGrupo.Text == "")
                 {
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('show');</script>");
                 } else
                 {
-                    habilitar_serial.Disabled = false;
+                    //habilitar_serial.Disabled = false;
                 }
                 bloquea_campos_cant();
                 if (ok.Value == "0")
@@ -46,6 +47,62 @@ namespace CapaPresentacion
                 }
             }
         }
+
+        private void llenar_index()
+        {
+            List<string> lista = leerArchivoTxt();
+            DataTable dt = getDataTableTxt(lista);
+            gv2.DataSource = dt;
+            gv2.DataBind();
+        }
+
+        private List<string> leerArchivoTxt()
+        {
+            int counter = 0;
+            List<string> listaLine = new List<string>();
+
+                for (int a=0; a<20; a++)
+                {
+                    listaLine.Add(";;;;");
+                    counter++;
+                }
+
+            return listaLine;
+        }
+        /// Obtiene el data table de un archivo con extension .csv que se leyo previamente
+        /// <param name="lista">Lista de datos del archivo csv</param>
+
+        private System.Data.DataTable getDataTableTxt(List<string> lista)
+        {
+            DataTable dt = armandoColumnDataTable();
+            int cont = 0;
+            foreach (string item in lista)
+            {
+                if (cont < 5)
+                {
+                    string[] ListItems = item.Split(';');
+                    dt.Rows.Add(ListItems);
+                }
+                cont++;
+            }
+            return dt;
+        }
+
+        /// Armando un data table para la carga de los archivos
+        private DataTable armandoColumnDataTable()
+        {
+            DataTable dt = new System.Data.DataTable();
+
+            dt.Columns.Add("Nombre cliente");
+            dt.Columns.Add("Zona");
+            dt.Columns.Add("Serial medidor");
+            dt.Columns.Add("Marca medidor");
+            dt.Columns.Add("Modelo medidor");
+
+            return dt;
+        }
+
+
 
         protected void cerrar_Click(object sender, EventArgs e)
         {
@@ -88,25 +145,8 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void bloquea_campos_cant()
         {
-            if (Individual.Checked == true)
-            {
-                Individual.Disabled = true;   //Deshabilita boton habilitar grupo    
-                Individual.Checked = true;
-            } else
-            {
-                Individual.Disabled = true;   //Deshabilita boton habilitar grupo   
-            }
-            if (Unico.Checked == true)
-            {
-                Unico.Disabled = true;
-                Unico.Checked = true;
-            } else
-            {
-                Unico.Disabled = true;
-            }
             cant_medidores.Disabled = true;     //Bloquea cantidad
-            doc_entrada.Disabled = true;        //Bloquea documento entrada
-            act_cantidad.Enabled = false;       //Bloquea actualizar
+            //act_cantidad.Enabled = false;       //Bloquea actualizar
         }
 
         protected void desbloquea_campos_grupo()
@@ -147,31 +187,18 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
                         rw.Cells.Add(cel);
                     counter++;
                 }
-                Table1.Rows.Add(rw);
+                /*Table1.Rows.Add(rw);
                 Table1.GridLines = GridLines.Both;
                 Table1.CellPadding = 4;
-                Table1.CellSpacing = 0;
+                Table1.CellSpacing = 0;*/
             }
         }
 
         public bool ValidarCampos()
         {
-            if(Individual.Checked == false)
-            {
-                if (Unico.Checked == false)
-                {
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Seleccione tipo grupo');</script>");
-                    return false;
-                }
-            }
             if (this.cant_medidores.Value.Equals("0"))
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('La cantidad debe ser mayor a 0');</script>");
-                return false;
-            }
-            else if (this.doc_entrada.Value.Equals(""))
-            {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('El documento de entrada no puede ser vacio');</script>");
                 return false;
             }
             return true;
@@ -181,10 +208,8 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         {
                 int cant = int.Parse(cant_medidores.Value);      //Toma la cantidad de medidores
                 //string tipo = tipoGrupo.SelectedItem.Value;    //Pasa el valor de la lista
-                string doc = doc_entrada.Value;    //Pasa el valor de la lista
                 Session["cantidad"] = cant;                     //Asigna cantidad a variable Session
                 //Session["tipo"] = tipo;                         //Asigna tipo a variable Session
-                Session["docEntrada"] = doc;                         //Asigna tipo a variable Session
                 //Response.Redirect("DefinirGrupo.aspx");         //Redirecciona a Definicion grupo
         }
 
@@ -237,14 +262,6 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             {
                 return false;
             }
-            else if (this.energia.Text.Equals("0"))
-            {
-                return false;
-            }
-            else if (this.fase.Text.Equals("0"))
-            {
-                return false;
-            }
             return true;
         }
 
@@ -288,8 +305,8 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
                 int cantModelo = modelo.SelectedItem.Value.Length; //Cantidad de caracteres de filtro modelo
                 int index = cantModelo - 4; //Le resta 4 a ese total
                 nomGrupo = nomGrupo + modelo.SelectedItem.Value.Substring(index, 4); //Toma los 4 ultimos de modelo
-                nomGrupo = nomGrupo + fase.SelectedItem.Value.Substring(0, 1); //Toma el valor de fase
-                nomGrupo = nomGrupo + energia.SelectedItem.Value.Substring(0, 1); //Toma el valor de energia
+                //nomGrupo = nomGrupo + fase.SelectedItem.Value.Substring(0, 1); //Toma el valor de fase
+                //nomGrupo = nomGrupo + energia.SelectedItem.Value.Substring(0, 1); //Toma el valor de energia
                 nombreGrupo.Text = nomGrupo;    //Pone valor a campo nombre grupo
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#modalSerial').modal('show');</script>");
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('hide');</script>");
@@ -307,10 +324,6 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             if (campo == true)
             {
                 ok.Value = "1";    //Pone valor a campo ok
-                if (Unico.Checked == true)
-                {
-                    deshabilita_grupo();    //Deshabilita boton habilitar grupo                    
-                }
                 bloquea_campos_cant();
                 agrega_items();
                 agrega_array();
@@ -323,7 +336,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void activa_agregar()
         {
-            act_cantidad.Enabled = true;
+            //act_cantidad.Enabled = true;
         }
         protected void agrega_array()
         {
@@ -332,7 +345,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void deshabilita_grupo()
         {
-            habilitar_grupo.Disabled = true;    //Deshabilita boton de habilitar grupo
+            //habilitar_grupo.Disabled = true;    //Deshabilita boton de habilitar grupo
         }
 
         protected void llenar_ayuda()

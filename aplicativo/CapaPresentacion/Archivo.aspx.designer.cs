@@ -76,13 +76,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.GridView gv;
         
         /// <summary>
-        /// Control gv2.
+        /// Control gv3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv2;
+        protected global::System.Web.UI.WebControls.GridView gv3;
         
         /// <summary>
         /// Control btn_guardar.
