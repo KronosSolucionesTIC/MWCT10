@@ -13,7 +13,7 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            llenar_index();
+            //llenar_index();
             Consulta ci = new Consulta();               //Crea una instancia de clase
             string usu = Convert.ToString(Session["Login"]); //Lee la variable Session
             ci.Usuario = usu;                           //Pasa el valor de usuario
@@ -32,19 +32,15 @@ namespace CapaPresentacion
                 llenar_ayuda();       //Pasa funcion para llenar lista
             }
             else {
-                //habilitar_grupo.Disabled = false;
-                if (nombreGrupo.Text == "")
+                if (confirmado.Value == "0")
                 {
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('show');</script>");
-                } else
-                {
-                    //habilitar_serial.Disabled = false;
                 }
                 bloquea_campos_cant();
-                if (ok.Value == "0")
+                /*if (ok.Value == "0")
                 {
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#modalSerial').modal('show');</script>");
-                }
+                    //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#modalSerial').modal('show');</script>");
+                }*/
             }
         }
 
@@ -72,13 +68,13 @@ namespace CapaPresentacion
         /// Obtiene el data table de un archivo con extension .csv que se leyo previamente
         /// <param name="lista">Lista de datos del archivo csv</param>
 
-        private System.Data.DataTable getDataTableTxt(List<string> lista)
+        private DataTable getDataTableTxt(List<string> lista)
         {
             DataTable dt = armandoColumnDataTable();
             int cont = 0;
             foreach (string item in lista)
             {
-                if (cont < 5)
+                if (cont < 20)
                 {
                     string[] ListItems = item.Split(';');
                     dt.Rows.Add(ListItems);
@@ -102,7 +98,75 @@ namespace CapaPresentacion
             return dt;
         }
 
+        private void llenar_tabla()
+        {
+            List<string> lista = dibujaItem();
+            DataTable dt = getMedidor(lista);
+            gv2.DataSource = dt;
+            gv2.DataBind();
+        }
 
+        private List<string> dibujaItem()
+        {
+            List<string> listaLine = new List<string>();
+
+            
+            int lis = int.Parse(listados.Value.ToString());
+            if (lis > 0)
+            {
+                //Recorro array validando registros
+                foreach (GridViewRow row in gv2.Rows)
+                {
+                    string cli = row.Cells[0].Text;
+                    string zon = row.Cells[1].Text;
+                    string ser = row.Cells[2].Text;
+                    string mar = row.Cells[3].Text;
+                    string mod = row.Cells[4].Text;
+
+                    listaLine.Add(cli + ";" + zon + ";" + ser + ";" + mar + ";" + mod);
+                }
+            }
+
+            for (int a = 0; a < 1; a++)
+            {
+                string cli = cliente.Text.ToString();
+                string zon = zona.SelectedValue.ToString();
+                string ser = serial.Value.ToString();
+                string mar = marca.SelectedValue.ToString();
+                string mod = modelo.SelectedValue.ToString();
+
+                listaLine.Add(cli + ";" + zon + ";" + ser + ";" + mar + ";" + mod);
+            }
+
+            return listaLine;
+        }
+        /// Obtiene el data table de un archivo con extension .csv que se leyo previamente
+        /// <param name="lista">Lista de datos del archivo csv</param>
+
+        private DataTable getMedidor(List<string> lista)
+        {
+                DataTable dt = armandoColumnDataTable();
+                foreach (string item in lista)
+                {
+                   string[] ListItems = item.Split(';');
+                   dt.Rows.Add(ListItems);
+                }
+                return dt;
+        }
+
+        /// Armando un data table para la carga de los archivos
+        private DataTable armandoColumnas()
+        {
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("Nombre cliente");
+            dt.Columns.Add("Zona");
+            dt.Columns.Add("Serial medidor");
+            dt.Columns.Add("Marca medidor");
+            dt.Columns.Add("Modelo medidor");
+
+            return dt;
+        }
 
         protected void cerrar_Click(object sender, EventArgs e)
         {
@@ -123,7 +187,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             bool campos = ValidarCampos();    //Valida campos
             if (campos == true)
             {
-                //agrega_items();             //Agrega items a la tabla
+                agrega_items();             //Agrega items a la tabla
                 bloquea_campos_cant();      //Bloquea campos cantidad/documento
                 desbloquea_campos_grupo();   //Desbloque campos grupo
             }
@@ -146,6 +210,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         protected void bloquea_campos_cant()
         {
             cant_medidores.Disabled = true;     //Bloquea cantidad
+
             //act_cantidad.Enabled = false;       //Bloquea actualizar
         }
 
@@ -156,42 +221,52 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void agrega_items()
         {
-            // Generate rows and cells. 
-            int cant = 1;
-            int numRows =  cant;
-            int numCells = 4;
-            int counter = 1;
-
-            for (int rowNum = 0; rowNum<numRows; rowNum++)
+            if(confirmado.Value == "1")
             {
-                TableRow rw = new TableRow();
-                for (int cellNum = 0; cellNum<numCells; cellNum++)
-                {
-                    TableCell cel = new TableCell();
-                    if(cellNum == 0)
-                    {
-                        cel.Text = serial.Value.ToString();
-                    }
-                    if (cellNum == 1)
-                    {
-                        cel.Text = nombreGrupo.Text.ToString();
-                    }
-                    if (cellNum == 2)
-                    {
-                        cel.Text = zona.SelectedValue.ToString();
-                    }
-                    if (cellNum == 3)
-                    {
-                        cel.Text = codigos.SelectedValue.ToString();
-                    }
-                        rw.Cells.Add(cel);
-                    counter++;
-                }
-                /*Table1.Rows.Add(rw);
-                Table1.GridLines = GridLines.Both;
-                Table1.CellPadding = 4;
-                Table1.CellSpacing = 0;*/
+                calcula_contadores();   //Calcula los valores de contadores
+                llenar_tabla();  //Dibuja item
+                limpia_campos(); //Limpi los campos
             }
+            verifica_total();
+        }
+
+        protected void limpia_campos()
+        {
+            zona.SelectedValue = "Seleccione...";
+            serial.Value = "";
+            marca.SelectedValue = "Seleccione...";
+            modelo.SelectedValue = "Seleccione...";
+            codigos.SelectedValue = "Seleccione...";
+            nombreGrupo.Text = "";
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>document.getElementById('Contenido_confirmado').value = 0;</script>");
+        }
+        protected void verifica_total()
+        {
+            int tot = int.Parse(cant_medidores.Value.ToString());
+            int list = int.Parse(listados.Value.ToString());
+            if (list < tot)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>document.getElementById('agregar_dispositivo').disabled = false;</script>");
+            }
+        }
+
+        protected void calcula_contadores()
+        {
+            //Suma, resta, saldo de contadores de items
+            int tot = int.Parse(cant_medidores.Value.ToString());
+            int list = int.Parse(listados.Value.ToString());
+            list = list + 1;
+            int fal = tot - list;
+            //Pone los valores en los campos
+            string strTot = tot.ToString();
+            string strList = list.ToString();
+            string strFal = fal.ToString();
+            total.Value = strTot;
+            total_mask.Text = strTot;
+            listados.Value = strList;
+            listados_mask.Text = strList;
+            faltantes.Value = strFal;
+            faltantes_mask.Text = strFal;
         }
 
         public bool ValidarCampos()
@@ -308,8 +383,9 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
                 //nomGrupo = nomGrupo + fase.SelectedItem.Value.Substring(0, 1); //Toma el valor de fase
                 //nomGrupo = nomGrupo + energia.SelectedItem.Value.Substring(0, 1); //Toma el valor de energia
                 nombreGrupo.Text = nomGrupo;    //Pone valor a campo nombre grupo
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#modalSerial').modal('show');</script>");
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('hide');</script>");
+                agrega_items();
+                confirmado.Value = "1";
+                //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('hide');</script>");
                 //Response.Redirect("Medidores.aspx?nomGrupo=" + nombreGrupo.Value); //Redirecciona a medidores
             }
             else
@@ -323,11 +399,12 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             bool campo = ValidarCamposSerial();
             if (campo == true)
             {
+                /*
                 ok.Value = "1";    //Pone valor a campo ok
                 bloquea_campos_cant();
                 agrega_items();
                 agrega_array();
-                activa_agregar();
+                activa_agregar();*/
             } else
             {
                 //error.Visible = true;

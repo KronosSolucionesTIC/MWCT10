@@ -1,4 +1,16 @@
 ﻿$(function () {
+    $(document).ready(function () {
+        /* Act on the event */
+        tot = $('#Contenido_total').val();
+        lis = $('#Contenido_listados').val();
+
+        if (lis < tot) {
+            document.getElementById("Contenido_agregar_dispositivo").disabled = false;
+        }
+        if (lis == tot) {
+            document.getElementById("Contenido_guardar").disabled = false;
+        }
+    });
     $('#continuar').click(function (event) {
         /* Act on the event */
         console.log('Entro');
@@ -7,9 +19,9 @@
     $('#Contenido_cant_medidores').on('input', function () {
         this.value = this.value.replace(/[^0-9]/g, '');
         if (this.value > 0) {
-            document.getElementById("agregar_dispositivo").disabled = false;
+            document.getElementById("Contenido_agregar_dispositivo").disabled = false;
         } else {
-            document.getElementById("agregar_dispositivo").disabled = true;
+            document.getElementById("Contenido_agregar_dispositivo").disabled = true;
         }
     });
     //Funcion para habilitar boton

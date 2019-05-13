@@ -80,38 +80,7 @@
       </div>
       <div class="modal-footer">
         <asp:Button runat="server" Text="Cancelar" id="cancelar" class="btn btn-danger" Width="150px" data-dismiss="modal"></asp:Button>
-        <asp:Button runat="server" Text="Continuar" id="grupo_ok" class="btn btn-success" Width="150px" onClick="continuar_Click"/></asp:Button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="modalSerial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalSerialLabel">Definir Serial</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
- <div class="row">
-        <div class="col-12">
-    <div class="row">
-        <div class="col-12">
-            
-            <br />
-
-             <asp:TextBox runat="server" id="TxtError"></asp:TextBox>
-            <asp:HiddenField ID="ok" runat="server" value="0"/>
-        </div>
-    </div>
-        </div>
-    </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <asp:Button runat="server" Text="Continuar" id="Button1" class="btn btn-success" Width="150px" onClick="asignaSerial"/></asp:Button>
+        <asp:Button runat="server" Text="Aceptar" id="grupo_ok" class="btn btn-success" Width="150px" onClick="continuar_Click"/></asp:Button>
       </div>
     </div>
   </div>

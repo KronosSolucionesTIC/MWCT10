@@ -23,7 +23,7 @@
      </div>
      <div class="row">
          <div class="col-lg-6 text-center">
-            <button disabled type="button" ID="agregar_dispositivo" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLive">
+            <button disabled type="button" ID="agregar_dispositivo" runat="server" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLive">
                 Agregar dispositivo
             </button>
          </div>
@@ -80,38 +80,7 @@
       </div>
       <div class="modal-footer">
         <asp:Button runat="server" Text="Cancelar" id="cancelar" class="btn btn-danger" Width="150px" data-dismiss="modal"></asp:Button>
-        <asp:Button runat="server" Text="Continuar" id="grupo_ok" class="btn btn-success" Width="150px" onClick="continuar_Click"/></asp:Button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="modalSerial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalSerialLabel">Definir Serial</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
- <div class="row">
-        <div class="col-12">
-    <div class="row">
-        <div class="col-12">
-            
-            <br />
-
-             <asp:TextBox runat="server" id="TxtError"></asp:TextBox>
-            <asp:HiddenField ID="ok" runat="server" value="0"/>
-        </div>
-    </div>
-        </div>
-    </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <asp:Button runat="server" Text="Continuar" id="Button1" class="btn btn-success" Width="150px" onClick="asignaSerial"/></asp:Button>
+        <asp:Button runat="server" Text="Aceptar" id="grupo_ok" class="btn btn-success" Width="150px" onClick="continuar_Click"/></asp:Button>
       </div>
     </div>
   </div>
@@ -130,14 +99,35 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <div style="overflow: scroll">        
-                <asp:GridView ID="gv2" runat="server" CssClass="tabla">
+            <div style="overflow:scroll;width:100%;height:300px;">        
+                <asp:GridView ID="gv2" CssClass="tabla" runat="server" Height="300px">
                 </asp:GridView>
             </div>
         </div>
     </div>
     <div class="row">
+        <div class="col-lg-4 text-center">
+            <div class="alert alert-warning" role="alert">
+                Total medidores <asp:Label id="total_mask" class="contadores" runat="server" Text="0"></asp:Label>
+                <input type="hidden" id="total" value="0" runat="server" />
+            </div>
+        </div>
+        <div class="col-lg-4 text-center">
+            <div class="alert alert-warning" role="alert">
+                Listados <asp:Label id="listados_mask" class="contadores" runat="server" Text="0"></asp:Label>
+                <input type="hidden" id="listados" value="0" runat="server" />
+            </div>
+        </div>
+        <div class="col-lg-4 text-center">
+            <div class="alert alert-warning" role="alert">
+                Faltantes <asp:Label id="faltantes_mask" class="contadores" runat="server" Text="0"></asp:Label>
+                <input type="hidden" id="faltantes" value="0" runat="server" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-12 text-center">
+            <input type="hidden" id="confirmado" value="0" runat="server" />
             <input type="button" disabled ID="guardar" runat="server" Value="Guardar" Class="btn btn-success" OnClick="actualizar_Click" />
         </div>
     </div>
