@@ -651,3 +651,7 @@ div.dhtmlx_window_active, div.dhx_modal_cover_dv {
         background: #0096C8;
         color: white;
     }
+.contadores {
+    background-color:transparent;
+    font-weight:bold;
+}

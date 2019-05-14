@@ -13,7 +13,6 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //llenar_index();
             Consulta ci = new Consulta();               //Crea una instancia de clase
             string usu = Convert.ToString(Session["Login"]); //Lee la variable Session
             ci.Usuario = usu;                           //Pasa el valor de usuario
@@ -25,8 +24,9 @@ namespace CapaPresentacion
 
             if (!IsPostBack)
             {
-                llenar_marca();         //Pasa funcion para llenar lista
-                llenar_modelo();        //Pasa funcion para llenar lista
+                llenar_index();       //Llena la tabla inicial
+                llenar_marca();       //Pasa funcion para llenar lista
+                llenar_modelo();      //Pasa funcion para llenar lista
                 llenar_zona();        //Pasa funcion para llenar lista
                 llenar_codigos();     //Pasa funcion para llenar lista 
                 llenar_ayuda();       //Pasa funcion para llenar lista
@@ -70,7 +70,7 @@ namespace CapaPresentacion
 
         private DataTable getDataTableTxt(List<string> lista)
         {
-            DataTable dt = armandoColumnDataTable();
+            DataTable dt = armandoColumnas();
             int cont = 0;
             foreach (string item in lista)
             {
@@ -81,20 +81,6 @@ namespace CapaPresentacion
                 }
                 cont++;
             }
-            return dt;
-        }
-
-        /// Armando un data table para la carga de los archivos
-        private DataTable armandoColumnDataTable()
-        {
-            DataTable dt = new System.Data.DataTable();
-
-            dt.Columns.Add("Nombre cliente");
-            dt.Columns.Add("Zona");
-            dt.Columns.Add("Serial medidor");
-            dt.Columns.Add("Marca medidor");
-            dt.Columns.Add("Modelo medidor");
-
             return dt;
         }
 
@@ -112,7 +98,7 @@ namespace CapaPresentacion
 
             
             int lis = int.Parse(listados.Value.ToString());
-            if (lis > 0)
+            if (lis > 1)
             {
                 //Recorro array validando registros
                 foreach (GridViewRow row in gv2.Rows)
@@ -145,7 +131,7 @@ namespace CapaPresentacion
 
         private DataTable getMedidor(List<string> lista)
         {
-                DataTable dt = armandoColumnDataTable();
+                DataTable dt = armandoColumnas();
                 foreach (string item in lista)
                 {
                    string[] ListItems = item.Split(';');
@@ -153,6 +139,43 @@ namespace CapaPresentacion
                 }
                 return dt;
         }
+
+        private void llenar_tabla_ultimo()
+        {
+            List<string> lista = dibujaItemUltimo();
+            DataTable dt = getMedidor(lista);
+            gv2.DataSource = dt;
+            gv2.DataBind();
+        }
+
+        private List<string> dibujaItemUltimo()
+        {
+            List<string> listaLine = new List<string>();
+
+
+            int lis = int.Parse(listados.Value.ToString());
+            if (lis > 0)
+            {
+                //Recorro array validando registros
+                foreach (GridViewRow row in gv2.Rows)
+                {
+                    string cli = row.Cells[0].Text;
+                    string zon = row.Cells[1].Text;
+                    string ser = row.Cells[2].Text;
+                    string mar = row.Cells[3].Text;
+                    string mod = row.Cells[4].Text;
+
+                    listaLine.Add(cli + ";" + zon + ";" + ser + ";" + mar + ";" + mod);
+                }
+                int total = listaLine.Count;
+                total = total - 1;
+                //listaLine.RemoveAt(total);
+            }
+
+            return listaLine;
+        }
+        /// Obtiene el data table de un archivo con extension .csv que se leyo previamente
+        /// <param name="lista">Lista de datos del archivo csv</param>
 
         /// Armando un data table para la carga de los archivos
         private DataTable armandoColumnas()
@@ -177,20 +200,24 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             Response.Redirect("Login.aspx");
         }
 
+
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("DefinirGrupo.aspx"); //Direcciona a definicion de grupo
         }
 
-        protected void actualizar_Click(object sender, EventArgs e)
+        protected void ingresa_tarea()
         {
-            bool campos = ValidarCampos();    //Valida campos
-            if (campos == true)
-            {
-                agrega_items();             //Agrega items a la tabla
-                bloquea_campos_cant();      //Bloquea campos cantidad/documento
-                desbloquea_campos_grupo();   //Desbloque campos grupo
-            }
+            Tareas gt = new Tareas();               //Crea una instancia de clase    
+            gt.Cliente = "3";                            //Pasa el valor de la lista
+            gt.Zona = "1";                          //Pasa el valor de la lista
+            gt.Codigo = "2";                            //Pasa el valor de la lista
+            gt.Documento = "PRUEBA";     //Pasa el valor de la lista
+            gt.Serial = "ABC";     //Pasa el valor de la lista
+            gt.Marca = "IMESAS";     //Pasa el valor de la lista
+            gt.Modelo = "IMEHF1";     //Pasa el valor de la lista
+            string ok = gt.getGuardarTarea();
+            Response.Redirect("Creacion.aspx");
         }
 
         protected void llenar_marca()
@@ -225,7 +252,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             {
                 calcula_contadores();   //Calcula los valores de contadores
                 llenar_tabla();  //Dibuja item
-                limpia_campos(); //Limpi los campos
+                limpia_campos(); //Limpia los campos
             }
             verifica_total();
         }
@@ -371,26 +398,11 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void continuar_Click(object sender, EventArgs e)
         {
-            //error.Visible = true;
             bool campo = ValidarCamposGrupo();
             if (campo == true)
             {
-                string nomGrupo = "";   //Variable para nombre de grupo
-                nomGrupo = marca.SelectedItem.Value.Substring(0, 3); //Toma los 3 primeros de marca
-                int cantModelo = modelo.SelectedItem.Value.Length; //Cantidad de caracteres de filtro modelo
-                int index = cantModelo - 4; //Le resta 4 a ese total
-                nomGrupo = nomGrupo + modelo.SelectedItem.Value.Substring(index, 4); //Toma los 4 ultimos de modelo
-                //nomGrupo = nomGrupo + fase.SelectedItem.Value.Substring(0, 1); //Toma el valor de fase
-                //nomGrupo = nomGrupo + energia.SelectedItem.Value.Substring(0, 1); //Toma el valor de energia
-                nombreGrupo.Text = nomGrupo;    //Pone valor a campo nombre grupo
                 agrega_items();
                 confirmado.Value = "1";
-                //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('hide');</script>");
-                //Response.Redirect("Medidores.aspx?nomGrupo=" + nombreGrupo.Value); //Redirecciona a medidores
-            }
-            else
-            {
-                //error.Visible = true;
             }
         }
 
@@ -424,6 +436,8 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         {
             //habilitar_grupo.Disabled = true;    //Deshabilita boton de habilitar grupo
         }
+
+
 
         protected void llenar_ayuda()
         {
@@ -467,6 +481,16 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         protected void ImageButton3_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("Archivo.aspx");//Redirecciona cargue por archivo plano
+        }
+
+        protected void eliminar_Click(object sender, EventArgs e)
+        {
+            llenar_tabla_ultimo(); //Funcion para eliminar registro
+        }
+
+        protected void envia(object sender, EventArgs e)
+        {
+            ingresa_tarea();
         }
     }
 }

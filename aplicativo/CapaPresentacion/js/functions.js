@@ -3,12 +3,18 @@
         /* Act on the event */
         tot = $('#Contenido_total').val();
         lis = $('#Contenido_listados').val();
+        console.log(lis);
 
         if (lis < tot) {
             document.getElementById("Contenido_agregar_dispositivo").disabled = false;
         }
-        if (lis == tot) {
-            document.getElementById("Contenido_guardar").disabled = false;
+        if (lis == tot & tot > 0) {
+            console.log('Ingresa');
+            $('#Contenido_guardar').removeAttr('disabled');
+            console.log('Sale');
+        }
+        if (lis > 0) {
+            document.getElementById("Contenido_eliminar_dispositivo").disabled = false;
         }
     });
     $('#continuar').click(function (event) {

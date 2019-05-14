@@ -73,7 +73,7 @@ namespace CapaPresentacion {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton eliminar_dispositivo;
+        protected global::System.Web.UI.HtmlControls.HtmlButton eliminar_dispositivo;
         
         /// <summary>
         /// Control Doc_Ent.
@@ -175,31 +175,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Button cancelar;
         
         /// <summary>
-        /// Control grupo_ok.
+        /// Control cancelar_eliminar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button grupo_ok;
+        protected global::System.Web.UI.WebControls.Button cancelar_eliminar;
         
         /// <summary>
-        /// Control Item_actual.
+        /// Control aceptar_eliminar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField Item_actual;
-        
-        /// <summary>
-        /// Control Saldo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField Saldo;
+        protected global::System.Web.UI.WebControls.Button aceptar_eliminar;
         
         /// <summary>
         /// Control gv2.
@@ -280,6 +271,6 @@ namespace CapaPresentacion {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton guardar;
+        protected global::System.Web.UI.WebControls.Button guardar;
     }
 }

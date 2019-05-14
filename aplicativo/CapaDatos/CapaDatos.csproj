@@ -49,6 +49,7 @@
     <Compile Include="LogeoDAO.cs" />
     <Compile Include="MedidorDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TareasDAO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
