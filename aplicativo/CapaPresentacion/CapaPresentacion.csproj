@@ -230,6 +230,7 @@
     <Content Include="DiseñoWeb\assets\scss\now-ui-dashboard\_tables.scss" />
     <Content Include="DiseñoWeb\assets\scss\now-ui-dashboard\_typography.scss" />
     <Content Include="DiseñoWeb\assets\scss\now-ui-dashboard\_variables.scss" />
+    <Content Include="Registro.aspx" />
     <Content Include="Site1.Master" />
     <Content Include="Creacion.aspx" />
     <Content Include="Medidores.aspx" />
@@ -306,6 +307,13 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registro.aspx.cs">
+      <DependentUpon>Registro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registro.aspx.designer.cs">
+      <DependentUpon>Registro.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

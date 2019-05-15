@@ -37,10 +37,6 @@ namespace CapaPresentacion
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('show');</script>");
                 }
                 bloquea_campos_cant();
-                /*if (ok.Value == "0")
-                {
-                    //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#modalSerial').modal('show');</script>");
-                }*/
             }
         }
 
@@ -59,7 +55,7 @@ namespace CapaPresentacion
 
                 for (int a=0; a<20; a++)
                 {
-                    listaLine.Add(";;;;");
+                    listaLine.Add(";;;;;");
                     counter++;
                 }
 
@@ -105,11 +101,12 @@ namespace CapaPresentacion
                 {
                     string cli = row.Cells[0].Text;
                     string zon = row.Cells[1].Text;
-                    string ser = row.Cells[2].Text;
-                    string mar = row.Cells[3].Text;
-                    string mod = row.Cells[4].Text;
+                    string cod = row.Cells[2].Text;
+                    string ser = row.Cells[3].Text;
+                    string mar = row.Cells[4].Text;
+                    string mod = row.Cells[5].Text;
 
-                    listaLine.Add(cli + ";" + zon + ";" + ser + ";" + mar + ";" + mod);
+                    listaLine.Add(cli + ";" + zon + ";" + cod + ";" + ser + ";" + mar + ";" + mod);
                 }
             }
 
@@ -117,11 +114,12 @@ namespace CapaPresentacion
             {
                 string cli = cliente.Text.ToString();
                 string zon = zona.SelectedValue.ToString();
+                string cod = codigos.SelectedValue.ToString();
                 string ser = serial.Value.ToString();
                 string mar = marca.SelectedValue.ToString();
                 string mod = modelo.SelectedValue.ToString();
 
-                listaLine.Add(cli + ";" + zon + ";" + ser + ";" + mar + ";" + mod);
+                listaLine.Add(cli + ";" + zon + ";" + cod + ";" + ser + ";" + mar + ";" + mod);
             }
 
             return listaLine;
@@ -131,47 +129,71 @@ namespace CapaPresentacion
 
         private DataTable getMedidor(List<string> lista)
         {
-                DataTable dt = armandoColumnas();
-                foreach (string item in lista)
-                {
-                   string[] ListItems = item.Split(';');
-                   dt.Rows.Add(ListItems);
-                }
-                return dt;
+            DataTable dt = armandoColumnas();
+            foreach (string item in lista)
+            {
+                string[] ListItems = item.Split(';');
+                dt.Rows.Add(ListItems);
+            }
+            return dt;
+        }
+
+        private DataTable getMedidorUltimo(List<string> lista)
+        {
+            DataTable dt = armandoColumnas();
+            foreach (string item in lista)
+            {
+                string[] ListItems = item.Split(';');
+                dt.Rows.Add(ListItems);
+            }
+            return dt;
         }
 
         private void llenar_tabla_ultimo()
         {
-            List<string> lista = dibujaItemUltimo();
-            DataTable dt = getMedidor(lista);
-            gv2.DataSource = dt;
-            gv2.DataBind();
+            int lis = int.Parse(listados.Value.ToString());
+            if (lis == 1)
+            {
+                List<string> lista = leerArchivoTxt();
+                DataTable dt = getDataTableTxt(lista);
+                gv2.DataSource = dt;
+                gv2.DataBind();
+            } else
+            {
+                List<string> lista = dibujaItemUltimo();
+                DataTable dt = getMedidorUltimo(lista);
+                gv2.DataSource = dt;
+                gv2.DataBind();
+            }
         }
 
         private List<string> dibujaItemUltimo()
         {
             List<string> listaLine = new List<string>();
 
-
             int lis = int.Parse(listados.Value.ToString());
             if (lis > 0)
             {
                 //Recorro array validando registros
+                int count = 0;
                 foreach (GridViewRow row in gv2.Rows)
                 {
                     string cli = row.Cells[0].Text;
                     string zon = row.Cells[1].Text;
-                    string ser = row.Cells[2].Text;
-                    string mar = row.Cells[3].Text;
-                    string mod = row.Cells[4].Text;
+                    string cod = row.Cells[2].Text;
+                    string ser = row.Cells[3].Text;
+                    string mar = row.Cells[4].Text;
+                    string mod = row.Cells[5].Text;
 
-                    listaLine.Add(cli + ";" + zon + ";" + ser + ";" + mar + ";" + mod);
+                    listaLine.Insert(count,cli + ";" + zon + ";" + cod + ";" + ser + ";" + mar + ";" + mod);
+                    count++;
                 }
-                int total = listaLine.Count;
-                total = total - 1;
-                //listaLine.RemoveAt(total);
             }
 
+            int total = listaLine.Count;
+            int index = total - 1;
+
+            listaLine.RemoveAt(index);
             return listaLine;
         }
         /// Obtiene el data table de un archivo con extension .csv que se leyo previamente
@@ -184,6 +206,7 @@ namespace CapaPresentacion
 
             dt.Columns.Add("Nombre cliente");
             dt.Columns.Add("Zona");
+            dt.Columns.Add("Codigo entrada");
             dt.Columns.Add("Serial medidor");
             dt.Columns.Add("Marca medidor");
             dt.Columns.Add("Modelo medidor");
@@ -208,16 +231,46 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void ingresa_tarea()
         {
-            Tareas gt = new Tareas();               //Crea una instancia de clase    
-            gt.Cliente = "3";                            //Pasa el valor de la lista
-            gt.Zona = "1";                          //Pasa el valor de la lista
-            gt.Codigo = "2";                            //Pasa el valor de la lista
-            gt.Documento = "PRUEBA";     //Pasa el valor de la lista
-            gt.Serial = "ABC";     //Pasa el valor de la lista
-            gt.Marca = "IMESAS";     //Pasa el valor de la lista
-            gt.Modelo = "IMEHF1";     //Pasa el valor de la lista
-            string ok = gt.getGuardarTarea();
-            Response.Redirect("Creacion.aspx");
+            confirmado.Value = "1";
+            //Recorro array validando registros
+            foreach (GridViewRow row in gv2.Rows)
+            {
+                string cli = row.Cells[0].Text;
+                string zon = row.Cells[1].Text;
+                string cod = row.Cells[2].Text;
+                string ser = row.Cells[3].Text;
+                string mar = row.Cells[4].Text;
+                string mod = row.Cells[5].Text;
+
+                Tareas gt = new Tareas();                           //Crea una instancia de clase 
+                string usu = Convert.ToString(Session["Login"]);    //Lee la variable Session
+                gt.Usuario = usu;                                   //Pasa el valor de usuario
+                string Cliente = gt.getIdCliente();                 //Pasa el metodo getId para validar si existe el usuario  
+                gt.Cliente = Cliente;                               //Pasa el valor de la lista
+                gt.Zona_texto = zon;                                //Pasa el texto de campo zona
+                string id_zona = gt.getIdZona();                    //Consulta el ID de zona
+                gt.Zona = id_zona;                                  //Pasa el ID de zona
+                gt.Codigo_texto = cod;                              //Pasa el texto de campo codigos
+                string id_codigo = gt.getIdCodigo();                //Consulta el ID de codigos
+                gt.Codigo = id_codigo;                              //Pasa el ID de codigos
+                string doc = gt.getCreateDocumento();
+                Session["documento"] = doc;
+                gt.Documento = gt.getCreateDocumento();             //Pasa el valor de la lista
+                gt.Serial = ser;                                    //Pasa el valor del serial
+                gt.Marca = mar;                                     //Pasa el valor de la marca
+                gt.Modelo = mod;                                    //Pasa el valor del modelo
+                Session["respuesta"] = gt.getGuardarTarea();                 //Toma el resultado del ingreso
+            }
+            if (Convert.ToString(Session["respuesta"]) == "")
+            {
+                Tareas gt = new Tareas();                           //Crea una instancia de clase 
+                string usu = Convert.ToString(Session["Login"]);    //Lee la variable Session
+                gt.Usuario = usu;                                   //Pasa el valor de usuario
+                string Cliente = gt.getIdCliente();                 //Pasa el metodo getId para validar si existe el usuario
+                gt.getIncrementaDocEntry();                         //Incrementa en uno el DOC-ENTRY
+                gt.getRegistroOk();                                 //Registra en LOG el ok
+                Response.Redirect("Registro.aspx");
+            }
         }
 
         protected void llenar_marca()
@@ -250,7 +303,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         {
             if(confirmado.Value == "1")
             {
-                calcula_contadores();   //Calcula los valores de contadores
+                suma_contadores();   //Calcula los valores de contadores
                 llenar_tabla();  //Dibuja item
                 limpia_campos(); //Limpia los campos
             }
@@ -277,12 +330,31 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             }
         }
 
-        protected void calcula_contadores()
+        protected void suma_contadores()
         {
             //Suma, resta, saldo de contadores de items
             int tot = int.Parse(cant_medidores.Value.ToString());
             int list = int.Parse(listados.Value.ToString());
             list = list + 1;
+            int fal = tot - list;
+            //Pone los valores en los campos
+            string strTot = tot.ToString();
+            string strList = list.ToString();
+            string strFal = fal.ToString();
+            total.Value = strTot;
+            total_mask.Text = strTot;
+            listados.Value = strList;
+            listados_mask.Text = strList;
+            faltantes.Value = strFal;
+            faltantes_mask.Text = strFal;
+        }
+
+        protected void resta_contadores()
+        {
+            //Suma, resta, saldo de contadores de items
+            int tot = int.Parse(cant_medidores.Value.ToString());
+            int list = int.Parse(listados.Value.ToString());
+            list = list - 1;
             int fal = tot - list;
             //Pone los valores en los campos
             string strTot = tot.ToString();
@@ -347,11 +419,6 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             modelo.DataTextField = "NAME_MODEL";     //Selecciona el campo a mostrar
             modelo.DataValueField = "NAME_MODEL";    //Selecciona el campo para el valor
             modelo.DataBind();
-        }
-
-        protected void mostrar_errores()
-        {
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#error').show();</script>"); //Esconde los alert   
         }
 
         public bool ValidarCamposGrupo()
@@ -485,7 +552,8 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void eliminar_Click(object sender, EventArgs e)
         {
-            llenar_tabla_ultimo(); //Funcion para eliminar registro
+            llenar_tabla_ultimo();  //Funcion para eliminar registro
+            resta_contadores();     //Resta los contadores
         }
 
         protected void envia(object sender, EventArgs e)

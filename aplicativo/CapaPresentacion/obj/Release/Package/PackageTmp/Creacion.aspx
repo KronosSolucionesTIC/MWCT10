@@ -28,7 +28,9 @@
             </button>
          </div>
          <div class="col-lg-6 text-center">
-            <input disabled type="button" ID="eliminar_dispositivo" runat="server" Value="Eliminar Dispositivo" Class="btn btn-danger" />
+            <button disabled type="button" runat="server" id="eliminar_dispositivo" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal">
+                Eliminar dispositivo
+            </button>
          </div>
      </div>
 <div class="modal fade" id="exampleModalLive" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -59,7 +61,7 @@
         <asp:DropDownList ID="codigos" class="cajas" runat="server" >
         </asp:DropDownList>       
         <asp:Label runat="server">Serial</asp:Label>
-        <input type="text" ID="serial" runat="server" placeholder="Serial Medidor" required />
+        <input type="text" ID="serial" runat="server" placeholder="Serial Medidor"/>
     <br />
                         <asp:Button ID="ayuda" runat="server" Text="Ayuda" class="btn btn-warning" Width="150px" OnClick="ayuda_Click"/>
             <br />
@@ -80,7 +82,28 @@
       </div>
       <div class="modal-footer">
         <asp:Button runat="server" Text="Cancelar" id="cancelar" class="btn btn-danger" Width="150px" data-dismiss="modal"></asp:Button>
-        <asp:Button runat="server" Text="Aceptar" id="grupo_ok" class="btn btn-success" Width="150px" onClick="continuar_Click"/></asp:Button>
+        <asp:Button runat="server" Text="Aceptar" class="btn btn-success" Width="150px" onClick="continuar_Click"></asp:Button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eliminarModalLabel">Eliminar dispositivo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Esta operación eliminará el ultimo registro ingresado.<br />
+        ¿Desea continuar?
+      </div>
+      <div class="modal-footer">
+        <asp:Button runat="server" Text="No" id="cancelar_eliminar" class="btn btn-danger" Width="150px" data-dismiss="modal"></asp:Button>
+        <asp:Button runat="server" Text="Si" id="aceptar_eliminar" class="btn btn-success" Width="150px" onClick="eliminar_Click"></asp:Button>
       </div>
     </div>
   </div>
@@ -89,12 +112,6 @@
         <div class="col-6 text-center">
         </div>
         <div class="col-6 text-center">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <asp:HiddenField ID="Item_actual" runat="server" value="0"/>
-            <asp:HiddenField ID="Saldo" runat="server"/>
         </div>
     </div>
     <div class="row">
@@ -128,7 +145,7 @@
     <div class="row">
         <div class="col-lg-12 text-center">
             <input type="hidden" id="confirmado" value="0" runat="server" />
-            <input type="button" disabled ID="guardar" runat="server" Value="Guardar" Class="btn btn-success" OnClick="actualizar_Click" />
+            <asp:Button ID="guardar" Enabled="false" runat="server" Text="Guardar" OnClick="envia" CssClass="btn btn-success" />
         </div>
     </div>
 </asp:Content>
