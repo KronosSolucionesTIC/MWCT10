@@ -102,8 +102,8 @@
         ¿Desea continuar?
       </div>
       <div class="modal-footer">
-        <asp:Button runat="server" Text="No" id="cancelar_eliminar" class="btn btn-danger" Width="150px" data-dismiss="modal"></asp:Button>
-        <asp:Button runat="server" Text="Si" id="aceptar_eliminar" class="btn btn-success" Width="150px" onClick="eliminar_Click"></asp:Button>
+        <asp:Button runat="server" Text="No" id="Button1" class="btn btn-danger" Width="150px" data-dismiss="modal"></asp:Button>
+        <asp:Button runat="server" Text="Si" id="Button2" class="btn btn-success" Width="150px" onClick="eliminar_Click"></asp:Button>
       </div>
     </div>
   </div>
@@ -118,7 +118,7 @@
         <div class="col-12">
             <div style="overflow:scroll;width:100%;height:300px;">        
                 <asp:GridView ID="gv2" CssClass="tabla" runat="server" Height="300px">
-                </asp:GridView>
+                </asp:GridView>                
             </div>
         </div>
     </div>

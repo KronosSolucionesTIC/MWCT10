@@ -32,9 +32,14 @@ namespace CapaPresentacion
                 llenar_ayuda();       //Pasa funcion para llenar lista
             }
             else {
-                if (confirmado.Value == "0")
+                bool ok = ValidarCamposGrupo();
+                if(ok == false)
                 {
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('show');</script>");
+                } else
+                {
+                    agrega_items();
+                    confirmado.Value = "1";
                 }
                 bloquea_campos_cant();
             }
@@ -270,6 +275,17 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
                 gt.getIncrementaDocEntry();                         //Incrementa en uno el DOC-ENTRY
                 gt.getRegistroOk();                                 //Registra en LOG el ok
                 Response.Redirect("Registro.aspx");
+            } else
+            {
+                /*
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#failModal').modal('show');</script>");
+                /*Tareas gt = new Tareas();                           //Crea una instancia de clase 
+                string usu = Convert.ToString(Session["Login"]);    //Lee la variable Session
+                gt.Usuario = usu;                                   //Pasa el valor de usuario
+                string Cliente = gt.getIdCliente();                 //Pasa el metodo getId para validar si existe el usuario
+                gt.getIncrementaDocEntry();                         //Incrementa en uno el DOC-ENTRY
+                gt.getRegistroFail();                                 //Registra en LOG el ok
+                //Response.Redirect("Registro.aspx");*/
             }
         }
 
@@ -301,12 +317,9 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void agrega_items()
         {
-            if(confirmado.Value == "1")
-            {
-                suma_contadores();   //Calcula los valores de contadores
-                llenar_tabla();  //Dibuja item
-                limpia_campos(); //Limpia los campos
-            }
+            suma_contadores();   //Calcula los valores de contadores
+            llenar_tabla();  //Dibuja item
+            limpia_campos(); //Limpia los campos
             verifica_total();
         }
 
@@ -317,7 +330,6 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             marca.SelectedValue = "Seleccione...";
             modelo.SelectedValue = "Seleccione...";
             codigos.SelectedValue = "Seleccione...";
-            nombreGrupo.Text = "";
             Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>document.getElementById('Contenido_confirmado').value = 0;</script>");
         }
         protected void verifica_total()
@@ -427,7 +439,19 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             {
                 return false;
             }
-            else if (this.modelo.Text.Equals("Seleccione..."))
+            if (this.modelo.Text.Equals("Seleccione..."))
+            {
+                return false;
+            }
+            if (this.zona.Text.Equals("Seleccione..."))
+            {
+                return false;
+            }
+            if (this.codigos.Text.Equals("Seleccione..."))
+            {
+                return false;
+            }
+            if (this.serial.Value.Equals(""))
             {
                 return false;
             }
@@ -465,12 +489,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void continuar_Click(object sender, EventArgs e)
         {
-            bool campo = ValidarCamposGrupo();
-            if (campo == true)
-            {
-                agrega_items();
-                confirmado.Value = "1";
-            }
+            
         }
 
         protected void asignaSerial(object sender, EventArgs e)
@@ -524,6 +543,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             this.zona.DataSource = dt;            //Agrega al GridView el dataset
             zona.DataTextField = "NAME_ZONE";     //Selecciona el campo a mostrar
             zona.DataValueField = "NAME_ZONE";    //Selecciona el campo para el valor
+            zona.SelectedValue = "GLOBAL";      //Selecciona por defecto "Global"
             zona.DataBind();
         }
 
@@ -559,6 +579,11 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         protected void envia(object sender, EventArgs e)
         {
             ingresa_tarea();
+        }
+
+        protected void cancelar_click(object sender, EventArgs e)
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#Contenido_agregar_dispostivio').removeAttr('disabled');</script>");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿$(function () {
     $(document).ready(function () {
         /* Act on the event */
+
         tot = $('#Contenido_total').val();
         lis = $('#Contenido_listados').val();
         console.log(lis);
@@ -9,9 +10,7 @@
             document.getElementById("Contenido_agregar_dispositivo").disabled = false;
         }
         if (lis == tot & tot > 0) {
-            console.log('Ingresa');
             $('#Contenido_guardar').removeAttr('disabled');
-            console.log('Sale');
         }
         if (lis > 0) {
             document.getElementById("Contenido_eliminar_dispositivo").disabled = false;
@@ -54,9 +53,13 @@
     $('#Contenido_cancelar').click(function (event) {
         $("#Contenido_marca").val('Seleccione...');
         $("#Contenido_modelo").val('Seleccione...');
+        $("#Contenido_zona").val('GLOBAL');
+        $("#Contenido_codigos").val('Seleccione...');
+        $("#Contenido_serial").val('');
         $("#Contenido_energia").val('0');
         $("#Contenido_fase").val('0');
         $("#Contenido_nombreGrupo").val('');
+        document.getElementById("Contenido_agregar_dispositivo").disabled = false;
     });
     //Validar campos
     $('#Contenido_actualizarSerial').click(function (event) {

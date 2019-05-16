@@ -72,6 +72,39 @@ namespace CapaDatos
             }
 
         }
+        //Procedimiento para saber registrar el acceso
+        public string SP_registro_fail(string id, DateTime fecha,string error)
+        {
+            try
+            {
+                string ok = "";
+
+                SqlDataReader rpt;
+                SqlCommand comando = new SqlCommand("SP_registro_fail", conn);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("@ID_USER", SqlDbType.Int).Value = id;
+                comando.Parameters.Add("@FECHA", SqlDbType.Date).Value = fecha;
+                comando.Parameters.Add("@ERROR", SqlDbType.VarChar).Value = error;
+
+                conn.Open();
+                rpt = comando.ExecuteReader();
+                if (rpt.Read() == true)
+                {
+                    ok = rpt["ID_TBLGWBSYS"].ToString();
+                }
+                return ok;
+            }
+            catch (Exception exc)
+            {
+                return exc.Message;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
         //Procedimiento que incrementa en uno el DOC-ENTRY
         public string SP_incrementa_documento()
         {

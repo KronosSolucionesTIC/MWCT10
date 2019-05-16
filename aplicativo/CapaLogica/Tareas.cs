@@ -146,6 +146,16 @@ namespace CapaLogica
             return ok;
         }
 
+        //Metodo para guardar en el log de registro FAIL
+        public string getRegistroFail()
+        {
+            DateTime fecha = DateTime.Now;
+            string error = "prueba";
+            string cli = getIdCliente();
+            string ok = SP_registro_fail(cli, fecha, error);
+            return ok;
+        }
+
         //Metodo para consultar el DOC_ENTRY
         public string getCreateDocumento()
         {
