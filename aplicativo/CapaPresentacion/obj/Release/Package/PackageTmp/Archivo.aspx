@@ -7,7 +7,7 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="Contenido" runat="server">
     <form id="form1">
-    <div>
+    <div class="text-center">
     
         <asp:FileUpload ID="fuPrueba" Class="btn btn-info" runat="server" />
 &nbsp;&nbsp;&nbsp;
@@ -17,11 +17,46 @@
         <br />
         <asp:GridView ID="gv" runat="server" CssClass="tabla">
         </asp:GridView>
-        <asp:GridView ID="gv3" runat="server">
-        </asp:GridView>
-        <asp:Button ID="btn_guardar" Class="btn btn-success" runat="server" OnClick="salvar_Click" Text="Salvar" />
+        <asp:Button ID="guardar_archivo" Enabled="false" runat="server" Text="Guardar" OnClick="envia" CssClass="btn btn-success" />
 
         <br />
     </div>
+<!-- Modal -->
+<div class="modal fade" id="blancoModal" tabindex="-1" role="dialog" aria-labelledby="blancoModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="blancoModalLabel">Archivo con valores vacios</h5>
+      </div>
+      <div class="modal-body">
+        El archivo contiene valores vacios, rectifique archivo.
+      </div>
+      <div class="modal-footer">
+        <asp:Button runat="server" Text="Continuar" id="Button2" class="btn btn-success" Width="150px" OnClick="limpiar_tabla"></asp:Button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="camposModal" tabindex="-1" role="dialog" aria-labelledby="camposModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="camposModalLabel">Informacion adicional</h5>
+      </div>
+      <div class="modal-body">
+        <asp:Label class="etiquetas" runat="server" Text="Zona"></asp:Label>
+        <asp:DropDownList ID="zona" class="cajas" runat="server" >
+        </asp:DropDownList>
+        <asp:Label class="etiquetas" runat="server" Text="Codigos de error"></asp:Label>
+        <asp:DropDownList ID="codigos" class="cajas" runat="server" >
+        </asp:DropDownList>
+      </div>
+      <div class="modal-footer">
+        <asp:Button runat="server" Text="Continuar" id="Button1" class="btn btn-success" Width="150px" OnClick="completar_tabla"></asp:Button>
+      </div>
+    </div>
+  </div>
+</div>
     </form>
 </asp:Content>

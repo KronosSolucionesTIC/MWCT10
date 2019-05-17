@@ -38,54 +38,71 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Informacion adicional</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
       <div class="modal-body">
- <div class="row">
-        <div class="col-12">
-                <asp:Label runat="server">Informacion adicional</asp:Label>
+    <div class="row">
+        <div class="col-lg-2">
+            <asp:Label ID="Doc_Ent" class="etiquetas" runat="server" Text="Marca medidor"></asp:Label>
+        </div>
+        <div class="col-lg-2">
+            <asp:DropDownList ID="marca" class="cajas" runat="server" OnSelectedIndexChanged="marca_Selected" AutoPostBack="true">
+            </asp:DropDownList>
+        </div>
+        <div class="col-lg-2">
+            <asp:Label ID="Label4" class="etiquetas" runat="server" Text="Modelo medidor"></asp:Label>
+        </div>
+        <div class="col-lg-2">
+            <asp:DropDownList ID="modelo" class="cajas" runat="server" >
+            </asp:DropDownList>
+        </div>
+        <div class="col-lg-2">
+            <asp:Label class="etiquetas" runat="server" Text="Zona"></asp:Label>
+        </div>
+        <div class="col-lg-2">
+            <asp:DropDownList ID="zona" class="cajas" runat="server" >
+            </asp:DropDownList>
+        </div>
+    </div>
     <br />
-    <br />
-    <asp:Label ID="Doc_Ent" class="etiquetas" runat="server" Text="Marca medidor"></asp:Label>
-    <asp:DropDownList ID="marca" class="cajas" runat="server" OnSelectedIndexChanged="marca_Selected" AutoPostBack="true">
-    </asp:DropDownList>
-        <asp:Label ID="Label4" class="etiquetas" runat="server" Text="Modelo medidor"></asp:Label>
-    <asp:DropDownList ID="modelo" class="cajas" runat="server" >
-    </asp:DropDownList>
-        <asp:Label class="etiquetas" runat="server" Text="Zona"></asp:Label>
-        <asp:DropDownList ID="zona" class="cajas" runat="server" >
-        </asp:DropDownList>
-        <asp:Label class="etiquetas" runat="server" Text="Codigos de error"></asp:Label>
-        <asp:DropDownList ID="codigos" class="cajas" runat="server" >
-        </asp:DropDownList>       
-        <asp:Label runat="server">Serial</asp:Label>
-        <input type="text" ID="serial" runat="server" placeholder="Serial Medidor"/>
-    <br />
-                        <asp:Button ID="ayuda" runat="server" Text="Ayuda" class="btn btn-warning" Width="150px" OnClick="ayuda_Click"/>
-            <br />
+    <div class="row">
+        <div class="col-lg-2">
+            <asp:Label class="etiquetas" runat="server" Text="Codigos de error"></asp:Label>
+        </div>
+        <div class="col-lg-2">
+            <asp:DropDownList ID="codigos" class="cajas" runat="server" >
+            </asp:DropDownList>    
+        </div>
+        <div class="col-lg-4">
+            <asp:Button ID="ayuda" runat="server" Text="Ayuda" class="btn btn-warning" Width="150px" OnClick="ayuda_Click"/>
+        </div>
+        <div class="col-lg-2">
+            <asp:Label runat="server" class="etiquetas">Serial</asp:Label>
+        </div>
+        <div class="col-lg-2">
+            <input size="10" class="cajas" type="text" ID="serial" runat="server" placeholder="Serial Medidor"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" GridLines="None"
                 AllowPaging="true" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
                 PageSize="6" Visible="False" >
            
-        <Columns>
-            <asp:BoundField DataField="CODE" HeaderText="Codigo" />
-            <asp:BoundField DataField="DESCRIPTION" HeaderText="Descripcion" />
-        </Columns>
-
+                <Columns>
+                    <asp:BoundField DataField="CODE" HeaderText="Codigo" />
+                    <asp:BoundField DataField="DESCRIPTION" HeaderText="Descripcion" />
+                </Columns>
             </asp:GridView>
-    <asp:TextBox runat="server" ID="nombreGrupo" ReadOnly/>
-    <br />
         </div>
     </div>
-      </div>
       <div class="modal-footer">
-        <asp:Button runat="server" Text="Cancelar" id="cancelar" class="btn btn-danger" Width="150px" data-dismiss="modal"></asp:Button>
+        <asp:Button runat="server" Text="Cancelar" id="cancelar" class="btn btn-danger" Width="150px" data-dismiss="modal" OnClick="cancelar_click"></asp:Button>
         <asp:Button runat="server" Text="Aceptar" class="btn btn-success" Width="150px" onClick="continuar_Click"></asp:Button>
       </div>
     </div>
-  </div>
+  
+    </div>
+    </div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel" aria-hidden="true">
@@ -104,6 +121,23 @@
       <div class="modal-footer">
         <asp:Button runat="server" Text="No" id="Button1" class="btn btn-danger" Width="150px" data-dismiss="modal"></asp:Button>
         <asp:Button runat="server" Text="Si" id="Button2" class="btn btn-success" Width="150px" onClick="eliminar_Click"></asp:Button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="failModal" tabindex="-1" role="dialog" aria-labelledby="failModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="failModalLabel">Registro correcto</h5>
+      </div>
+      <div class="modal-body">
+        No ha sido posible salvar el listado de Medidores.<br />
+        El Acta de Entrada con el que fue registrado el proceso es: <input runat="server" type="text" id="documento" />
+      </div>
+      <div class="modal-footer">
+        <asp:button text="Continuar" class="btn btn-success" runat="server"></asp:button>
       </div>
     </div>
   </div>

@@ -35,6 +35,10 @@ namespace CapaPresentacion
                 bool ok = ValidarCamposGrupo();
                 if(ok == false)
                 {
+                    if(Convert.ToBoolean(Session["marca_error"]) == false)
+                    {
+                        //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#errorMarca').alert();</script>");
+                    }
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('show');</script>");
                 } else
                 {
@@ -321,6 +325,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             llenar_tabla();  //Dibuja item
             limpia_campos(); //Limpia los campos
             verifica_total();
+            Session["existencias"] = true;
         }
 
         protected void limpia_campos()
@@ -437,6 +442,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         {
             if (this.marca.Text.Equals("Seleccione..."))
             {
+                Session["marca_error"]=false;
                 return false;
             }
             if (this.modelo.Text.Equals("Seleccione..."))

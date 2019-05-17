@@ -44,7 +44,13 @@ namespace CapaPresentacion
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("Inicial.aspx");//Redirecciona consulta tarea
+            if (Convert.ToBoolean(Session["existencias"]) == false)
+            {
+                Response.Redirect("Inicial.aspx");//Redirecciona consulta tarea
+            } else
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#consultaModal').modal('show');</script>");
+            }
         }
 
         protected void ImageButton4_Click(object sender, ImageClickEventArgs e)
@@ -55,6 +61,11 @@ namespace CapaPresentacion
         protected void ImageButton3_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("Archivo.aspx");//Redirecciona cargue por archivo plano
+        }
+
+        protected void consulta(object sender, EventArgs e)
+        {
+            Response.Redirect("Inicial.aspx");//Redirecciona consulta tarea
         }
     }
     }
