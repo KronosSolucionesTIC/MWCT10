@@ -39,7 +39,10 @@ namespace CapaPresentacion
                     {
                         //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#errorMarca').alert();</script>");
                     }
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('show');</script>");
+                    if(marca.SelectedValue != "Seleccione...")
+                    {
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('show');</script>");
+                    }
                 } else
                 {
                     agrega_items();

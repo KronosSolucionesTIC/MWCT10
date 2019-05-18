@@ -16,6 +16,7 @@ namespace CapaPresentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["existencias"] = false;
             if (!IsPostBack)
             {
                 llenar_documentos_entrada();        //Pasa funcion para llenar lista
