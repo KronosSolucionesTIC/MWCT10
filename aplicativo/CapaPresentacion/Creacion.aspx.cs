@@ -35,21 +35,24 @@ namespace CapaPresentacion
                 bool ok = ValidarCamposGrupo();
                 if(ok == false)
                 {
-                    if(Convert.ToBoolean(Session["marca_error"]) == false)
-                    {
-                        //Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#errorMarca').alert();</script>");
-                    }
-                    if(marca.SelectedValue != "Seleccione...")
+                    if(elimina.Value == "0")
                     {
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('show');</script>");
-                    }
+                    } 
+                    mostrar_error();
                 } else
                 {
                     agrega_items();
                     confirmado.Value = "1";
+                    cambio_marca.Value = "0";
                 }
                 bloquea_campos_cant();
             }
+        }
+
+        protected void mostrar_error()
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>document.getElementById('Contenido_agregar_dispositivo').style.display = inline;</ script>");
         }
 
         private void llenar_index()
@@ -423,7 +426,8 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         }
 
         protected void marca_Selected(object sender, EventArgs e)
-        {   
+        {
+            cambio_marca.Value = "1";
             llenar_modelo();        //LLena modelo
         }
 
@@ -443,28 +447,56 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         public bool ValidarCamposGrupo()
         {
-            if (this.marca.Text.Equals("Seleccione..."))
+            if (cambio_marca.Value != "0")
             {
-                Session["marca_error"]=false;
-                return false;
+                if (this.marca.Text.Equals("Seleccione..."))
+                {
+                    error_marca.Visible = true;
+                    return false;
+                }
+                else
+                {
+                    error_marca.Visible = false;
+                }
+                if (this.modelo.Text.Equals("Seleccione..."))
+                {
+                    error_modelo.Visible = true;
+                    return false;
+                }
+                else
+                {
+                    error_modelo.Visible = false;
+                }
+                if (this.zona.Text.Equals("Seleccione..."))
+                {
+                    error_zona.Visible = true;
+                    return false;
+                }
+                else
+                {
+                    error_zona.Visible = false;
+                }
+                if (this.codigos.Text.Equals("Seleccione..."))
+                {
+                    error_codigo.Visible = true;
+                    return false;
+                }
+                else
+                {
+                    error_codigo.Visible = false;
+                }
+                if (this.serial.Value.Equals(""))
+                {
+                    error_serial.Visible = true;
+                    return false;
+                }
+                else
+                {
+                    error_serial.Visible = false;
+                }
+                return true;
             }
-            if (this.modelo.Text.Equals("Seleccione..."))
-            {
-                return false;
-            }
-            if (this.zona.Text.Equals("Seleccione..."))
-            {
-                return false;
-            }
-            if (this.codigos.Text.Equals("Seleccione..."))
-            {
-                return false;
-            }
-            if (this.serial.Value.Equals(""))
-            {
-                return false;
-            }
-            return true;
+            return false;
         }
 
         public bool ValidarCamposSerial()
@@ -593,6 +625,14 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         protected void cancelar_click(object sender, EventArgs e)
         {
             Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#Contenido_agregar_dispostivio').removeAttr('disabled');</script>");
+            if(Convert.ToBoolean(Session["existencias"]) == false){
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#Contenido_cant_medidores').removeAttr('disabled');</script>");
+            }
+        }
+
+        protected void eliminar_item(object sender, EventArgs e)
+        {
+            Session["eliminar"] = true;
         }
     }
 }

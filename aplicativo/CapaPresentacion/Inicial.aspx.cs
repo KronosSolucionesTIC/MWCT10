@@ -16,6 +16,7 @@ namespace CapaPresentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["eliminar"] = false;
             Session["existencias"] = false;
             if (!IsPostBack)
             {

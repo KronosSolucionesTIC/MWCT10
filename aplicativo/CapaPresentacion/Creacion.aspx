@@ -31,6 +31,7 @@
             <button disabled type="button" runat="server" id="eliminar_dispositivo" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal">
                 Eliminar dispositivo
             </button>
+             <input type="hidden" id="elimina" value="0" runat="server"/>
          </div>
      </div>
 <div class="modal fade" id="exampleModalLive" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -47,6 +48,7 @@
         <div class="col-lg-2">
             <asp:DropDownList ID="marca" class="cajas" runat="server" OnSelectedIndexChanged="marca_Selected" AutoPostBack="true">
             </asp:DropDownList>
+            <input type="hidden" value="0" runat="server" id="cambio_marca" />
         </div>
         <div class="col-lg-2">
             <asp:Label ID="Label4" class="etiquetas" runat="server" Text="Modelo medidor"></asp:Label>
@@ -79,7 +81,16 @@
             <asp:Label runat="server" class="etiquetas">Serial</asp:Label>
         </div>
         <div class="col-lg-2">
-            <input size="10" class="cajas" type="text" ID="serial" runat="server" placeholder="Serial Medidor"/>
+            <input size="10" class="cajas" type="text" ID="serial" runat="server" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <asp:Label ID="error_marca" Width="100%" runat="server" CssClass="alert alert-danger" Visible="false">Campo "Marca" no puede ser vacio</asp:Label>
+            <asp:Label ID="error_modelo" Width="100%" runat="server" CssClass="alert alert-danger" Visible="false">Campo "Modelo" no puede ser vacio</asp:Label>
+            <asp:Label ID="error_zona" Width="100%" runat="server" CssClass="alert alert-danger" Visible="false">Campo "zona" no puede ser vacio</asp:Label>
+            <asp:Label ID="error_codigo" Width="100%" runat="server" CssClass="alert alert-danger" Visible="false">Campo "Codigo" no puede ser vacio</asp:Label>
+            <asp:Label ID="error_serial" Width="100%" runat="server" CssClass="alert alert-danger" Visible="false">Campo "Serial" no puede ser vacio</asp:Label>
         </div>
     </div>
     <div class="row">
@@ -114,7 +125,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-center">
         Esta operación eliminará el ultimo registro ingresado.<br />
         ¿Desea continuar?
       </div>

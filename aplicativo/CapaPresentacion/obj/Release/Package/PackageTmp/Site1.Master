@@ -71,6 +71,44 @@
       </div>
     </div>
   </div>
+</div>
+ <!-- Modal -->
+<div class="modal fade" id="archivoModal" tabindex="-1" role="dialog" aria-labelledby="archivoModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="archivoModalLabel">Cancelar tarea</h5>
+      </div>
+      <div class="modal-body">
+        Esta operación cancelará la actividad actual.<br />
+        Se perderán toda los datos que no han sido salvados.<br />
+        ¿Desea continuar?<br />
+      </div>
+      <div class="modal-footer">
+        <asp:Button runat="server" Text="No" id="Button5" class="btn btn-danger" Width="150px" data-dismiss="modal"></asp:Button>
+        <asp:Button runat="server" Text="Si" id="Button6" class="btn btn-success" Width="150px" OnClick="archivo"></asp:Button>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- Modal -->
+<div class="modal fade" id="creacionModal" tabindex="-1" role="dialog" aria-labelledby="creacionModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="creacionModalLabel">Cancelar tarea</h5>
+      </div>
+      <div class="modal-body">
+        Esta operación cancelará la actividad actual.<br />
+        Se perderán toda los datos que no han sido salvados.<br />
+        ¿Desea continuar?<br />
+      </div>
+      <div class="modal-footer">
+        <asp:Button runat="server" Text="No" id="Button3" class="btn btn-danger" Width="150px" data-dismiss="modal"></asp:Button>
+        <asp:Button runat="server" Text="Si" id="Button4" class="btn btn-success" Width="150px" OnClick="creacion"></asp:Button>
+      </div>
+    </div>
+  </div>
 </div> 
         </form>     
 </body>
