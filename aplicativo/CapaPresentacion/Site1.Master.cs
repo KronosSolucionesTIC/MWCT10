@@ -13,66 +13,10 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-                if (Session["Login"] == null)
+            if (Session["Login"] == null)
             {
-
-
                 Session.RemoveAll();
-
                 Response.Redirect("Login.aspx");
-            }
-
-        }
-
-
-
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ciudad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ciudad_SelectedIndexChanged1(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
-        {
-            if (Convert.ToBoolean(Session["existencias"]) == true)
-            {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#consultaModal').modal('show');</script>");
-            } else
-            {
-                Response.Redirect("Inicial.aspx");//Redirecciona consulta tarea
-            }
-        }
-
-        protected void ImageButton4_Click(object sender, ImageClickEventArgs e)
-        {
-            if (Convert.ToBoolean(Session["existencias"]) == true)
-            {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#creacionModal').modal('show');</script>");
-            } else
-            {
-                Response.Redirect("Creacion.aspx");//Redirecciona consulta tarea
-            }
-        }
-
-        protected void ImageButton3_Click(object sender, ImageClickEventArgs e)
-        {
-            if (Convert.ToBoolean(Session["existencias"]) == true)
-            {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#archivoModal').modal('show');</script>");
-            }
-            else
-            {
-                Response.Redirect("Archivo.aspx");//Redirecciona cargue por archivo plano
             }
         }
 
@@ -90,6 +34,42 @@ namespace CapaPresentacion
         {
             Session["existencias"] = false;
             Response.Redirect("Creacion.aspx");//Redirecciona consulta tarea   
+        }
+
+        protected void creacion_click(object sender, ImageClickEventArgs e)
+        {
+            if (Convert.ToBoolean(Session["existencias"]) == true)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#creacionModal').modal('show');</script>");
+            }
+            else
+            {
+                Response.Redirect("Creacion.aspx");//Redirecciona consulta tarea
+            }
+        }
+
+        protected void cargar_click(object sender, ImageClickEventArgs e)
+        {
+            if (Convert.ToBoolean(Session["existencias"]) == true)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#archivoModal').modal('show');</script>");
+            }
+            else
+            {
+                Response.Redirect("Archivo.aspx");//Redirecciona cargue por archivo plano
+            }
+        }
+
+        protected void consultar_click(object sender, ImageClickEventArgs e)
+        {
+            if (Convert.ToBoolean(Session["existencias"]) == true)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#consultaModal').modal('show');</script>");
+            }
+            else
+            {
+                Response.Redirect("Inicial.aspx");//Redirecciona consulta tarea
+            }
         }
     }
     }

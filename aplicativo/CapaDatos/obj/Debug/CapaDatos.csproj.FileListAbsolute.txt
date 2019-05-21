@@ -10,12 +10,6 @@ C:\Users\Desarrollador\Downloads\Proyecto Web (1)\Proyecto Web\Proyecto TiendaCo
 C:\Users\Desarrollador\Downloads\Proyecto Web (1)\Proyecto Web\Proyecto TiendaComunal\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
 C:\Users\Desarrollador\Downloads\Proyecto Web (1)\Proyecto Web\Proyecto TiendaComunal\CapaDatos\obj\Debug\CapaDatos.dll
 C:\Users\Desarrollador\Downloads\Proyecto Web (1)\Proyecto Web\Proyecto TiendaComunal\CapaDatos\obj\Debug\CapaDatos.pdb
-C:\APLICATIVO\aplicativo\CapaDatos\obj\Debug\CapaDatos.csprojAssemblyReference.cache
-C:\APLICATIVO\aplicativo\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
-C:\APLICATIVO\aplicativo\CapaDatos\obj\Debug\CapaDatos.dll
-C:\APLICATIVO\aplicativo\CapaDatos\obj\Debug\CapaDatos.pdb
-C:\APLICATIVO\aplicativo\CapaDatos\bin\Debug\CapaDatos.dll
-C:\APLICATIVO\aplicativo\CapaDatos\bin\Debug\CapaDatos.pdb
 C:\Users\Desarrollador\Desktop\MWCT10\aplicativo\CapaDatos\bin\Debug\CapaDatos.dll
 C:\Users\Desarrollador\Desktop\MWCT10\aplicativo\CapaDatos\bin\Debug\CapaDatos.pdb
 C:\Users\Desarrollador\Desktop\MWCT10\aplicativo\CapaDatos\obj\Debug\CapaDatos.csprojAssemblyReference.cache

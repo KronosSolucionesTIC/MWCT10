@@ -16,10 +16,6 @@
             document.getElementById("Contenido_eliminar_dispositivo").disabled = false;
         }
     });
-    $('#continuar').click(function (event) {
-        /* Act on the event */
-        console.log('Entro');
-    });
     //Funcion para validar solo numeros
     $('#Contenido_cant_medidores').on('input', function () {
         this.value = this.value.replace(/[^0-9]/g, '');
@@ -65,5 +61,13 @@
     $('#Contenido_actualizarSerial').click(function (event) {
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#modalSerial').modal('show');</script>");
         console.log('Entro actualizar serial');
+    });
+    //Valida eliminar
+    $('#Contenido_eliminar_dispositivo').click(function (event) {
+        $('#Contenido_elimina').val('1');
+    });
+    //Cambia eliminar
+    $('#Contenido_agregar_dispositivo').click(function (event) {
+        $('#Contenido_elimina').val('0');
     });
 });

@@ -38,13 +38,13 @@
             <div class="row">
                 <div class="col-2 div-menu">
                     <asp:contentplaceholder id="Menu" runat="server">
-                             <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Estilo/images/con_tarea.png" OnClick="ImageButton1_Click" />
+                             <asp:ImageButton ID="consultar_btn" runat="server" ImageUrl="~/Estilo/images/con_tarea.png" OnClick="consultar_click" />
                         <br />
-                    <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/Estilo/images/con_doc.png" />
+                    <asp:ImageButton ID="documentos_btn" runat="server" ImageUrl="~/Estilo/images/con_doc.png" />
                         <br /> 
-                        <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/Estilo/images/carga_archi.png" OnClick="ImageButton3_Click" />
+                        <asp:ImageButton ID="cargar_btn" runat="server" ImageUrl="~/Estilo/images/carga_archi.png" OnClick="cargar_click" />
                     <br /> 
-                    <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/Estilo/images/crea_tarea.png" OnClick="ImageButton4_Click"  />
+                    <asp:ImageButton ID="creacion_btn" runat="server" ImageUrl="~/Estilo/images/crea_tarea.png" OnClick="creacion_click"  />
                     </asp:contentplaceholder>
                 </div>
             
@@ -60,7 +60,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="consultaModalLabel">Cancelar tarea</h5>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-center">
         Esta operación cancelará la actividad actual.<br />
         Se perderán toda los datos que no han sido salvados.<br />
         ¿Desea continuar?<br />
@@ -79,7 +79,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="archivoModalLabel">Cancelar tarea</h5>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-center">
         Esta operación cancelará la actividad actual.<br />
         Se perderán toda los datos que no han sido salvados.<br />
         ¿Desea continuar?<br />
@@ -98,7 +98,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="creacionModalLabel">Cancelar tarea</h5>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-center">
         Esta operación cancelará la actividad actual.<br />
         Se perderán toda los datos que no han sido salvados.<br />
         ¿Desea continuar?<br />

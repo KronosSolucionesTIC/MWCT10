@@ -37,9 +37,10 @@ namespace CapaPresentacion
                 {
                     if(elimina.Value == "0")
                     {
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('show');</script>");
+                        if (redirecciona.Value == "0") {
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#exampleModalLive').modal('show');</script>");
+                        }
                     } 
-                    mostrar_error();
                 } else
                 {
                     agrega_items();
@@ -48,11 +49,6 @@ namespace CapaPresentacion
                 }
                 bloquea_campos_cant();
             }
-        }
-
-        protected void mostrar_error()
-        {
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>document.getElementById('Contenido_agregar_dispositivo').style.display = inline;</ script>");
         }
 
         private void llenar_index()

@@ -655,3 +655,6 @@ div.dhtmlx_window_active, div.dhx_modal_cover_dv {
     background-color:transparent;
     font-weight:bold;
 }
+.obligatorio {
+    border: 2px solid red;
+}

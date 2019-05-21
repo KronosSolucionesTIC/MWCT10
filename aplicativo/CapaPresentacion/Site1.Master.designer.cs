@@ -40,40 +40,40 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder Menu;
         
         /// <summary>
-        /// Control ImageButton1.
+        /// Control consultar_btn.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
+        protected global::System.Web.UI.WebControls.ImageButton consultar_btn;
         
         /// <summary>
-        /// Control ImageButton2.
+        /// Control documentos_btn.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton2;
+        protected global::System.Web.UI.WebControls.ImageButton documentos_btn;
         
         /// <summary>
-        /// Control ImageButton3.
+        /// Control cargar_btn.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton3;
+        protected global::System.Web.UI.WebControls.ImageButton cargar_btn;
         
         /// <summary>
-        /// Control ImageButton4.
+        /// Control creacion_btn.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton4;
+        protected global::System.Web.UI.WebControls.ImageButton creacion_btn;
         
         /// <summary>
         /// Control Contenido.
