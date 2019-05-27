@@ -33,7 +33,6 @@ namespace CapaDatos
             catch (Exception exc)
             {
                 return exc.Message;
-
             }
             finally
             {

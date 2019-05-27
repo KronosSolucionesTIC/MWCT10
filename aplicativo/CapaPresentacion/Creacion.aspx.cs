@@ -328,6 +328,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
             limpia_campos(); //Limpia los campos
             verifica_total();
             Session["existencias"] = true;
+            activa_agregar();
         }
 
         protected void limpia_campos()
@@ -548,7 +549,14 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void activa_agregar()
         {
-            //act_cantidad.Enabled = true;
+            int falt = int.Parse(faltantes.Value);
+            if (falt > 0)
+            {
+                agregar_dispositivo.Disabled = false;
+            } else
+            {
+                agregar_dispositivo.Disabled = true;
+            }
         }
         protected void agrega_array()
         {
@@ -611,6 +619,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
         {
             llenar_tabla_ultimo();  //Funcion para eliminar registro
             resta_contadores();     //Resta los contadores
+            activa_agregar();
         }
 
         protected void envia(object sender, EventArgs e)

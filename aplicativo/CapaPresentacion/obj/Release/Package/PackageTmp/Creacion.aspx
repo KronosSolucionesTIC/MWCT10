@@ -32,6 +32,7 @@
                 Eliminar dispositivo
             </button>
              <input type="hidden" id="elimina" value="0" runat="server"/>
+             <input type="hidden" id="redirecciona" value="0" runat="server"/>
          </div>
      </div>
 <div class="modal fade" id="exampleModalLive" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -129,7 +130,7 @@
         Esta operación eliminará el ultimo registro ingresado.<br />
         ¿Desea continuar?
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer text-center">
         <asp:Button runat="server" Text="No" id="Button1" class="btn btn-danger" Width="150px" data-dismiss="modal"></asp:Button>
         <asp:Button runat="server" Text="Si" id="Button2" class="btn btn-success" Width="150px" onClick="eliminar_Click"></asp:Button>
       </div>

@@ -73,7 +73,7 @@
 
 					        <div class="container-login100-form-btn p-t-10">
                                 <asp:Button ID="Iniciar" runat="server" class="login100-form-btn" OnClick="Iniciar_Click" />
-							
+							    <input type="hidden" value="0" id="con" runat="server"/>
 					            <asp:HiddenField ID="TextoContador" runat="server" Value="0" />
 							
 					        </div>

@@ -69,5 +69,16 @@
     //Cambia eliminar
     $('#Contenido_agregar_dispositivo').click(function (event) {
         $('#Contenido_elimina').val('0');
+        $('#Contenido_redirecciona').val('0');
+    });
+    //Cambia redireccionar
+    $('#Menu_creacion_btn').click(function (event) {
+        $('#Contenido_redirecciona').val('1');
+    });
+    $('#Menu_cargar_btn').click(function (event) {
+        $('#Contenido_redirecciona').val('1');
+    });
+    $('#Menu_consultar_btn').click(function (event) {
+        $('#Contenido_redirecciona').val('1');
     });
 });
