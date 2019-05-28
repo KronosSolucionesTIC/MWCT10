@@ -333,7 +333,7 @@ Response.Write("<script language=javascript> alert('Respuesta es " + salida + "'
 
         protected void limpia_campos()
         {
-            zona.SelectedValue = "Seleccione...";
+            zona.SelectedValue = "GLOBAL";
             serial.Value = "";
             marca.SelectedValue = "Seleccione...";
             modelo.SelectedValue = "Seleccione...";

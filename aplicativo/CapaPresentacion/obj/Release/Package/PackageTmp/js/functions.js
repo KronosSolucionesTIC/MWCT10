@@ -4,9 +4,11 @@
 
         tot = $('#Contenido_total').val();
         lis = $('#Contenido_listados').val();
+        fal = $('#Contenido_faltantes').val();
+
         console.log(lis);
 
-        if (lis < tot) {
+        if (fal > 0) {
             document.getElementById("Contenido_agregar_dispositivo").disabled = false;
         }
         if (lis == tot & tot > 0) {
