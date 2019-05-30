@@ -658,3 +658,7 @@ div.dhtmlx_window_active, div.dhx_modal_cover_dv {
 .obligatorio {
     border: 2px solid red;
 }
+.documento {
+    font-size: 20px;
+    font-weight: bold;
+}

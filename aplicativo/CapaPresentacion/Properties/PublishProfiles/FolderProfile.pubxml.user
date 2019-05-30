@@ -25,10 +25,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/27/2019 16:54:20</publishTime>
     </File>
     <File Include="bin/CapaPresentacion.dll">
-      <publishTime>05/27/2019 16:54:42</publishTime>
+      <publishTime>05/28/2019 17:31:18</publishTime>
     </File>
     <File Include="bin/CapaPresentacion.pdb">
-      <publishTime>05/27/2019 16:54:42</publishTime>
+      <publishTime>05/28/2019 17:31:18</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>03/29/2019 09:10:11</publishTime>
@@ -115,7 +115,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/07/2019 16:28:32</publishTime>
     </File>
     <File Include="Creacion.aspx">
-      <publishTime>05/27/2019 11:32:59</publishTime>
+      <publishTime>05/28/2019 17:07:12</publishTime>
     </File>
     <File Include="DefinirGrupo.aspx">
       <publishTime>04/23/2019 15:43:19</publishTime>

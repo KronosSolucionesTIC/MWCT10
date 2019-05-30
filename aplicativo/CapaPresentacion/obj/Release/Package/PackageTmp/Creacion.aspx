@@ -69,7 +69,7 @@
     <br />
     <div class="row">
         <div class="col-lg-2">
-            <asp:Label class="etiquetas" runat="server" Text="Codigos de error"></asp:Label>
+            <asp:Label class="etiquetas" runat="server" Text="Codigo de ingreso"></asp:Label>
         </div>
         <div class="col-lg-2">
             <asp:DropDownList ID="codigos" class="cajas" runat="server" >

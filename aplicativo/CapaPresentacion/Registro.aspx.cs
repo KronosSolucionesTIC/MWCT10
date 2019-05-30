@@ -22,7 +22,7 @@ namespace CapaPresentacion
             usuario.Text = usu;                         //Pone nombre usuario
             cliente.Text = cli;                         //Pone nombre cliente
             string doc = Convert.ToString(Session["Documento"]); //Lee la variable Sessiondoc
-            documento.Value = doc;
+            documento.Text = doc;
             Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>$('#registroModal').modal('show');</script>");      
         }
 
