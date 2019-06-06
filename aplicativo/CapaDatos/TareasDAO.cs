@@ -233,7 +233,7 @@ namespace CapaDatos
         }
 
         //Procedimiento para guardar la tarea
-        public string SP_guardar_tarea(string cliente, string zona, string codigo, string documento, string serial, string marca, string modelo)
+        public string SP_guardar_tarea(string cliente, string zona, string codigo, string documento, string serial, string marca, string modelo, DateTime fecha)
         {
             try
             {
@@ -249,6 +249,7 @@ namespace CapaDatos
                 comando.Parameters.Add("@NUM_SERIAL", SqlDbType.VarChar).Value = serial;
                 comando.Parameters.Add("@MARK", SqlDbType.VarChar).Value = marca;
                 comando.Parameters.Add("@NAME_MODEL", SqlDbType.VarChar).Value = modelo;
+                comando.Parameters.Add("@FECHA", SqlDbType.Date).Value = fecha;
 
                 conn.Open();
                 rpt = comando.ExecuteReader();

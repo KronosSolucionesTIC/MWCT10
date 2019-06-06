@@ -13,9 +13,13 @@
       <div class="modal-header">
         <h5 class="modal-title" id="registroModalLabel">Registro correcto</h5>
       </div>
-      <div class="modal-body">
-        Se ha finalizado de forma correcta el ingreso de los medidores.<br />
-        El Acta de Entrada con el que fue registrado el proceso es: <input runat="server" type="text" id="documento" />
+      <div class="modal-body text-center">
+        Se han registrado de forma correcta todas las solicitudes.<br />
+        El Código de Ingreso asociado con el proceso es: <br />
+        <br />
+        <asp:Label class="documento text-center" runat="server" type="text" id="documento"></asp:Label><br />
+        <br />
+        Recomendamos guardar este codigo para futuras consultas.
       </div>
       <div class="modal-footer">
         <asp:button text="Continuar" class="btn btn-success" runat="server" OnClick="redireccionar"></asp:button>

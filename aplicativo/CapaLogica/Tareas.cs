@@ -106,7 +106,8 @@ namespace CapaLogica
         //Metodo para guardar la tarea
         public string getGuardarTarea()
         {
-           string ok = SP_guardar_tarea(this.cliente,this.zona,this.codigo,this.documento,this.serial,this.marca,this.modelo);
+            DateTime fecha = DateTime.Now;
+            string ok = SP_guardar_tarea(this.cliente,this.zona,this.codigo,this.documento,this.serial,this.marca,this.modelo,fecha);
             return ok;
         }
 
