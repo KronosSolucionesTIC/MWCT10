@@ -40,7 +40,7 @@
                     <asp:contentplaceholder id="Menu" runat="server">
                              <asp:ImageButton ID="consultar_btn" runat="server" ImageUrl="~/Estilo/images/con_tarea.png" OnClick="consultar_click" />
                         <br />
-                    <asp:ImageButton ID="documentos_btn" runat="server" ImageUrl="~/Estilo/images/con_doc.png" />
+                    <asp:ImageButton ID="documentos_btn" runat="server" ImageUrl="~/Estilo/images/con_doc_disabled.png" Enabled="False" OnClick="documentos_btn_Click" />
                         <br /> 
                         <asp:ImageButton ID="cargar_btn" runat="server" ImageUrl="~/Estilo/images/carga_archi.png" OnClick="cargar_click" />
                     <br /> 

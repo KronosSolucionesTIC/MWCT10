@@ -17,13 +17,11 @@ namespace CapaPresentacion
 
        protected void Iniciar_Click(object sender, EventArgs e)
         {
-
             Logeo em = new Logeo();       //Crea una instancia de clase
             em.Usuario = Usuario.Text;          //Toma el valor del Textbox usuario
             em.Contraseña = Contraseña.Text;    //Toma el valor del Textbox contraseña
             string ok = em.inicio_sesion();     //Pasa el metodo inicio de sesion
-            if(ok == "true")
-            {
+
                 string Id = em.getId();             //Pasa el metodo getId para validar si existe el usuario     
                 string bloqueo = em.getBloqueo();   //Pasa el metodo getBloqueo
                 string activo = em.getActivo();     //Pasa el metodo getActivo
@@ -86,10 +84,6 @@ namespace CapaPresentacion
                     Contraseña.Text = string.Empty; //Limpia campo contraseña
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Usuario invalido');</script>");
                 }
-            } else
-            {
-                Response.Write("<script language=javascript> alert('Error en conexion'); </script>");
-            }
         }
 
 

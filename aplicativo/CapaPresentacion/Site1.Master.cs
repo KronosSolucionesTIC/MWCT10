@@ -71,5 +71,10 @@ namespace CapaPresentacion
                 Response.Redirect("Inicial.aspx");//Redirecciona consulta tarea
             }
         }
+
+        protected void documentos_btn_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
     }
     }
