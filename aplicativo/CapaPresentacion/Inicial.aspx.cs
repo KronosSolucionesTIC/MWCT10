@@ -245,6 +245,14 @@ namespace CapaPresentacion
                     DataTable dt = ca.getConsultaActualizar();          //Pasa el metodo consulta inicial
                     this.GridView1.DataSource = dt;                     //Agrega al GridView el dataset
                     GridView1.DataBind();
+
+                    if (dt.Rows.Count <= 0)
+                    {
+                        exportar.Enabled = false;
+                    } else
+                    {
+                        exportar.Enabled = true;
+                    }
                 }
             }
         }

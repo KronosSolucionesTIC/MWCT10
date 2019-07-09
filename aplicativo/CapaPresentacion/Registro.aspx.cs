@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -28,6 +29,23 @@ namespace CapaPresentacion
 
         protected void redireccionar(object sender, EventArgs e)
         {
+            //Exportar
+            StringWriter stringWrite = new StringWriter();
+            for (int i = 0; i <= (5); i++)
+            {
+                stringWrite.WriteLine("Col1" + "\t"
+                        + "Col2" + "\t"
+                        );
+                stringWrite.WriteLine("");
+            }
+            Response.Clear();
+            Response.AddHeader("content-disposition", "attachment;filename=prueba.txt");
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.text";
+            HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
+            Response.Write(stringWrite.ToString());
+            //Response.End();
             Response.Redirect("Creacion.aspx");
         }
 
